@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MaldiSuite - Python Ecosystem for MALDI-TOF Spectral Processing and Analysis in AMR Research</title>
+<meta name="description" content="MaldiSuite is a Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research, combining preprocessing, batch correction, and deep learning classifiers." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="#" class="nav-brand">
+      <img src="assets/maldi_suite_logo.png" alt="MaldiSuite logo" class="brand-logo" />
+      <span class="nav-title">MaldiSuite</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#quickstart">Quick Start</a></li>
+      <li><a href="https://github.com/EttoreRocchi/MaldiSuite" target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="container hero-inner">
+    <h1 class="hero-title">MaldiSuite</h1>
+    <p class="hero-tagline">
+      A Python ecosystem for MALDI-TOF spectral processing and analysis<br />
+      in antimicrobial resistance research
+    </p>
+    <div class="hero-cta">
+      <a href="#quickstart" class="btn btn-primary">Get Started</a>
+      <a href="https://github.com/EttoreRocchi/MaldiSuite" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub</a>
+    </div>
+    <a href="#overview" class="hero-scroll">Discover more ↓</a>
+  </div>
+</header>
+
+<!-- ========== OVERVIEW ========== -->
+<section id="overview" class="section section-light">
+  <div class="container">
+    <h2 class="section-title centered">Project Overview</h2>
+    <p class="section-lead centered">
+      <strong>MaldiSuite</strong> is an open-source Python ecosystem for MALDI-TOF
+      spectral processing and analysis in antimicrobial resistance research.
+      It bridges a gap between general-purpose mass spectrometry software and
+      research codebases for AMR prediction, providing a <strong>production-ready,
+      sklearn-compatible workflow</strong> for clinical microbiology and computational biology teams.
+    </p>
+    <p class="section-body centered">
+      The suite brings together three complementary packages that cover the entire pipeline:
+      from raw spectrum preprocessing and clinically aware evaluation, through batch effect
+      correction for multi-site studies, to pre-configured deep learning classifiers adapted
+      to the resolution of MALDI-TOF spectra.
+    </p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon feature-icon-blue">⌖</div>
+        <h3>Clinically Aware Evaluation</h3>
+        <p>EUCAST and CLSI metrics (VME, ME, categorical agreement) exposed as scikit-learn scorers, with patient-grouped cross-validation to prevent data leakage.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon feature-icon-orange">◈</div>
+        <h3>Batch Effect Correction</h3>
+        <p>Integrated catalog of generic and MALDI-specific correction methods, addressing site-to-site and instrument-to-instrument variability in clinical settings.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon feature-icon-blue">⌬</div>
+        <h3>Biomarker Discovery</h3>
+        <p>Per-bin statistical analysis with multiple-testing correction, fold-change estimation, and effect-size quantification, paired with publication-ready visualizations.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon feature-icon-orange">⟳</div>
+        <h3>Drift Monitoring</h3>
+        <p>Longitudinal monitoring of model stability through reference similarity, PCA trajectory, and biomarker stability metrics across time windows.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon feature-icon-blue">⚙</div>
+        <h3>Deep Learning Classifiers</h3>
+        <p>Four ready-to-use neural network architectures (MLP with optional attention, 1-D CNN, ResNet, and Vision Transformer) with default hyperparameters calibrated for MALDI-TOF spectral resolution.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon feature-icon-orange">⇄</div>
+        <h3>sklearn-Compatible API</h3>
+        <p>All transformers and classifiers inherit from the scikit-learn base classes and integrate seamlessly with Pipeline, GridSearchCV, and cross-validation utilities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== THE THREE PACKAGES ========== -->
+<section id="packages" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Three Integrated Packages</h2>
+    <p class="section-lead centered">
+      Each package addresses a distinct concern with its own dependencies and release cadence.
+      Install them individually, or all together via the meta-package.
+    </p>
+
+    <div class="package-grid">
+
+      <div class="package-card package-card-blue">
+        <img src="assets/maldiamrkit_logo.png" alt="MaldiAMRKit logo" class="package-logo" />
+        <h3 class="package-name">MaldiAMRKit</h3>
+        <p class="package-tagline">Preprocessing, evaluation, biomarkers, drift monitoring</p>
+        <ul class="package-features">
+          <li>Native Bruker FID/1r I/O with TOF→m/z calibration</li>
+          <li>Composable preprocessing pipelines (JSON/YAML serializable)</li>
+          <li>EUCAST/CLSI evaluation metrics and scorers</li>
+          <li>Patient-grouped splitting (<code>CaseGroupedKFold</code>)</li>
+          <li>Integrated biomarker discovery and drift monitoring</li>
+          <li>Native DRIAMS and MARISMa loaders</li>
+        </ul>
+        <pre class="package-install"><code>pip install maldiamrkit</code></pre>
+        <div class="package-links">
+          <a href="https://github.com/EttoreRocchi/MaldiAMRKit" target="_blank" rel="noopener" class="pkg-link">GitHub</a>
+          <a href="https://pypi.org/project/maldiamrkit/" target="_blank" rel="noopener" class="pkg-link">PyPI</a>
+          <a href="https://maldiamrkit.readthedocs.io" target="_blank" rel="noopener" class="pkg-link">Docs</a>
+        </div>
+      </div>
+
+      <div class="package-card package-card-orange">
+        <img src="assets/maldibatchkit_logo.png" alt="MaldiBatchKit logo" class="package-logo" />
+        <h3 class="package-name">MaldiBatchKit</h3>
+        <p class="package-tagline">Batch effect correction for mass spectra</p>
+        <ul class="package-features">
+          <li>ComBat variants (Johnson, Fortin, CovBat)</li>
+          <li>Limma and Harmony</li>
+          <li>Simple baselines (median, z-score, reference)</li>
+          <li>MALDI-specific correctors (<code>BatchAwareWarping</code>, <code>QualityWeightedComBat</code>, <code>SpeciesAwareComBat</code>)</li>
+          <li>Diagnostics (kBET, LISI, Silhouette, peak-shift)</li>
+          <li>Native integration with <code>MaldiSet</code></li>
+        </ul>
+        <pre class="package-install"><code>pip install maldibatchkit</code></pre>
+        <div class="package-links">
+          <a href="https://github.com/EttoreRocchi/MaldiBatchKit" target="_blank" rel="noopener" class="pkg-link">GitHub</a>
+          <a href="https://pypi.org/project/maldibatchkit/" target="_blank" rel="noopener" class="pkg-link">PyPI</a>
+          <a href="https://maldibatchkit.readthedocs.io" target="_blank" rel="noopener" class="pkg-link">Docs</a>
+        </div>
+      </div>
+
+      <div class="package-card package-card-blue">
+        <img src="assets/maldideepkit_logo.png" alt="MaldiDeepKit logo" class="package-logo" />
+        <h3 class="package-name">MaldiDeepKit</h3>
+        <p class="package-tagline">Deep learning classifiers for MALDI-TOF spectra</p>
+        <ul class="package-features">
+          <li><code>MaldiMLPClassifier</code> - MLP with optional sigmoid-gated attention</li>
+          <li><code>MaldiCNNClassifier</code> - 1-D Conv1D + BatchNorm blocks</li>
+          <li><code>MaldiResNetClassifier</code> - 1-D ResNet-18-style residual blocks</li>
+          <li><code>MaldiTransformerClassifier</code> - 1-D Vision Transformer (LayerScale, stochastic depth)</li>
+          <li>sklearn-compatible <code>fit</code>/<code>predict</code>/<code>predict_proba</code></li>
+          <li><code>from_spectrum(bin_width, input_dim)</code> auto-scaling factory</li>
+        </ul>
+        <pre class="package-install"><code>pip install maldideepkit</code></pre>
+        <div class="package-links">
+          <a href="https://github.com/EttoreRocchi/MaldiDeepKit" target="_blank" rel="noopener" class="pkg-link">GitHub</a>
+          <a href="https://pypi.org/project/maldideepkit/" target="_blank" rel="noopener" class="pkg-link">PyPI</a>
+          <a href="https://maldideepkit.readthedocs.io" target="_blank" rel="noopener" class="pkg-link">Docs</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="suite-install">
+      <h3>Install the full suite</h3>
+      <p>
+        For users who want the entire ecosystem, a convenience meta-package
+        installs all three packages with pinned compatible versions.
+      </p>
+      <pre class="suite-install-cmd"><code>pip install maldisuite</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- ========== QUICK START ========== -->
+<section id="quickstart" class="section section-light">
+  <div class="container">
+    <h2 class="section-title">Quick Start</h2>
+    <p class="section-lead centered">
+      An end-to-end example combining preprocessing, batch correction, deep learning,
+      and patient-grouped evaluation.
+    </p>
+    <pre class="code-block"><code><span class="c-kw">from</span> maldiamrkit <span class="c-kw">import</span> MaldiSet
+<span class="c-kw">from</span> maldiamrkit.evaluation <span class="c-kw">import</span> CaseGroupedKFold, vme_scorer
+<span class="c-kw">from</span> maldibatchkit <span class="c-kw">import</span> BatchAwareWarping, ComBat
+<span class="c-kw">from</span> maldideepkit <span class="c-kw">import</span> MaldiMLPClassifier
+<span class="c-kw">from</span> sklearn.pipeline <span class="c-kw">import</span> Pipeline
+<span class="c-kw">from</span> sklearn.model_selection <span class="c-kw">import</span> cross_val_score
+
+data  = MaldiSet.from_directory(<span class="c-str">"driams/"</span>, <span class="c-str">"meta.csv"</span>, bin_width=<span class="c-num">3</span>)
+batch = data.meta[<span class="c-str">"batch"</span>]
+
+pipe = Pipeline([
+    (<span class="c-str">"warp"</span>,   BatchAwareWarping(batch=batch)),
+    (<span class="c-str">"combat"</span>, ComBat(batch=batch, method=<span class="c-str">"fortin"</span>)),
+    (<span class="c-str">"clf"</span>,    MaldiMLPClassifier(input_dim=data.X.shape[<span class="c-num">1</span>], random_state=<span class="c-num">0</span>)),
+])
+
+scores = cross_val_score(
+    pipe, data.X, data.get_y_single(<span class="c-str">"Drug"</span>),
+    scoring=vme_scorer,
+    cv=CaseGroupedKFold(n_splits=<span class="c-num">5</span>),
+    groups=data.meta[<span class="c-str">"patient_id"</span>],
+)</code></pre>
+  </div>
+</section>
+
+<!-- ========== CTA / GET STARTED ========== -->
+<section id="get-started" class="section section-light">
+  <div class="container">
+    <h2 class="section-title">Get Started</h2>
+    <div class="cta-grid">
+      <a href="https://pypi.org/project/maldisuite/" target="_blank" rel="noopener" class="cta-card">
+        <h3>Install via pip</h3>
+        <p>Install the entire suite with a single command.</p>
+        <pre class="cta-cmd"><code>pip install maldisuite</code></pre>
+      </a>
+      <a href="#packages" class="cta-card">
+        <h3>Browse Packages</h3>
+        <p>Explore the three packages individually - each with its own documentation, examples, and release cycle.</p>
+        <span class="cta-link">See all packages →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="assets/maldi_suite_logo.png" alt="MaldiSuite logo" class="brand-logo-footer" />
+      <span>MaldiSuite</span>
+    </div>
+    <p class="footer-funding">
+      Developed at the University of Bologna and affiliated clinical microbiology laboratories.
+    </p>
+    <div class="footer-links">
+      <a href="https://github.com/EttoreRocchi/MaldiSuite/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+      <a href="https://github.com/EttoreRocchi/MaldiSuite" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://github.com/EttoreRocchi/MaldiSuite/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
+    </div>
+    <p class="footer-copyright">© 2026 Ettore Rocchi. Open source under the MIT License.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

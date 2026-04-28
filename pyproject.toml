@@ -1,0 +1,78 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "maldisuite"
+version = "0.1.0"
+description = "MaldiSuite: a Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+    { name = "Ettore Rocchi" }
+]
+keywords = [
+    "MALDI-TOF",
+    "antimicrobial resistance",
+    "AMR",
+    "clinical microbiology",
+    "mass spectrometry",
+    "machine learning",
+    "deep learning",
+    "batch effect correction",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Healthcare Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "maldiamrkit[batch]>=0.14.0",
+    "maldibatchkit[viz]>=0.1.0",
+    "maldideepkit>=0.1.0",
+]
+
+[project.urls]
+Homepage      = "https://ettorerocchi.github.io/MaldiSuite/"
+Documentation = "https://ettorerocchi.github.io/MaldiSuite/"
+Repository    = "https://github.com/EttoreRocchi/MaldiSuite"
+"Bug Tracker" = "https://github.com/EttoreRocchi/MaldiSuite/issues"
+MaldiAMRKit   = "https://github.com/EttoreRocchi/MaldiAMRKit"
+MaldiBatchKit = "https://github.com/EttoreRocchi/MaldiBatchKit"
+MaldiDeepKit  = "https://github.com/EttoreRocchi/MaldiDeepKit"
+
+# This is a meta-package with no Python code of its own.
+# It exists solely to pin a compatible set of versions across the three
+# packages of the MaldiSuite. Installing this package triggers installation
+# of MaldiAMRKit, MaldiBatchKit, and MaldiDeepKit at compatible versions.
+[tool.hatch.build.targets.wheel]
+bypass-selection = true
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "pyproject.toml",
+]
+exclude = [
+    "index.html",
+    "css/**",
+    "js/**",
+    "assets/**",
+    "data/**",
+    ".github/**",
+    ".nojekyll",
+]
