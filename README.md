@@ -5,9 +5,15 @@
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**MaldiSuite** is a Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research. It combines preprocessing, batch effect correction,
-and deep learning classifiers in a single sklearn-compatible workflow for clinical
-microbiology and computational biology research.
+<p align="center">
+  <img src="assets/maldi_suite_logo.png" alt="MaldiSuite" width="320"/>
+</p>
+
+<p align="center">
+  <strong>A Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research</strong>
+</p>
+
+**MaldiSuite** combines preprocessing, batch effect correction, and deep learning classifiers in a single sklearn-compatible workflow for clinical microbiology and computational biology research.
 
 > **Landing page:** [MaldiSuite](<https://ettorerocchi.github.io/MaldiSuite/>)
 
