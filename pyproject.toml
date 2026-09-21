@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "maldisuite"
-version = "0.1.0"
+version = "0.2.0"
 description = "MaldiSuite: a Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research"
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -39,9 +39,9 @@ classifiers = [
 ]
 
 dependencies = [
-    "maldiamrkit[batch]>=0.14.0",
-    "maldibatchkit[viz]>=0.1.0",
-    "maldideepkit>=0.1.0",
+    "maldiamrkit[batch,formats]>=0.20.0,<0.21",
+    "maldibatchkit[viz]>=0.2.0,<0.3",
+    "maldideepkit>=0.3.0,<0.4",
 ]
 
 [project.urls]

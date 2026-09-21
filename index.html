@@ -5,6 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>MaldiSuite - Python Ecosystem for MALDI-TOF Spectral Processing and Analysis in AMR Research</title>
 <meta name="description" content="MaldiSuite is a Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research, combining preprocessing, batch correction, and deep learning classifiers." />
+<link rel="canonical" href="https://ettorerocchi.github.io/MaldiSuite/" />
+<meta name="theme-color" content="#1e3a8a" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/web/favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/web/apple-touch-icon.png" />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ettorerocchi.github.io/MaldiSuite/" />
+<meta property="og:title" content="MaldiSuite - Python ecosystem for MALDI-TOF AMR research" />
+<meta property="og:description" content="A unified Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research: preprocessing, batch correction, and deep learning classifiers in one sklearn-compatible workflow." />
+<meta property="og:image" content="https://ettorerocchi.github.io/MaldiSuite/assets/og-preview.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="MaldiSuite - A Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research" />
+<meta property="og:site_name" content="MaldiSuite" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="MaldiSuite - Python ecosystem for MALDI-TOF AMR research" />
+<meta name="twitter:description" content="A unified Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research." />
+<meta name="twitter:image" content="https://ettorerocchi.github.io/MaldiSuite/assets/og-preview.png" />
+<meta name="twitter:image:alt" content="MaldiSuite landing card" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -12,23 +33,26 @@
 </head>
 <body>
 
-<!-- ========== NAVBAR ========== -->
 <nav class="navbar">
   <div class="container nav-inner">
     <a href="#" class="nav-brand">
-      <img src="assets/maldi_suite_logo.png" alt="MaldiSuite logo" class="brand-logo" />
-      <span class="nav-title">MaldiSuite</span>
+      <img src="assets/web/maldi_suite_logo.png" alt="MaldiSuite" class="brand-logo" width="123" height="32" />
     </a>
-    <ul class="nav-links">
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+    <ul class="nav-links" id="nav-menu">
       <li><a href="#overview">Overview</a></li>
       <li><a href="#packages">Packages</a></li>
       <li><a href="#quickstart">Quick Start</a></li>
+      <li><a href="#citation">Citation</a></li>
       <li><a href="https://github.com/EttoreRocchi/MaldiSuite" target="_blank" rel="noopener">GitHub</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- ========== HERO ========== -->
 <header class="hero">
   <div class="container hero-inner">
     <h1 class="hero-title">MaldiSuite</h1>
@@ -43,7 +67,6 @@
   </div>
 </header>
 
-<!-- ========== OVERVIEW ========== -->
 <section id="overview" class="section section-light">
   <div class="container">
     <h2 class="section-title centered">Project Overview</h2>
@@ -96,7 +119,6 @@
   </div>
 </section>
 
-<!-- ========== THE THREE PACKAGES ========== -->
 <section id="packages" class="section section-alt">
   <div class="container">
     <h2 class="section-title">Three Integrated Packages</h2>
@@ -108,7 +130,7 @@
     <div class="package-grid">
 
       <div class="package-card package-card-blue">
-        <img src="assets/maldiamrkit_logo.png" alt="MaldiAMRKit logo" class="package-logo" />
+        <img src="assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit logo" class="package-logo" width="96" height="96" loading="lazy" />
         <h3 class="package-name">MaldiAMRKit</h3>
         <p class="package-tagline">Preprocessing, evaluation, biomarkers, drift monitoring</p>
         <ul class="package-features">
@@ -119,7 +141,10 @@
           <li>Integrated biomarker discovery and drift monitoring</li>
           <li>Native DRIAMS and MARISMa loaders</li>
         </ul>
-        <pre class="package-install"><code>pip install maldiamrkit</code></pre>
+        <div class="copy-wrap">
+          <pre class="package-install"><code>pip install maldiamrkit</code></pre>
+          <button type="button" class="copy-btn" aria-label="Copy install command">Copy</button>
+        </div>
         <div class="package-links">
           <a href="https://github.com/EttoreRocchi/MaldiAMRKit" target="_blank" rel="noopener" class="pkg-link">GitHub</a>
           <a href="https://pypi.org/project/maldiamrkit/" target="_blank" rel="noopener" class="pkg-link">PyPI</a>
@@ -128,7 +153,7 @@
       </div>
 
       <div class="package-card package-card-orange">
-        <img src="assets/maldibatchkit_logo.png" alt="MaldiBatchKit logo" class="package-logo" />
+        <img src="assets/web/maldibatchkit_logo.png" alt="MaldiBatchKit logo" class="package-logo" width="96" height="96" loading="lazy" />
         <h3 class="package-name">MaldiBatchKit</h3>
         <p class="package-tagline">Batch effect correction for mass spectra</p>
         <ul class="package-features">
@@ -139,7 +164,10 @@
           <li>Diagnostics (kBET, LISI, Silhouette, peak-shift)</li>
           <li>Native integration with <code>MaldiSet</code></li>
         </ul>
-        <pre class="package-install"><code>pip install maldibatchkit</code></pre>
+        <div class="copy-wrap">
+          <pre class="package-install"><code>pip install maldibatchkit</code></pre>
+          <button type="button" class="copy-btn" aria-label="Copy install command">Copy</button>
+        </div>
         <div class="package-links">
           <a href="https://github.com/EttoreRocchi/MaldiBatchKit" target="_blank" rel="noopener" class="pkg-link">GitHub</a>
           <a href="https://pypi.org/project/maldibatchkit/" target="_blank" rel="noopener" class="pkg-link">PyPI</a>
@@ -148,7 +176,7 @@
       </div>
 
       <div class="package-card package-card-blue">
-        <img src="assets/maldideepkit_logo.png" alt="MaldiDeepKit logo" class="package-logo" />
+        <img src="assets/web/maldideepkit_logo.png" alt="MaldiDeepKit logo" class="package-logo" width="96" height="96" loading="lazy" />
         <h3 class="package-name">MaldiDeepKit</h3>
         <p class="package-tagline">Deep learning classifiers for MALDI-TOF spectra</p>
         <ul class="package-features">
@@ -159,7 +187,10 @@
           <li>sklearn-compatible <code>fit</code>/<code>predict</code>/<code>predict_proba</code></li>
           <li><code>from_spectrum(bin_width, input_dim)</code> auto-scaling factory</li>
         </ul>
-        <pre class="package-install"><code>pip install maldideepkit</code></pre>
+        <div class="copy-wrap">
+          <pre class="package-install"><code>pip install maldideepkit</code></pre>
+          <button type="button" class="copy-btn" aria-label="Copy install command">Copy</button>
+        </div>
         <div class="package-links">
           <a href="https://github.com/EttoreRocchi/MaldiDeepKit" target="_blank" rel="noopener" class="pkg-link">GitHub</a>
           <a href="https://pypi.org/project/maldideepkit/" target="_blank" rel="noopener" class="pkg-link">PyPI</a>
@@ -175,12 +206,14 @@
         For users who want the entire ecosystem, a convenience meta-package
         installs all three packages with pinned compatible versions.
       </p>
-      <pre class="suite-install-cmd"><code>pip install maldisuite</code></pre>
+      <div class="copy-wrap copy-wrap-suite">
+        <pre class="suite-install-cmd"><code>pip install maldisuite</code></pre>
+        <button type="button" class="copy-btn copy-btn-suite" aria-label="Copy install command">Copy</button>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ========== QUICK START ========== -->
 <section id="quickstart" class="section section-light">
   <div class="container">
     <h2 class="section-title">Quick Start</h2>
@@ -213,7 +246,13 @@ scores = cross_val_score(
   </div>
 </section>
 
-<!-- ========== CTA / GET STARTED ========== -->
+<section id="citation" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title centered">Citation</h2>
+    <p class="section-lead centered">Available soon.</p>
+  </div>
+</section>
+
 <section id="get-started" class="section section-light">
   <div class="container">
     <h2 class="section-title">Get Started</h2>
@@ -232,13 +271,16 @@ scores = cross_val_score(
   </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
 <footer class="footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <img src="assets/maldi_suite_logo.png" alt="MaldiSuite logo" class="brand-logo-footer" />
+      <img src="assets/web/maldi_suite_logo.png" alt="" class="brand-logo-footer" width="32" height="32" />
       <span>MaldiSuite</span>
     </div>
+    <p class="footer-funding">
+      Supported by EU NextGenerationEU-MUR PNRR Extended Partnership initiative
+      on Emerging Infectious Diseases (Project no. PE00000007, INF-ACT).
+    </p>
     <div class="footer-links">
       <a href="https://github.com/EttoreRocchi/MaldiSuite/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
       <a href="https://github.com/EttoreRocchi/MaldiSuite" target="_blank" rel="noopener">GitHub</a>
@@ -247,6 +289,8 @@ scores = cross_val_score(
     <p class="footer-copyright">© 2026 Ettore Rocchi. Open source under the MIT License.</p>
   </div>
 </footer>
+
+<span id="copy-status" class="sr-only" role="status" aria-live="polite"></span>
 
 <script src="js/main.js"></script>
 </body>
