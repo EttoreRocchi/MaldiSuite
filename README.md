@@ -1,7 +1,7 @@
 # MaldiSuite
 
-[![Website](https://img.shields.io/badge/website-online-1e3a8a)](https://ettorerocchi.github.io/MaldiSuite/)
-[![PyPI meta-package](https://img.shields.io/pypi/v/maldisuite.svg?color=ea580c)](https://pypi.org/project/maldisuite/)
+[![Website](https://img.shields.io/badge/website-online-0b6f82)](https://ettorerocchi.github.io/MaldiSuite/)
+[![PyPI meta-package](https://img.shields.io/pypi/v/maldisuite.svg?color=4f9a2c)](https://pypi.org/project/maldisuite/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -49,7 +49,13 @@ Install the full suite with a single command:
 pip install maldisuite
 ```
 
-This installs `maldiamrkit`, `maldibatchkit`, and `maldideepkit` at compatible versions.
+This installs `maldiamrkit`, `maldibatchkit`, and `maldideepkit` at compatible versions. `maldisuite` 0.3.0 pins:
+
+| Package | Pinned range |
+|---|---|
+| MaldiAMRKit | `maldiamrkit[batch,formats]>=0.22.1,<0.23` |
+| MaldiBatchKit | `maldibatchkit[viz]>=0.2.0,<0.3` |
+| MaldiDeepKit | `maldideepkit>=0.3.0,<0.4` |
 
 Alternatively, install individual packages separately:
 
@@ -64,31 +70,39 @@ pip install maldideepkit    # deep learning classifiers
 ```python
 from maldiamrkit import MaldiSet
 from maldiamrkit.evaluation import CaseGroupedKFold, vme_scorer
-from maldibatchkit import BatchAwareWarping, ComBat
+from maldiamrkit.susceptibility import LabelEncoder
+from maldibatchkit import BatchAwareWarping, SpeciesAwareComBat
 from maldideepkit import MaldiMLPClassifier
-from sklearn.pipeline import Pipeline
 from sklearn.model_selection import cross_val_score
+from sklearn.pipeline import Pipeline
 
-data = MaldiSet.from_directory("driams/", "meta.csv", bin_width=3)
-batch = data.meta["batch"]
+# metadata.csv: ID, Drug (R/S), Species, batch, patient_id
+data = MaldiSet.from_directory("spectra/", "metadata.csv", bin_width=3)
+meta = data.meta.loc[data.X.index]
+y = LabelEncoder().fit_transform(data.get_y_single("Drug"))  # R=1, S=0
 
 pipe = Pipeline([
-    ("warp",   BatchAwareWarping(batch=batch)),
-    ("combat", ComBat(batch=batch, method="fortin")),
-    ("clf",    MaldiMLPClassifier(input_dim=data.X.shape[1], random_state=0)),
+    ("warp",   BatchAwareWarping(batch=meta["batch"])),
+    ("combat", SpeciesAwareComBat(batch=meta["batch"],
+                                  species=meta["Species"])),
+    ("clf",    MaldiMLPClassifier(input_dim=data.X.shape[1],
+                                  random_state=0)),
 ])
 
 scores = cross_val_score(
-    pipe, data.X, data.get_y_single("Drug"),
+    pipe, data.X, y,
     scoring=vme_scorer,
-    cv=CaseGroupedKFold(n_splits=5),
-    groups=data.meta["patient_id"],
+    cv=CaseGroupedKFold(n_splits=5, random_state=0),
+    groups=meta["patient_id"],
 )
+print(f"VME: {-scores.mean():.3f}")
 ```
+
+Every step is refitted inside each training fold, and `CaseGroupedKFold` keeps all spectra of a patient in the same fold. Tested with maldiamrkit 0.22.1, maldibatchkit 0.2.0 and maldideepkit 0.3.0.
 
 ## Citation
 
-Citation will be available soon.
+MaldiSuite is described in an Application Note currently under review at *Bioinformatics*. The full citation will be added here once the article is published.
 
 ## License
 

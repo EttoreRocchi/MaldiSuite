@@ -1,0 +1,45 @@
+{
+  "lanes": [
+    {
+      "package": "amr",
+      "name": "MaldiAMRKit",
+      "changelog": "https://github.com/EttoreRocchi/MaldiAMRKit/blob/main/CHANGELOG.md",
+      "releases": [
+        { "version": "0.19", "theme": "Custom metrics and transformers", "status": "released" },
+        { "version": "0.20", "theme": "mzML / mzXML input and export", "status": "released" },
+        { "version": "0.21", "theme": "Vectorised spectral distances", "status": "released" },
+        { "version": "0.22", "theme": "Reworked warping, leakage-safe splits", "status": "released" }
+      ]
+    },
+    {
+      "package": "batch",
+      "name": "MaldiBatchKit",
+      "changelog": "https://github.com/EttoreRocchi/MaldiBatchKit/blob/main/CHANGELOG.md",
+      "releases": [
+        { "version": "0.1", "theme": "Eleven correctors and batch diagnostics", "status": "released" },
+        { "version": "0.2", "theme": "AutoCorrector and correction benchmark", "status": "released" }
+      ]
+    },
+    {
+      "package": "deep",
+      "name": "MaldiDeepKit",
+      "changelog": "https://github.com/EttoreRocchi/MaldiDeepKit/blob/main/CHANGELOG.md",
+      "releases": [
+        { "version": "0.1", "theme": "MLP, 1-D CNN, ResNet and 1-D ViT classifiers", "status": "released" },
+        { "version": "0.2", "theme": "Uncertainty quantification", "status": "released" },
+        { "version": "0.3", "theme": "Dual-branch and self-training classifiers", "status": "released" },
+        { "version": "0.4", "theme": "Self-supervised pre-training", "status": "development" }
+      ]
+    },
+    {
+      "package": "suite",
+      "name": "Ecosystem",
+      "changelog": "https://github.com/EttoreRocchi/MaldiSuite/blob/main/CHANGELOG.md",
+      "releases": [
+        { "version": "maldisuite 0.3", "theme": "Pins on MaldiAMRKit 0.22 and a new website", "status": "released" },
+        { "version": "Next", "theme": "Generative modelling for data augmentation", "status": "planned" },
+        { "version": "Next", "theme": "Cross-site model adaptation", "status": "planned" }
+      ]
+    }
+  ]
+}

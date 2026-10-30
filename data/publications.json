@@ -1,0 +1,45 @@
+{
+  "publications": [
+    {
+      "featured": true,
+      "kind": "Application Note",
+      "status": "Under review",
+      "title": "MaldiSuite: a Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research",
+      "authors": [
+        { "family": "Rocchi", "given": "Ettore" },
+        { "family": "Sala", "given": "Claudia" },
+        { "family": "Castellani", "given": "Gastone" }
+      ],
+      "journal": "Bioinformatics",
+      "note": "The full citation will be added here once the article is published."
+    },
+    {
+      "kind": "Original article",
+      "title": "Combining mass spectrometry and machine learning models for predicting Klebsiella pneumoniae antimicrobial resistance: a multicenter experience from clinical isolates in Italy",
+      "authors": [
+        { "family": "Rocchi", "given": "Ettore" },
+        { "family": "Nicitra", "given": "Emanuele" },
+        { "family": "Calvo", "given": "Maddalena" },
+        { "family": "Cento", "given": "Valeria" },
+        { "family": "Peiretti", "given": "Laura" },
+        { "family": "Asif", "given": "Zian" },
+        { "family": "Menchinelli", "given": "Giulia" },
+        { "family": "Posteraro", "given": "Brunella" },
+        { "family": "Sala", "given": "Claudia" },
+        { "family": "Colosimo", "given": "Claudia" },
+        { "family": "Cricca", "given": "Monica" },
+        { "family": "Sambri", "given": "Vittorio" },
+        { "family": "Sanguinetti", "given": "Maurizio" },
+        { "family": "Castellani", "given": "Gastone" },
+        { "family": "Stefani", "given": "Stefania" }
+      ],
+      "journal": "BMC Microbiology",
+      "journalAbbrev": "BMC Microbiol.",
+      "volume": "26",
+      "pages": "180",
+      "year": "2026",
+      "doi": "10.1186/s12866-025-04657-2",
+      "bibKey": "rocchi2026klebsiella"
+    }
+  ]
+}

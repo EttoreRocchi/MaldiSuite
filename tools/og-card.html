@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<title>MaldiSuite social card</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { background: #ffffff; }
+  body {
+    position: relative;
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    font-family: 'Instrument Sans', sans-serif;
+    color: #0c2226;
+    background:
+      radial-gradient(700px 420px at 88% 10%, rgba(11, 111, 130, 0.16), transparent 65%),
+      radial-gradient(600px 380px at 0% 100%, rgba(79, 154, 44, 0.12), transparent 70%),
+      linear-gradient(rgba(11, 111, 130, 0.06) 1px, transparent 1px) 0 0 / 100% 42px,
+      linear-gradient(90deg, rgba(11, 111, 130, 0.06) 1px, transparent 1px) 0 0 / 42px 100%,
+      #f5f8f7;
+  }
+  .bar { position: absolute; left: 0; right: 0; top: 0; height: 8px; background: linear-gradient(90deg, #0b6f82, #4f9a2c); }
+  .wrap { position: absolute; inset: 0; padding: 64px 72px; display: grid; grid-template-columns: 1fr 470px; gap: 48px; align-items: center; }
+  .logo { height: 58px; width: auto; margin-bottom: 34px; }
+  h1 { font-family: 'Instrument Serif', serif; font-weight: 400; font-size: 62px; line-height: 1.02; letter-spacing: -0.01em; }
+  h1 em { font-style: italic; background: linear-gradient(90deg, #0b6f82, #4f9a2c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .chip { display: inline-flex; gap: 12px; margin-top: 34px; padding: 12px 20px; background: #ffffff; border: 1px solid #d3dfdc; border-radius: 12px; font-family: 'JetBrains Mono', monospace; font-size: 24px; font-variant-ligatures: none; }
+  .chip span { color: #0b6f82; }
+  .packages { display: flex; gap: 22px; margin-top: 26px; font-size: 20px; font-weight: 600; color: #3a555a; }
+  .packages i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 8px; }
+  .card { background: #ffffff; border: 1px solid #d3dfdc; border-radius: 20px; padding: 22px 22px 18px; box-shadow: 0 22px 56px rgba(7, 26, 30, 0.14); }
+  .caption, .axis { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #587176; }
+  .caption { letter-spacing: 0.06em; margin-bottom: 12px; }
+  .axis { margin-top: 8px; }
+  svg { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 520; }
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<div class="wrap">
+  <div>
+    <img class="logo" src="../assets/maldi_suite_logo.png" alt="" width="975" height="254">
+    <h1>One Python ecosystem for <em>MALDI-TOF</em> antimicrobial resistance research.</h1>
+    <div class="chip"><span>$</span>pip install maldisuite</div>
+    <div class="packages">
+      <span><i style="background: #16884f"></i>MaldiAMRKit</span>
+      <span><i style="background: #7a2fc4"></i>MaldiBatchKit</span>
+      <span><i style="background: #c45f00"></i>MaldiDeepKit</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="caption"><span>RAW</span><span>BINNED, 3 DA</span></div>
+    <svg viewBox="0 -12 1000 400" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#0b6f82"/><stop offset="1" stop-color="#4f9a2c"/></linearGradient>
+      </defs>
+      <path id="raw" fill="none" stroke="#0b6f82" stroke-width="2.2" vector-effect="non-scaling-stroke"/>
+      <line x1="0" x2="1000" y1="203" y2="203" stroke="#9fb4b1" stroke-width="1" vector-effect="non-scaling-stroke"/>
+      <path id="bins" stroke="url(#g)" stroke-width="2.2"/>
+    </svg>
+    <div class="axis"><span>2k</span><span>m/z</span><span>20k</span></div>
+  </div>
+</div>
+<script>
+  fetch('../index.html')
+    .then(function(response) { return response.text(); })
+    .then(function(text) {
+      var page = new DOMParser().parseFromString(text, 'text/html');
+      document.getElementById('raw').setAttribute('d', page.querySelector('.sp-raw').getAttribute('d'));
+      document.getElementById('bins').setAttribute('d', page.querySelector('.sp-bins').getAttribute('d'));
+    });
+</script>
+</body>
+</html>

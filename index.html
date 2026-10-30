@@ -1,298 +1,596 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MaldiSuite - Python Ecosystem for MALDI-TOF Spectral Processing and Analysis in AMR Research</title>
-<meta name="description" content="MaldiSuite is a Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research, combining preprocessing, batch correction, and deep learning classifiers." />
-<link rel="canonical" href="https://ettorerocchi.github.io/MaldiSuite/" />
-<meta name="theme-color" content="#1e3a8a" />
-<link rel="icon" type="image/png" sizes="32x32" href="assets/web/favicon-32.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="assets/web/apple-touch-icon.png" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MaldiSuite · Python ecosystem for MALDI-TOF AMR research</title>
+<meta name="description" content="MaldiSuite is an open-source Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research: preprocessing, multi-site batch correction and deep-learning classifiers that share one data model and the scikit-learn API.">
+<meta name="keywords" content="MALDI-TOF, antimicrobial resistance, AMR, mass spectrometry, batch effect correction, deep learning, scikit-learn, Python">
+<meta name="author" content="Ettore Rocchi">
+<meta name="theme-color" content="#0b6f82">
+<link rel="canonical" href="https://ettorerocchi.github.io/MaldiSuite/">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/web/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/web/apple-touch-icon.png">
 
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://ettorerocchi.github.io/MaldiSuite/" />
-<meta property="og:title" content="MaldiSuite - Python ecosystem for MALDI-TOF AMR research" />
-<meta property="og:description" content="A unified Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research: preprocessing, batch correction, and deep learning classifiers in one sklearn-compatible workflow." />
-<meta property="og:image" content="https://ettorerocchi.github.io/MaldiSuite/assets/og-preview.png" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="MaldiSuite - A Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research" />
-<meta property="og:site_name" content="MaldiSuite" />
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MaldiSuite">
+<meta property="og:url" content="https://ettorerocchi.github.io/MaldiSuite/">
+<meta property="og:title" content="MaldiSuite · Python ecosystem for MALDI-TOF AMR research">
+<meta property="og:description" content="Preprocessing, multi-site batch correction and deep-learning classifiers for MALDI-TOF spectra in antimicrobial resistance research, sharing one data model and the scikit-learn API.">
+<meta property="og:image" content="https://ettorerocchi.github.io/MaldiSuite/assets/og-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MaldiSuite: one Python ecosystem for MALDI-TOF antimicrobial resistance research">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MaldiSuite · Python ecosystem for MALDI-TOF AMR research">
+<meta name="twitter:description" content="Preprocessing, multi-site batch correction and deep-learning classifiers for MALDI-TOF spectra in AMR research.">
+<meta name="twitter:image" content="https://ettorerocchi.github.io/MaldiSuite/assets/og-preview.png">
+<meta name="twitter:image:alt" content="MaldiSuite: one Python ecosystem for MALDI-TOF antimicrobial resistance research">
 
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="MaldiSuite - Python ecosystem for MALDI-TOF AMR research" />
-<meta name="twitter:description" content="A unified Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research." />
-<meta name="twitter:image" content="https://ettorerocchi.github.io/MaldiSuite/assets/og-preview.png" />
-<meta name="twitter:image:alt" content="MaldiSuite landing card" />
+<script>
+  document.documentElement.classList.add('js');
+  try {
+    var savedTheme = localStorage.getItem('maldisuite-theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+  } catch (e) {}
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css" />
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
+<link rel="stylesheet" href="css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareSourceCode",
+  "name": "MaldiSuite",
+  "description": "A Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research.",
+  "url": "https://ettorerocchi.github.io/MaldiSuite/",
+  "codeRepository": "https://github.com/EttoreRocchi/MaldiSuite",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python 3.10+",
+  "license": "https://opensource.org/licenses/MIT",
+  "author": { "@type": "Person", "name": "Ettore Rocchi" },
+  "funder": { "@type": "Organization", "name": "European Union - NextGenerationEU, MUR PNRR Extended Partnership on Emerging Infectious Diseases (PE00000007, INF-ACT)" },
+  "hasPart": [
+    { "@type": "SoftwareSourceCode", "name": "MaldiAMRKit", "codeRepository": "https://github.com/EttoreRocchi/MaldiAMRKit" },
+    { "@type": "SoftwareSourceCode", "name": "MaldiBatchKit", "codeRepository": "https://github.com/EttoreRocchi/MaldiBatchKit" },
+    { "@type": "SoftwareSourceCode", "name": "MaldiDeepKit", "codeRepository": "https://github.com/EttoreRocchi/MaldiDeepKit" }
+  ]
+}
+</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<nav class="navbar">
-  <div class="container nav-inner">
-    <a href="#" class="nav-brand">
-      <img src="assets/web/maldi_suite_logo.png" alt="MaldiSuite" class="brand-logo" width="123" height="32" />
+<header class="header" id="header">
+  <div class="container nav">
+    <a href="#top" class="nav-logo" aria-label="MaldiSuite home">
+      <img src="assets/web/maldi_suite_logo.png" alt="" class="logo-img logo-light" width="138" height="36">
+      <img src="assets/web/maldi_suite_logo_dark.png" alt="" class="logo-img logo-dark" width="138" height="36">
     </a>
-    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-      <span class="nav-toggle-bar"></span>
-    </button>
-    <ul class="nav-links" id="nav-menu">
-      <li><a href="#overview">Overview</a></li>
-      <li><a href="#packages">Packages</a></li>
-      <li><a href="#quickstart">Quick Start</a></li>
-      <li><a href="#citation">Citation</a></li>
-      <li><a href="https://github.com/EttoreRocchi/MaldiSuite" target="_blank" rel="noopener">GitHub</a></li>
-    </ul>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="container hero-inner">
-    <h1 class="hero-title">MaldiSuite</h1>
-    <p class="hero-tagline">
-      A Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research
-    </p>
-    <div class="hero-cta">
-      <a href="#quickstart" class="btn btn-primary">Get Started</a>
-      <a href="https://github.com/EttoreRocchi/MaldiSuite" target="_blank" rel="noopener" class="btn btn-secondary">View on GitHub</a>
+    <nav class="nav-menu" id="nav-menu" aria-label="Main">
+      <a href="#workflow" class="nav-link">Workflow</a>
+      <a href="#packages" class="nav-link">Packages</a>
+      <a href="#quickstart" class="nav-link">Quick start</a>
+      <a href="#results" class="nav-link">Results</a>
+      <a href="#research" class="nav-link">Research</a>
+      <a href="#roadmap" class="nav-link">Roadmap</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="https://github.com/EttoreRocchi/MaldiSuite" class="icon-btn" target="_blank" rel="noopener" aria-label="MaldiSuite on GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+      <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <a href="#overview" class="hero-scroll">Discover more ↓</a>
   </div>
 </header>
 
-<section id="overview" class="section section-light">
-  <div class="container">
-    <h2 class="section-title centered">Project Overview</h2>
-    <p class="section-lead centered">
-      <strong>MaldiSuite</strong> is an open-source Python ecosystem for MALDI-TOF
-      spectral processing and analysis in antimicrobial resistance research.
-      It bridges a gap between general-purpose mass spectrometry software and
-      research codebases for AMR prediction, providing a <strong>production-ready,
-      sklearn-compatible workflow</strong> for clinical microbiology and computational biology teams.
-    </p>
-    <p class="section-body centered">
-      The suite brings together three complementary packages that cover the entire pipeline:
-      from raw spectrum preprocessing and clinically aware evaluation, through batch effect
-      correction for multi-site studies, to pre-configured deep learning classifiers adapted
-      to the resolution of MALDI-TOF spectra.
-    </p>
+<main id="main">
+  <section class="hero" id="top">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <a class="release-pill" href="https://pypi.org/project/maldisuite/" target="_blank" rel="noopener">
+          <span class="pill-dot" aria-hidden="true"></span>
+          <span>Latest release</span>
+          <strong id="latest-version">v0.3.0</strong>
+          <span class="pill-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+        <h1 class="hero-title">One Python ecosystem for <em>MALDI-TOF</em> antimicrobial resistance research.</h1>
+        <p class="hero-lede">Preprocessing, batch correction and deep-learning classifiers that share one data model and the scikit-learn API.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#quickstart">Get started</a>
+          <a class="btn btn-ghost" href="#packages">Explore the packages</a>
+        </div>
+        <div class="install-chip">
+          <span class="install-prompt" aria-hidden="true">$</span>
+          <code>pip install maldisuite</code>
+          <button class="copy-btn" type="button" data-copy="pip install maldisuite" aria-label="Copy install command">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </div>
+        <ul class="hero-meta">
+          <li>Python 3.10+</li>
+          <li>MIT license</li>
+          <li>scikit-learn API</li>
+          <li>3 packages</li>
+        </ul>
+      </div>
 
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-blue">⌖</div>
-        <h3>Clinically Aware Evaluation</h3>
-        <p>EUCAST and CLSI metrics (VME, ME, categorical agreement) exposed as scikit-learn scorers, with patient-grouped cross-validation to prevent data leakage.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-orange">◈</div>
-        <h3>Batch Effect Correction</h3>
-        <p>Integrated catalog of generic and MALDI-specific correction methods, addressing site-to-site and instrument-to-instrument variability in clinical settings.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-blue">⌬</div>
-        <h3>Biomarker Discovery</h3>
-        <p>Per-bin statistical analysis with multiple-testing correction, fold-change estimation, and effect-size quantification, paired with publication-ready visualizations.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-orange">⟳</div>
-        <h3>Drift Monitoring</h3>
-        <p>Longitudinal monitoring of model stability through reference similarity, PCA trajectory, and biomarker stability metrics across time windows.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-blue">⚙</div>
-        <h3>Deep Learning Classifiers</h3>
-        <p>Four ready-to-use neural network architectures (MLP with optional attention, 1-D CNN, ResNet, and Vision Transformer) with default hyperparameters calibrated for MALDI-TOF spectral resolution.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-orange">⇄</div>
-        <h3>sklearn-Compatible API</h3>
-        <p>All transformers and classifiers inherit from the scikit-learn base classes and integrate seamlessly with Pipeline, GridSearchCV, and cross-validation utilities.</p>
+      <figure class="spectrum-card">
+        <figcaption class="spectrum-head">
+          <span class="spectrum-title">Example spectrum</span>
+          <span class="spectrum-keys" aria-hidden="true">
+            <span class="key key-raw">raw</span>
+            <span class="key key-bin">binned, 3 Da</span>
+          </span>
+        </figcaption>
+        <div class="spectrum-plot" id="spectrum-plot">
+          <svg class="spectrum" viewBox="0 -12 1000 400" preserveAspectRatio="none" role="img" aria-label="Head-to-tail plot of a MALDI-TOF spectrum from 2,000 to 20,000 m/z: the raw trace points up, and the same spectrum after MaldiAMRKit preprocessing and 3 Da binning points down.">
+            <defs>
+              <linearGradient id="bin-gradient" x1="0" x2="1" y1="0" y2="0">
+                <stop offset="0" class="stop-a"/>
+                <stop offset="1" class="stop-b"/>
+              </linearGradient>
+              <clipPath id="sweep-raw"><rect class="sweep sweep-raw" x="0" y="-12" width="1000" height="214"/></clipPath>
+              <clipPath id="sweep-bin"><rect class="sweep sweep-bin" x="0" y="200" width="1000" height="200"/></clipPath>
+            </defs>
+            <g class="sp-grid">
+              <line x1="166.7" x2="166.7" y1="-12" y2="388"/>
+              <line x1="444.4" x2="444.4" y1="-12" y2="388"/>
+              <line x1="722.2" x2="722.2" y1="-12" y2="388"/>
+            </g>
+            <path class="sp-raw" clip-path="url(#sweep-raw)" d="M0.0,179.2 L0.8,171.7 L1.7,175.2 L2.5,167.7 L3.3,178.8 L4.2,171.8 L5.0,169.6 L5.8,165.1 L6.7,172.3 L7.5,174.6 L8.3,174.5 L9.2,152.6 L10.0,25.0 L10.8,148.0 L11.7,171.8 L12.5,172.5 L13.3,163.7 L14.2,167.6 L15.0,161.2 L15.8,151.9 L16.7,161.0 L17.5,136.1 L18.3,123.3 L19.2,147.4 L20.0,170.1 L20.8,172.7 L21.7,168.6 L22.5,100.6 L23.3,72.4 L24.2,126.8 L25.0,83.3 L25.8,150.2 L26.7,157.8 L27.5,156.4 L28.3,160.3 L29.2,170.6 L30.0,174.4 L30.8,170.2 L31.7,173.8 L32.5,152.0 L33.3,160.6 L34.2,167.6 L35.0,163.9 L35.8,172.0 L36.7,171.9 L37.5,127.3 L38.3,150.0 L39.2,169.4 L40.0,174.0 L40.8,170.3 L41.7,168.4 L42.5,161.6 L43.3,172.8 L44.2,163.6 L45.0,157.4 L45.8,155.1 L46.7,169.4 L47.5,170.9 L48.3,177.0 L49.2,175.7 L50.0,177.5 L50.8,160.7 L51.7,140.8 L52.5,101.8 L53.3,128.3 L54.2,16.0 L55.0,148.9 L55.8,155.2 L56.7,167.3 L57.5,168.6 L58.3,177.5 L59.2,173.0 L60.0,172.2 L60.8,161.8 L61.7,170.3 L62.5,164.4 L63.3,128.0 L64.2,155.8 L65.0,166.4 L65.8,160.6 L66.7,179.4 L67.5,176.2 L68.3,180.6 L69.2,183.2 L70.0,179.1 L70.8,180.5 L71.7,158.0 L72.5,117.7 L73.3,121.9 L74.2,123.9 L75.0,172.1 L75.8,180.4 L76.7,180.5 L77.5,181.9 L78.3,180.0 L79.2,173.5 L80.0,179.8 L80.8,178.2 L81.7,183.6 L82.5,185.0 L83.3,183.0 L84.2,182.5 L85.0,184.8 L85.8,182.9 L86.7,180.0 L87.5,129.2 L88.3,179.4 L89.2,163.4 L90.0,141.7 L90.8,179.3 L91.7,182.7 L92.5,182.8 L93.3,179.5 L94.2,182.6 L95.0,184.3 L95.8,185.1 L96.7,188.2 L97.5,187.2 L98.3,184.2 L99.2,183.4 L100.0,166.6 L100.8,153.1 L101.7,123.6 L102.5,158.4 L103.3,175.4 L104.2,159.7 L105.0,181.7 L105.8,185.5 L106.7,182.0 L107.5,184.3 L108.3,183.2 L109.2,176.6 L110.0,162.7 L110.8,184.9 L111.7,186.8 L112.5,185.9 L113.3,187.1 L114.2,187.1 L115.0,186.7 L115.8,183.7 L116.7,152.9 L117.5,183.1 L118.3,184.9 L119.2,185.6 L120.0,182.0 L120.8,133.9 L121.7,181.0 L122.5,187.8 L123.3,189.3 L124.2,187.7 L125.0,187.6 L125.8,187.6 L126.7,188.0 L127.5,184.1 L128.3,186.3 L129.2,182.2 L130.0,170.9 L130.8,28.6 L131.7,165.7 L132.5,181.8 L133.3,180.0 L134.2,182.1 L135.0,147.5 L135.8,125.8 L136.7,183.1 L137.5,182.8 L138.3,162.4 L139.2,186.1 L140.0,188.0 L140.8,187.7 L141.7,183.3 L142.5,170.0 L143.3,188.8 L144.2,188.4 L145.0,189.9 L145.8,192.4 L146.7,191.1 L147.5,189.5 L148.3,189.6 L149.2,191.9 L150.0,191.4 L150.8,185.9 L151.7,112.8 L152.5,179.1 L153.3,94.0 L154.2,178.0 L155.0,185.3 L155.8,187.9 L156.7,190.0 L157.5,190.0 L158.3,189.0 L159.2,189.7 L160.0,192.8 L160.8,192.3 L161.7,192.1 L162.5,192.8 L163.3,192.2 L164.2,192.9 L165.0,192.8 L165.8,190.2 L166.7,191.4 L167.5,177.2 L168.3,168.5 L169.2,190.2 L170.0,189.9 L170.8,189.4 L171.7,188.7 L172.5,192.1 L173.3,186.7 L174.2,142.8 L175.0,186.1 L175.8,189.4 L176.7,189.4 L177.5,191.2 L178.3,189.7 L179.2,188.3 L180.0,158.9 L180.8,183.3 L181.7,191.4 L182.5,190.6 L183.3,190.0 L184.2,186.9 L185.0,180.2 L185.8,179.1 L186.7,168.5 L187.5,16.0 L188.3,174.7 L189.2,177.9 L190.0,184.9 L190.8,188.0 L191.7,191.0 L192.5,193.2 L193.3,191.3 L194.2,192.7 L195.0,193.0 L195.8,194.2 L196.7,192.9 L197.5,193.8 L198.3,193.0 L199.2,191.2 L200.0,186.0 L200.8,191.3 L201.7,194.0 L202.5,193.8 L203.3,191.8 L204.2,194.2 L205.0,192.3 L205.8,189.8 L206.7,181.7 L207.5,192.5 L208.3,192.8 L209.2,193.8 L210.0,193.1 L210.8,194.1 L211.7,192.7 L212.5,193.0 L213.3,192.9 L214.2,195.0 L215.0,193.2 L215.8,195.1 L216.7,194.4 L217.5,194.9 L218.3,190.9 L219.2,194.2 L220.0,196.4 L220.8,194.2 L221.7,194.6 L222.5,194.4 L223.3,192.8 L224.2,195.4 L225.0,192.7 L225.8,193.0 L226.7,193.9 L227.5,192.5 L228.3,194.6 L229.2,193.8 L230.0,192.7 L230.8,192.0 L231.7,192.8 L232.5,191.4 L233.3,188.9 L234.2,188.8 L235.0,179.4 L235.8,172.2 L236.7,148.8 L237.5,16.0 L238.3,30.7 L239.2,160.3 L240.0,178.5 L240.8,178.8 L241.7,182.0 L242.5,177.0 L243.3,154.7 L244.2,184.4 L245.0,190.6 L245.8,189.3 L246.7,189.7 L247.5,192.1 L248.3,192.9 L249.2,193.5 L250.0,191.9 L250.8,191.6 L251.7,195.4 L252.5,194.4 L253.3,194.0 L254.2,193.1 L255.0,186.8 L255.8,194.7 L256.7,196.0 L257.5,195.1 L258.3,195.4 L259.2,196.3 L260.0,196.3 L260.8,195.6 L261.7,194.5 L262.5,195.3 L263.3,194.9 L264.2,194.7 L265.0,195.7 L265.8,195.0 L266.7,193.0 L267.5,191.2 L268.3,189.7 L269.2,191.7 L270.0,193.1 L270.8,193.9 L271.7,195.5 L272.5,195.4 L273.3,196.3 L274.2,195.9 L275.0,195.8 L275.8,196.5 L276.7,195.6 L277.5,195.7 L278.3,196.9 L279.2,195.4 L280.0,195.6 L280.8,195.7 L281.7,194.6 L282.5,192.2 L283.3,189.3 L284.2,188.0 L285.0,181.3 L285.8,65.7 L286.7,101.0 L287.5,184.9 L288.3,184.6 L289.2,181.8 L290.0,174.8 L290.8,102.7 L291.7,179.1 L292.5,179.8 L293.3,189.6 L294.2,186.2 L295.0,190.7 L295.8,183.4 L296.7,188.3 L297.5,192.3 L298.3,184.0 L299.2,187.1 L300.0,189.6 L300.8,191.9 L301.7,194.9 L302.5,194.5 L303.3,196.3 L304.2,194.1 L305.0,194.8 L305.8,195.6 L306.7,194.8 L307.5,194.3 L308.3,195.3 L309.2,194.7 L310.0,194.8 L310.8,193.6 L311.7,187.8 L312.5,192.4 L313.3,189.7 L314.2,187.3 L315.0,188.2 L315.8,147.1 L316.7,93.6 L317.5,181.9 L318.3,184.3 L319.2,181.3 L320.0,146.1 L320.8,183.2 L321.7,189.3 L322.5,189.3 L323.3,191.9 L324.2,191.9 L325.0,194.0 L325.8,193.4 L326.7,193.8 L327.5,193.1 L328.3,192.2 L329.2,195.2 L330.0,195.6 L330.8,194.7 L331.7,195.2 L332.5,196.6 L333.3,196.3 L334.2,193.7 L335.0,196.1 L335.8,192.8 L336.7,195.0 L337.5,195.2 L338.3,194.4 L339.2,194.5 L340.0,194.0 L340.8,192.3 L341.7,190.5 L342.5,189.4 L343.3,188.7 L344.2,181.3 L345.0,146.1 L345.8,191.4 L346.7,189.7 L347.5,191.8 L348.3,188.7 L349.2,188.8 L350.0,187.8 L350.8,184.0 L351.7,184.9 L352.5,178.8 L353.3,147.5 L354.2,186.6 L355.0,192.3 L355.8,192.4 L356.7,193.0 L357.5,192.2 L358.3,195.1 L359.2,195.3 L360.0,195.8 L360.8,196.0 L361.7,196.8 L362.5,195.7 L363.3,197.3 L364.2,195.7 L365.0,197.3 L365.8,194.8 L366.7,197.0 L367.5,197.3 L368.3,196.8 L369.2,196.5 L370.0,197.3 L370.8,197.0 L371.7,196.4 L372.5,195.2 L373.3,197.0 L374.2,196.4 L375.0,196.1 L375.8,195.7 L376.7,195.8 L377.5,195.1 L378.3,193.4 L379.2,191.1 L380.0,186.3 L380.8,182.6 L381.7,174.3 L382.5,154.5 L383.3,187.6 L384.2,191.3 L385.0,190.9 L385.8,187.3 L386.7,188.4 L387.5,175.8 L388.3,175.2 L389.2,193.3 L390.0,193.4 L390.8,192.4 L391.7,193.1 L392.5,192.4 L393.3,191.9 L394.2,193.3 L395.0,191.7 L395.8,175.7 L396.7,188.0 L397.5,193.4 L398.3,194.4 L399.2,194.4 L400.0,193.2 L400.8,194.8 L401.7,195.8 L402.5,196.3 L403.3,196.6 L404.2,197.4 L405.0,194.6 L405.8,195.8 L406.7,195.0 L407.5,195.7 L408.3,195.8 L409.2,194.7 L410.0,193.9 L410.8,193.0 L411.7,188.9 L412.5,184.8 L413.3,180.0 L414.2,156.1 L415.0,103.0 L415.8,180.6 L416.7,180.2 L417.5,172.8 L418.3,123.4 L419.2,176.3 L420.0,187.4 L420.8,192.0 L421.7,191.3 L422.5,190.6 L423.3,194.0 L424.2,194.4 L425.0,195.8 L425.8,194.1 L426.7,194.1 L427.5,196.2 L428.3,196.2 L429.2,197.0 L430.0,196.3 L430.8,197.2 L431.7,197.2 L432.5,197.5 L433.3,197.8 L434.2,197.9 L435.0,194.6 L435.8,196.7 L436.7,196.7 L437.5,196.2 L438.3,197.5 L439.2,196.6 L440.0,197.7 L440.8,195.9 L441.7,197.3 L442.5,194.7 L443.3,196.4 L444.2,195.6 L445.0,195.0 L445.8,193.5 L446.7,192.7 L447.5,188.3 L448.3,194.3 L449.2,197.0 L450.0,197.3 L450.8,197.3 L451.7,195.3 L452.5,196.9 L453.3,196.9 L454.2,194.6 L455.0,195.4 L455.8,194.5 L456.7,194.1 L457.5,192.4 L458.3,190.8 L459.2,183.8 L460.0,177.5 L460.8,195.3 L461.7,194.7 L462.5,194.7 L463.3,194.6 L464.2,193.9 L465.0,194.9 L465.8,195.8 L466.7,197.1 L467.5,196.3 L468.3,198.1 L469.2,196.9 L470.0,197.5 L470.8,197.0 L471.7,198.4 L472.5,197.5 L473.3,196.9 L474.2,197.7 L475.0,198.5 L475.8,198.6 L476.7,198.4 L477.5,196.7 L478.3,197.8 L479.2,197.2 L480.0,197.7 L480.8,197.9 L481.7,197.1 L482.5,198.1 L483.3,197.3 L484.2,197.5 L485.0,197.2 L485.8,198.3 L486.7,198.2 L487.5,195.9 L488.3,197.1 L489.2,198.5 L490.0,198.6 L490.8,197.5 L491.7,198.2 L492.5,198.6 L493.3,198.1 L494.2,198.5 L495.0,198.4 L495.8,197.6 L496.7,198.1 L497.5,197.5 L498.3,198.0 L499.2,197.6 L500.0,197.4 L500.8,197.8 L501.7,198.5 L502.5,197.7 L503.3,197.7 L504.2,197.0 L505.0,198.6 L505.8,197.7 L506.7,197.6 L507.5,198.1 L508.3,195.4 L509.2,197.5 L510.0,196.7 L510.8,196.1 L511.7,193.8 L512.5,198.3 L513.3,197.1 L514.2,197.5 L515.0,197.3 L515.8,196.7 L516.7,197.9 L517.5,198.1 L518.3,197.5 L519.2,196.8 L520.0,196.9 L520.8,197.1 L521.7,196.6 L522.5,196.9 L523.3,195.6 L524.2,194.8 L525.0,197.5 L525.8,195.9 L526.7,197.8 L527.5,198.0 L528.3,197.1 L529.2,196.9 L530.0,197.8 L530.8,196.5 L531.7,197.3 L532.5,195.7 L533.3,196.5 L534.2,198.0 L535.0,197.1 L535.8,197.5 L536.7,198.2 L537.5,197.3 L538.3,198.1 L539.2,198.2 L540.0,197.7 L540.8,199.0 L541.7,198.3 L542.5,198.0 L543.3,197.8 L544.2,197.9 L545.0,197.2 L545.8,198.2 L546.7,197.3 L547.5,197.3 L548.3,196.3 L549.2,197.6 L550.0,198.1 L550.8,197.9 L551.7,198.0 L552.5,198.0 L553.3,198.1 L554.2,198.3 L555.0,197.1 L555.8,198.4 L556.7,197.1 L557.5,198.3 L558.3,196.2 L559.2,196.9 L560.0,197.3 L560.8,198.2 L561.7,198.2 L562.5,197.9 L563.3,197.0 L564.2,198.7 L565.0,197.8 L565.8,197.8 L566.7,197.0 L567.5,196.9 L568.3,198.1 L569.2,196.9 L570.0,196.9 L570.8,196.8 L571.7,198.2 L572.5,198.1 L573.3,198.9 L574.2,197.8 L575.0,198.5 L575.8,197.7 L576.7,198.4 L577.5,197.9 L578.3,198.0 L579.2,198.7 L580.0,198.4 L580.8,197.9 L581.7,197.8 L582.5,196.8 L583.3,197.1 L584.2,197.5 L585.0,198.0 L585.8,198.8 L586.7,198.3 L587.5,197.9 L588.3,198.8 L589.2,197.7 L590.0,196.9 L590.8,197.8 L591.7,198.2 L592.5,198.7 L593.3,198.2 L594.2,198.1 L595.0,198.8 L595.8,197.2 L596.7,197.5 L597.5,198.0 L598.3,197.5 L599.2,198.0 L600.0,198.1 L600.8,197.5 L601.7,198.2 L602.5,198.2 L603.3,198.1 L604.2,196.5 L605.0,198.6 L605.8,198.8 L606.7,196.7 L607.5,198.1 L608.3,197.9 L609.2,198.0 L610.0,197.5 L610.8,197.8 L611.7,197.9 L612.5,198.4 L613.3,197.5 L614.2,198.4 L615.0,198.1 L615.8,198.5 L616.7,197.3 L617.5,198.2 L618.3,198.2 L619.2,199.2 L620.0,198.4 L620.8,197.9 L621.7,198.5 L622.5,198.7 L623.3,196.7 L624.2,197.4 L625.0,197.6 L625.8,198.2 L626.7,198.3 L627.5,198.0 L628.3,197.9 L629.2,198.7 L630.0,197.0 L630.8,198.4 L631.7,197.8 L632.5,198.3 L633.3,197.9 L634.2,198.6 L635.0,198.4 L635.8,198.0 L636.7,198.8 L637.5,198.8 L638.3,198.1 L639.2,198.5 L640.0,198.2 L640.8,198.1 L641.7,197.6 L642.5,197.4 L643.3,197.2 L644.2,197.5 L645.0,197.1 L645.8,196.3 L646.7,197.7 L647.5,197.3 L648.3,197.4 L649.2,197.7 L650.0,198.7 L650.8,198.5 L651.7,199.0 L652.5,196.9 L653.3,197.6 L654.2,199.2 L655.0,197.1 L655.8,198.2 L656.7,197.9 L657.5,198.0 L658.3,197.6 L659.2,197.8 L660.0,198.3 L660.8,198.4 L661.7,198.1 L662.5,196.2 L663.3,198.9 L664.2,196.3 L665.0,197.9 L665.8,197.4 L666.7,198.1 L667.5,196.9 L668.3,198.1 L669.2,197.8 L670.0,198.9 L670.8,199.0 L671.7,197.9 L672.5,198.0 L673.3,197.9 L674.2,197.9 L675.0,197.8 L675.8,198.2 L676.7,198.5 L677.5,198.2 L678.3,197.6 L679.2,198.8 L680.0,198.6 L680.8,198.4 L681.7,198.9 L682.5,198.7 L683.3,198.6 L684.2,199.1 L685.0,198.6 L685.8,198.6 L686.7,198.1 L687.5,198.1 L688.3,198.2 L689.2,198.5 L690.0,198.7 L690.8,197.7 L691.7,198.5 L692.5,197.8 L693.3,198.4 L694.2,197.9 L695.0,198.9 L695.8,198.7 L696.7,196.0 L697.5,198.8 L698.3,197.6 L699.2,198.6 L700.0,198.7 L700.8,198.4 L701.7,198.5 L702.5,197.3 L703.3,198.3 L704.2,196.8 L705.0,196.5 L705.8,198.5 L706.7,197.7 L707.5,197.7 L708.3,198.8 L709.2,198.8 L710.0,198.6 L710.8,198.8 L711.7,197.1 L712.5,198.7 L713.3,198.4 L714.2,199.0 L715.0,196.8 L715.8,198.7 L716.7,198.8 L717.5,198.8 L718.3,198.5 L719.2,198.6 L720.0,197.8 L720.8,198.5 L721.7,197.8 L722.5,198.5 L723.3,198.4 L724.2,197.7 L725.0,198.5 L725.8,199.2 L726.7,198.7 L727.5,198.4 L728.3,196.7 L729.2,197.4 L730.0,196.9 L730.8,198.4 L731.7,198.9 L732.5,198.2 L733.3,198.8 L734.2,196.8 L735.0,198.4 L735.8,198.1 L736.7,199.0 L737.5,198.9 L738.3,197.8 L739.2,198.2 L740.0,198.1 L740.8,197.4 L741.7,199.1 L742.5,199.1 L743.3,198.4 L744.2,197.9 L745.0,198.4 L745.8,199.0 L746.7,198.4 L747.5,197.6 L748.3,197.4 L749.2,198.5 L750.0,199.1 L750.8,197.2 L751.7,198.2 L752.5,198.7 L753.3,198.7 L754.2,198.7 L755.0,196.3 L755.8,198.2 L756.7,198.3 L757.5,197.7 L758.3,197.7 L759.2,197.6 L760.0,197.5 L760.8,197.5 L761.7,198.4 L762.5,197.5 L763.3,197.0 L764.2,198.0 L765.0,199.0 L765.8,197.5 L766.7,198.4 L767.5,198.6 L768.3,196.3 L769.2,198.5 L770.0,197.8 L770.8,198.2 L771.7,198.7 L772.5,198.0 L773.3,198.9 L774.2,196.6 L775.0,197.5 L775.8,198.5 L776.7,199.2 L777.5,198.7 L778.3,198.6 L779.2,197.5 L780.0,198.6 L780.8,197.6 L781.7,196.8 L782.5,198.2 L783.3,199.0 L784.2,198.2 L785.0,197.3 L785.8,198.1 L786.7,197.1 L787.5,199.0 L788.3,198.3 L789.2,198.5 L790.0,198.6 L790.8,198.5 L791.7,198.2 L792.5,198.0 L793.3,198.0 L794.2,199.0 L795.0,198.5 L795.8,197.1 L796.7,198.2 L797.5,197.3 L798.3,198.7 L799.2,198.1 L800.0,199.0 L800.8,199.2 L801.7,198.6 L802.5,198.3 L803.3,198.7 L804.2,198.2 L805.0,198.4 L805.8,198.2 L806.7,198.5 L807.5,198.3 L808.3,198.4 L809.2,198.9 L810.0,198.7 L810.8,198.1 L811.7,199.3 L812.5,198.5 L813.3,196.9 L814.2,196.8 L815.0,198.5 L815.8,197.6 L816.7,197.4 L817.5,198.4 L818.3,198.2 L819.2,199.3 L820.0,198.5 L820.8,197.6 L821.7,197.8 L822.5,198.3 L823.3,199.1 L824.2,198.2 L825.0,198.2 L825.8,197.6 L826.7,197.0 L827.5,198.2 L828.3,198.0 L829.2,198.8 L830.0,198.0 L830.8,197.4 L831.7,198.2 L832.5,198.8 L833.3,198.0 L834.2,197.8 L835.0,197.9 L835.8,198.4 L836.7,198.0 L837.5,198.4 L838.3,198.1 L839.2,197.7 L840.0,198.2 L840.8,198.3 L841.7,198.8 L842.5,198.1 L843.3,198.3 L844.2,196.8 L845.0,198.2 L845.8,199.2 L846.7,198.5 L847.5,199.0 L848.3,197.0 L849.2,198.5 L850.0,198.0 L850.8,196.7 L851.7,199.3 L852.5,197.2 L853.3,198.3 L854.2,198.4 L855.0,198.0 L855.8,198.1 L856.7,199.0 L857.5,198.5 L858.3,199.0 L859.2,197.4 L860.0,196.3 L860.8,198.3 L861.7,196.9 L862.5,197.8 L863.3,197.2 L864.2,198.4 L865.0,198.7 L865.8,198.8 L866.7,199.2 L867.5,197.8 L868.3,198.6 L869.2,198.5 L870.0,197.3 L870.8,198.5 L871.7,197.5 L872.5,197.3 L873.3,198.7 L874.2,197.3 L875.0,199.1 L875.8,197.4 L876.7,197.5 L877.5,198.2 L878.3,198.2 L879.2,199.1 L880.0,198.2 L880.8,198.3 L881.7,196.7 L882.5,198.6 L883.3,198.5 L884.2,198.7 L885.0,197.0 L885.8,197.4 L886.7,198.1 L887.5,196.6 L888.3,197.9 L889.2,198.4 L890.0,198.0 L890.8,198.0 L891.7,198.8 L892.5,196.8 L893.3,198.3 L894.2,197.8 L895.0,198.5 L895.8,199.0 L896.7,199.0 L897.5,198.5 L898.3,198.2 L899.2,197.4 L900.0,199.0 L900.8,197.9 L901.7,199.1 L902.5,198.3 L903.3,198.0 L904.2,196.9 L905.0,198.0 L905.8,198.3 L906.7,198.2 L907.5,198.0 L908.3,198.1 L909.2,198.2 L910.0,198.5 L910.8,197.4 L911.7,198.6 L912.5,196.3 L913.3,198.4 L914.2,198.4 L915.0,198.0 L915.8,198.0 L916.7,196.7 L917.5,197.6 L918.3,197.5 L919.2,198.4 L920.0,198.8 L920.8,195.9 L921.7,197.8 L922.5,197.3 L923.3,198.2 L924.2,198.6 L925.0,198.3 L925.8,198.0 L926.7,198.0 L927.5,198.4 L928.3,196.7 L929.2,197.8 L930.0,197.3 L930.8,198.4 L931.7,198.4 L932.5,196.5 L933.3,197.5 L934.2,198.6 L935.0,198.5 L935.8,197.8 L936.7,198.5 L937.5,199.1 L938.3,195.6 L939.2,199.2 L940.0,198.0 L940.8,199.0 L941.7,198.2 L942.5,198.0 L943.3,198.5 L944.2,197.7 L945.0,198.8 L945.8,198.7 L946.7,197.2 L947.5,198.7 L948.3,198.6 L949.2,197.5 L950.0,198.9 L950.8,198.6 L951.7,197.6 L952.5,199.3 L953.3,197.6 L954.2,198.1 L955.0,198.8 L955.8,198.7 L956.7,197.7 L957.5,198.4 L958.3,198.7 L959.2,198.2 L960.0,198.6 L960.8,198.1 L961.7,197.9 L962.5,198.8 L963.3,198.9 L964.2,198.5 L965.0,198.4 L965.8,198.2 L966.7,197.8 L967.5,198.0 L968.3,197.8 L969.2,197.1 L970.0,198.4 L970.8,192.3 L971.7,198.4 L972.5,198.4 L973.3,198.4 L974.2,198.8 L975.0,196.7 L975.8,196.6 L976.7,199.1 L977.5,198.6 L978.3,197.5 L979.2,198.2 L980.0,198.0 L980.8,197.3 L981.7,198.1 L982.5,198.8 L983.3,198.8 L984.2,197.6 L985.0,199.1 L985.8,198.0 L986.7,196.5 L987.5,197.8 L988.3,198.4 L989.2,196.7 L990.0,198.5 L990.8,198.0 L991.7,198.4 L992.5,198.5 L993.3,198.6 L994.2,197.8 L995.0,198.1 L995.8,199.0 L996.7,198.6 L997.5,197.6 L998.3,198.0 L999.2,198.2"/>
+            <line class="sp-axis" x1="0" x2="1000" y1="203" y2="203"/>
+            <path class="sp-bins" clip-path="url(#sweep-bin)" d="M1.2 206 v21.6M3.8 206 v23.3M6.2 206 v32.5M8.8 206 v36.3M11.2 206 v175.9M13.8 206 v19.7M16.2 206 v37.2M18.8 206 v75.6M21.2 206 v9.9M23.8 206 v128.6M26.2 206 v117.0M28.8 206 v40.3M31.2 206 v18.9M33.8 206 v44.4M36.2 206 v13.9M38.8 206 v72.9M41.2 206 v12.6M43.8 206 v36.9M46.2 206 v53.0M48.8 206 v22.0M51.2 206 v50.0M53.8 206 v176.0M56.2 206 v46.0M58.8 206 v11.7M61.2 206 v28.5M63.8 206 v86.8M66.2 206 v27.1M68.8 206 v8.4M71.2 206 v54.0M73.8 206 v102.4M76.2 206 v28.7M78.8 206 v16.3M81.2 206 v11.5M83.8 206 v7.1M86.2 206 v12.1M88.8 206 v80.9M91.2 206 v65.0M93.8 206 v17.6M96.2 206 v6.3M98.8 206 v7.3M101.2 206 v84.1M103.8 206 v52.1M106.2 206 v12.3M108.8 206 v24.6M111.2 206 v47.0M113.8 206 v3.4M116.2 206 v60.2M118.8 206 v8.8M121.2 206 v88.6M123.8 206 v3.5M126.2 206 v6.5M128.8 206 v14.9M131.2 206 v155.3M133.8 206 v15.3M136.2 206 v86.3M138.8 206 v44.1M141.2 206 v8.8M143.8 206 v41.1M146.2 206 v1.1M148.8 206 v3.3M151.2 206 v107.5M153.8 206 v133.9M156.2 206 v12.2M158.8 206 v2.2M161.2 206 v0.6M163.8 206 v1.2M166.2 206 v3.3M168.8 206 v40.0M171.2 206 v5.8M173.8 206 v68.9M176.2 206 v16.4M178.8 206 v5.2M181.2 206 v64.1M183.8 206 v8.1M186.2 206 v52.9M188.8 206 v176.0M191.2 206 v15.2M193.8 206 v2.1M196.2 206 v0.6M198.8 206 v2.2M201.2 206 v25.2M203.8 206 v7.1M206.2 206 v27.9M208.8 206 v6.9M211.2 206 v2.5M213.8 206 v1.6M216.2 206 v5.9M218.8 206 v12.2M221.2 206 v2.5M223.8 206 v5.8M226.2 206 v4.3M228.8 206 v2.6M231.2 206 v3.1M233.8 206 v4.5M236.2 206 v60.6M238.8 206 v157.7M241.2 206 v18.8M243.8 206 v48.1M246.2 206 v2.5M248.8 206 v0.6M251.2 206 v5.3M253.8 206 v9.6M256.2 206 v19.2M258.8 206 v0.6M261.2 206 v0.6M263.8 206 v0.6M266.2 206 v4.9M268.8 206 v16.2M271.2 206 v6.3M273.8 206 v0.6M276.2 206 v0.6M278.8 206 v1.5M281.2 206 v0.6M283.8 206 v12.9M286.2 206 v129.7M288.8 206 v15.2M291.2 206 v98.2M293.8 206 v15.8M296.2 206 v17.0M298.8 206 v17.7M301.2 206 v5.0M303.8 206 v1.3M306.2 206 v0.6M308.8 206 v0.6M311.2 206 v13.9M313.8 206 v9.0M316.2 206 v110.4M318.8 206 v25.0M321.2 206 v69.1M323.8 206 v3.3M326.2 206 v7.2M328.8 206 v6.4M331.2 206 v0.6M333.8 206 v2.3M336.2 206 v3.7M338.8 206 v4.2M341.2 206 v6.5M343.8 206 v27.6M346.2 206 v65.1M348.8 206 v8.2M351.2 206 v18.2M353.8 206 v70.0M356.2 206 v3.2M358.8 206 v0.6M361.2 206 v0.6M363.8 206 v0.6M366.2 206 v4.0M368.8 206 v0.6M371.2 206 v1.0M373.8 206 v2.0M376.2 206 v1.8M378.8 206 v9.3M381.2 206 v38.0M383.8 206 v69.7M386.2 206 v13.5M388.8 206 v31.7M391.2 206 v2.7M393.8 206 v2.3M396.2 206 v37.5M398.8 206 v3.0M401.2 206 v6.3M403.8 206 v0.6M406.2 206 v4.5M408.8 206 v0.6M411.2 206 v8.4M413.8 206 v52.8M416.2 206 v111.6M418.8 206 v87.6M421.2 206 v8.4M423.8 206 v6.1M426.2 206 v4.0M428.8 206 v0.8M431.2 206 v3.4M433.8 206 v1.0M436.2 206 v0.6M438.8 206 v3.2M441.2 206 v1.7M443.8 206 v4.3M446.2 206 v11.6M448.8 206 v26.7M451.2 206 v3.9M453.8 206 v0.6M456.2 206 v5.1M458.8 206 v29.6M461.2 206 v34.7M463.8 206 v4.2M466.2 206 v6.4M468.8 206 v1.5M471.2 206 v0.6M473.8 206 v0.6M476.2 206 v0.6M478.8 206 v1.2M481.2 206 v1.3M483.8 206 v1.9M486.2 206 v1.0M488.8 206 v0.9M491.2 206 v2.2M493.8 206 v0.6M496.2 206 v0.6M498.8 206 v1.7M501.2 206 v0.6M503.8 206 v3.2M506.2 206 v1.2M508.8 206 v2.1M511.2 206 v11.0M513.8 206 v1.4M516.2 206 v0.6M518.8 206 v2.4M521.2 206 v1.0M523.8 206 v9.7M526.2 206 v3.4M528.8 206 v1.3M531.2 206 v0.6M533.8 206 v1.7M536.2 206 v0.6M538.8 206 v0.6M541.2 206 v0.6M543.8 206 v0.6M546.2 206 v0.6M548.8 206 v6.5M551.2 206 v0.6M553.8 206 v0.6M556.2 206 v0.7M558.8 206 v1.2M561.2 206 v0.6M563.8 206 v0.6M566.2 206 v1.1M568.8 206 v2.5M571.2 206 v0.6M573.8 206 v0.6M576.2 206 v0.6M578.8 206 v0.6M581.2 206 v0.6M583.8 206 v0.6M586.2 206 v0.6M588.8 206 v2.5M591.2 206 v1.8M593.8 206 v0.6M596.2 206 v0.6M598.8 206 v2.2M601.2 206 v0.8M603.8 206 v0.6M606.2 206 v0.6M608.8 206 v0.6M611.2 206 v0.6M613.8 206 v1.7M616.2 206 v2.1M618.8 206 v0.6M621.2 206 v0.6M623.8 206 v2.1M626.2 206 v0.6M628.8 206 v0.6M631.2 206 v2.4M633.8 206 v0.6M636.2 206 v0.6M638.8 206 v0.6M641.2 206 v1.8M643.8 206 v1.0M646.2 206 v3.9M648.8 206 v0.6M651.2 206 v0.6M653.8 206 v0.6M656.2 206 v0.6M658.8 206 v0.6M661.2 206 v2.0M663.8 206 v0.6M666.2 206 v0.6M668.8 206 v1.2M671.2 206 v0.6M673.8 206 v0.6M676.2 206 v0.6M678.8 206 v2.5M681.2 206 v0.6M683.8 206 v0.6M686.2 206 v0.6M688.8 206 v0.6M691.2 206 v0.7M693.8 206 v3.9M696.2 206 v1.7M698.8 206 v1.0M701.2 206 v2.3M703.8 206 v3.9M706.2 206 v4.5M708.8 206 v0.6M711.2 206 v0.9M713.8 206 v0.6M716.2 206 v0.6M718.8 206 v0.6M721.2 206 v0.6M723.8 206 v0.6M726.2 206 v0.6M728.8 206 v0.6M731.2 206 v1.3M733.8 206 v3.0M736.2 206 v0.6M738.8 206 v0.6M741.2 206 v1.8M743.8 206 v0.6M746.2 206 v0.6M748.8 206 v0.6M751.2 206 v1.1M753.8 206 v0.6M756.2 206 v2.8M758.8 206 v0.6M761.2 206 v2.6M763.8 206 v0.6M766.2 206 v0.8M768.8 206 v1.4M771.2 206 v0.6M773.8 206 v2.9M776.2 206 v0.6M778.8 206 v0.6M781.2 206 v2.0M783.8 206 v3.4M786.2 206 v1.6M788.8 206 v0.8M791.2 206 v0.6M793.8 206 v0.6M796.2 206 v1.2M798.8 206 v0.6M801.2 206 v0.6M803.8 206 v0.6M806.2 206 v0.6M808.8 206 v0.6M811.2 206 v0.6M813.8 206 v0.7M816.2 206 v0.6M818.8 206 v0.6M821.2 206 v2.2M823.8 206 v0.6M826.2 206 v0.6M828.8 206 v0.6M831.2 206 v0.6M833.8 206 v0.6M836.2 206 v0.6M838.8 206 v0.9M841.2 206 v0.6M843.8 206 v1.5M846.2 206 v0.6M848.8 206 v0.6M851.2 206 v1.8M853.8 206 v3.9M856.2 206 v1.1M858.8 206 v0.6M861.2 206 v0.6M863.8 206 v2.1M866.2 206 v0.6M868.8 206 v0.6M871.2 206 v2.6M873.8 206 v1.7M876.2 206 v0.6M878.8 206 v0.6M881.2 206 v0.6M883.8 206 v0.6M886.2 206 v1.2M888.8 206 v1.8M891.2 206 v0.6M893.8 206 v0.6M896.2 206 v0.6M898.8 206 v0.6M901.2 206 v0.6M903.8 206 v1.6M906.2 206 v2.4M908.8 206 v0.6M911.2 206 v0.6M913.8 206 v0.6M916.2 206 v3.0M918.8 206 v0.9M921.2 206 v2.7M923.8 206 v0.6M926.2 206 v1.1M928.8 206 v2.2M931.2 206 v0.6M933.8 206 v1.6M936.2 206 v0.6M938.8 206 v3.6M941.2 206 v0.8M943.8 206 v0.6M946.2 206 v1.7M948.8 206 v1.7M951.2 206 v2.8M953.8 206 v1.2M956.2 206 v1.1M958.8 206 v0.8M961.2 206 v0.6M963.8 206 v0.6M966.2 206 v0.6M968.8 206 v0.8M971.2 206 v2.0M973.8 206 v0.6M976.2 206 v1.9M978.8 206 v1.9M981.2 206 v0.6M983.8 206 v0.6M986.2 206 v0.6M988.8 206 v0.6M991.2 206 v0.6M993.8 206 v0.6M996.2 206 v0.6M998.8 206 v0.6"/>
+          </svg>
+          <span class="sp-label sp-label-top" aria-hidden="true">raw</span>
+          <span class="sp-label sp-label-bottom" aria-hidden="true">binned</span>
+          <span class="sp-cursor" aria-hidden="true"><span class="sp-readout"></span></span>
+        </div>
+        <div class="spectrum-axis" aria-hidden="true">
+          <span style="left: 0%">2k</span>
+          <span style="left: 16.67%">5k</span>
+          <span style="left: 44.44%">10k</span>
+          <span style="left: 72.22%">15k</span>
+          <span style="left: 100%">20k</span>
+        </div>
+        <p class="spectrum-note">m/z (Da). A spectrum from the MaldiAMRKit example data, before and after the default preprocessing.</p>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section-tight" id="why" aria-labelledby="why-title">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Why MaldiSuite</p>
+        <h2 id="why-title">A whole AMR study, written as one scikit-learn pipeline.</h2>
+      </header>
+      <div class="principles">
+        <article class="principle reveal">
+          <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="6" width="24" height="20" rx="3"/><path d="M4 12h24M11 12v14"/></svg>
+          <h3>Shared data model</h3>
+          <p><code>MaldiSpectrum</code> and <code>MaldiSet</code> carry species, batch, MIC and acquisition metadata through every step, with no manual bookkeeping of sample identities.</p>
+        </article>
+        <article class="principle reveal">
+          <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="11" height="22" rx="2"/><rect x="19" y="5" width="9" height="22" rx="2"/><path d="M15 16h4"/><path d="M17 13v6" stroke-linecap="round"/></svg>
+          <h3>Leak-safe by construction</h3>
+          <p>Every transformer is fitted on the training folds and applied unchanged to held-out data, and grouped cross-validation keeps the spectra of one isolate in the same fold.</p>
+        </article>
+        <article class="principle reveal">
+          <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="16" r="3"/><circle cx="16" cy="16" r="3"/><circle cx="25" cy="16" r="3"/><path d="M10 16h3M19 16h3"/></svg>
+          <h3>scikit-learn native</h3>
+          <p>Correctors and classifiers are estimators, so <code>Pipeline</code>, <code>cross_val_score</code> and <code>GridSearchCV</code> work without glue code.</p>
+        </article>
+        <article class="principle reveal">
+          <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M26 16a10 10 0 1 1-3-7.1"/><path d="M26 6v5h-5"/></svg>
+          <h3>Reproducible</h3>
+          <p>Fixed seeds, versions pinned by the meta-package and a Bruker-native data path make reruns deterministic from raw spectra.</p>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="packages" class="section section-alt">
-  <div class="container">
-    <h2 class="section-title">Three Integrated Packages</h2>
-    <p class="section-lead centered">
-      Each package addresses a distinct concern with its own dependencies and release cadence.
-      Install them individually, or all together via the meta-package.
-    </p>
+  <section class="section section-alt" id="workflow" aria-labelledby="workflow-title">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Workflow</p>
+        <h2 id="workflow-title">Raw spectra in, resistance predictions out.</h2>
+        <p class="section-lede">Each package covers one stage of the workflow and hands the next one the same <code>MaldiSet</code>, so the three stages run as steps of a single <code>Pipeline</code>.</p>
+      </header>
 
-    <div class="package-grid">
-
-      <div class="package-card package-card-blue">
-        <img src="assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit logo" class="package-logo" width="96" height="96" loading="lazy" />
-        <h3 class="package-name">MaldiAMRKit</h3>
-        <p class="package-tagline">Preprocessing, evaluation, biomarkers, drift monitoring</p>
-        <ul class="package-features">
-          <li>Native Bruker FID/1r I/O with TOF→m/z calibration</li>
-          <li>Composable preprocessing pipelines (JSON/YAML serializable)</li>
-          <li>EUCAST/CLSI evaluation metrics and scorers</li>
-          <li>Patient-grouped splitting (<code>CaseGroupedKFold</code>)</li>
-          <li>Integrated biomarker discovery and drift monitoring</li>
-          <li>Native DRIAMS and MARISMa loaders</li>
-        </ul>
-        <div class="copy-wrap">
-          <pre class="package-install"><code>pip install maldiamrkit</code></pre>
-          <button type="button" class="copy-btn" aria-label="Copy install command">Copy</button>
-        </div>
-        <div class="package-links">
-          <a href="https://github.com/EttoreRocchi/MaldiAMRKit" target="_blank" rel="noopener" class="pkg-link">GitHub</a>
-          <a href="https://pypi.org/project/maldiamrkit/" target="_blank" rel="noopener" class="pkg-link">PyPI</a>
-          <a href="https://maldiamrkit.readthedocs.io" target="_blank" rel="noopener" class="pkg-link">Docs</a>
-        </div>
-      </div>
-
-      <div class="package-card package-card-orange">
-        <img src="assets/web/maldibatchkit_logo.png" alt="MaldiBatchKit logo" class="package-logo" width="96" height="96" loading="lazy" />
-        <h3 class="package-name">MaldiBatchKit</h3>
-        <p class="package-tagline">Batch effect correction for mass spectra</p>
-        <ul class="package-features">
-          <li>ComBat variants (Johnson, Fortin, CovBat)</li>
-          <li>Limma and Harmony</li>
-          <li>Simple baselines (median, z-score, reference)</li>
-          <li>MALDI-specific correctors (<code>BatchAwareWarping</code>, <code>QualityWeightedComBat</code>, <code>SpeciesAwareComBat</code>)</li>
-          <li>Diagnostics (kBET, LISI, Silhouette, peak-shift)</li>
-          <li>Native integration with <code>MaldiSet</code></li>
-        </ul>
-        <div class="copy-wrap">
-          <pre class="package-install"><code>pip install maldibatchkit</code></pre>
-          <button type="button" class="copy-btn" aria-label="Copy install command">Copy</button>
-        </div>
-        <div class="package-links">
-          <a href="https://github.com/EttoreRocchi/MaldiBatchKit" target="_blank" rel="noopener" class="pkg-link">GitHub</a>
-          <a href="https://pypi.org/project/maldibatchkit/" target="_blank" rel="noopener" class="pkg-link">PyPI</a>
-          <a href="https://maldibatchkit.readthedocs.io" target="_blank" rel="noopener" class="pkg-link">Docs</a>
-        </div>
-      </div>
-
-      <div class="package-card package-card-blue">
-        <img src="assets/web/maldideepkit_logo.png" alt="MaldiDeepKit logo" class="package-logo" width="96" height="96" loading="lazy" />
-        <h3 class="package-name">MaldiDeepKit</h3>
-        <p class="package-tagline">Deep learning classifiers for MALDI-TOF spectra</p>
-        <ul class="package-features">
-          <li><code>MaldiMLPClassifier</code> - MLP with optional sigmoid-gated attention</li>
-          <li><code>MaldiCNNClassifier</code> - 1-D Conv1D + BatchNorm blocks</li>
-          <li><code>MaldiResNetClassifier</code> - 1-D ResNet-18-style residual blocks</li>
-          <li><code>MaldiTransformerClassifier</code> - 1-D Vision Transformer (LayerScale, stochastic depth)</li>
-          <li>sklearn-compatible <code>fit</code>/<code>predict</code>/<code>predict_proba</code></li>
-          <li><code>from_spectrum(bin_width, input_dim)</code> auto-scaling factory</li>
-        </ul>
-        <div class="copy-wrap">
-          <pre class="package-install"><code>pip install maldideepkit</code></pre>
-          <button type="button" class="copy-btn" aria-label="Copy install command">Copy</button>
-        </div>
-        <div class="package-links">
-          <a href="https://github.com/EttoreRocchi/MaldiDeepKit" target="_blank" rel="noopener" class="pkg-link">GitHub</a>
-          <a href="https://pypi.org/project/maldideepkit/" target="_blank" rel="noopener" class="pkg-link">PyPI</a>
-          <a href="https://maldideepkit.readthedocs.io" target="_blank" rel="noopener" class="pkg-link">Docs</a>
-        </div>
-      </div>
-
+      <ol class="flow reveal" aria-label="MaldiSuite workflow">
+        <li class="flow-io">
+          <h3>Raw spectra</h3>
+          <p>Bruker fid/1r, txt, mzML/mzXML</p>
+          <p class="flow-sub">+ metadata: species, drug, MIC, site, date</p>
+        </li>
+        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span></li>
+        <li class="flow-node pkg-amr">
+          <p class="flow-role">Preprocessing</p>
+          <h3>MaldiAMRKit</h3>
+          <ul>
+            <li>I/O and dataset layouts</li>
+            <li>Preprocessing pipeline</li>
+            <li>Warping and peak detection</li>
+            <li>AMR metrics, grouped CV</li>
+          </ul>
+        </li>
+        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span><span class="flow-label"><span>MaldiSet</span> <span>6000 bins</span></span></li>
+        <li class="flow-node pkg-batch">
+          <p class="flow-role">Harmonisation</p>
+          <h3>MaldiBatchKit</h3>
+          <ul>
+            <li>11 correctors</li>
+            <li>MALDI-specific corrections</li>
+            <li>kBET, LISI, silhouette</li>
+            <li>Fit on train, apply to held-out</li>
+          </ul>
+        </li>
+        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span><span class="flow-label"><span>harmonised</span> <span>MaldiSet</span></span></li>
+        <li class="flow-node pkg-deep">
+          <p class="flow-role">Classification</p>
+          <h3>MaldiDeepKit</h3>
+          <ul>
+            <li>MLP, 1-D CNN, ResNet, 1-D ViT</li>
+            <li>Any bin layout</li>
+            <li>Uncertainty estimates</li>
+            <li>Leak-safe warping and scaling</li>
+          </ul>
+        </li>
+        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span></li>
+        <li class="flow-io">
+          <h3>Predictions</h3>
+          <p>R / S per isolate</p>
+          <p class="flow-sub">scored with VME, ME and AUROC</p>
+        </li>
+      </ol>
+      <p class="flow-note reveal">Batch labels are needed only for the harmonisation step: single-site studies use MaldiAMRKit and MaldiDeepKit directly.</p>
     </div>
+  </section>
 
-    <div class="suite-install">
-      <h3>Install the full suite</h3>
-      <p>
-        For users who want the entire ecosystem, a convenience meta-package
-        installs all three packages with pinned compatible versions.
-      </p>
-      <div class="copy-wrap copy-wrap-suite">
-        <pre class="suite-install-cmd"><code>pip install maldisuite</code></pre>
-        <button type="button" class="copy-btn copy-btn-suite" aria-label="Copy install command">Copy</button>
+  <section class="section" id="packages" aria-labelledby="packages-title">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Packages</p>
+        <h2 id="packages-title">Three packages, one install.</h2>
+        <p class="section-lede">Each package has its own repository, documentation and release cycle. Install them one by one, or all together with the <code>maldisuite</code> meta-package.</p>
+      </header>
+
+      <div class="packages">
+        <article class="pkg-card pkg-amr reveal">
+          <div class="pkg-top">
+            <div class="pkg-logo"><img src="assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit logo" width="192" height="143" loading="lazy"></div>
+            <span class="pkg-version" data-package="maldiamrkit">v0.22.1</span>
+          </div>
+          <h3>MaldiAMRKit</h3>
+          <p class="pkg-role">Data model, preprocessing and AMR-aware evaluation</p>
+          <ul class="pkg-features">
+            <li>Bruker fid/1r, txt and mzML/mzXML I/O, with DRIAMS and MARISMa layouts</li>
+            <li>Composable <code>PreprocessingPipeline</code>, serialisable to JSON/YAML</li>
+            <li>Seven warping methods, on binned or full-resolution spectra</li>
+            <li>VME, ME and categorical agreement, with patient-grouped splitters</li>
+            <li>MIC encoding with bundled EUCAST breakpoint tables</li>
+            <li>Differential analysis and drift monitoring</li>
+          </ul>
+          <div class="code-chip">
+            <code>pip install maldiamrkit</code>
+            <button class="copy-btn" type="button" data-copy="pip install maldiamrkit" aria-label="Copy install command for MaldiAMRKit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="pkg-links">
+            <a href="https://github.com/EttoreRocchi/MaldiAMRKit" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://pypi.org/project/maldiamrkit/" target="_blank" rel="noopener">PyPI</a>
+            <a href="https://maldiamrkit.readthedocs.io/" target="_blank" rel="noopener">Docs</a>
+          </div>
+        </article>
+
+        <article class="pkg-card pkg-batch reveal">
+          <div class="pkg-top">
+            <div class="pkg-logo"><img src="assets/web/maldibatchkit_logo.png" alt="MaldiBatchKit logo" width="192" height="149" loading="lazy"></div>
+            <span class="pkg-version" data-package="maldibatchkit">v0.2.0</span>
+          </div>
+          <h3>MaldiBatchKit</h3>
+          <p class="pkg-role">Batch-effect correction for multi-site spectra</p>
+          <ul class="pkg-features">
+            <li>ComBat (Johnson, Fortin, CovBat), Limma and Harmony</li>
+            <li>MALDI-specific <code>BatchAwareWarping</code>, <code>QualityWeightedComBat</code> and <code>SpeciesAwareComBat</code></li>
+            <li>Fitted on training data, applied unchanged to held-out folds</li>
+            <li><code>AutoCorrector</code> to pick the corrector inside <code>GridSearchCV</code></li>
+            <li>kBET, LISI and silhouette diagnostics, and <code>BatchCorrectionBenchmark</code></li>
+            <li><code>MaldiSetAdapter</code> and a command-line interface</li>
+          </ul>
+          <div class="code-chip">
+            <code>pip install maldibatchkit</code>
+            <button class="copy-btn" type="button" data-copy="pip install maldibatchkit" aria-label="Copy install command for MaldiBatchKit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="pkg-links">
+            <a href="https://github.com/EttoreRocchi/MaldiBatchKit" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://pypi.org/project/maldibatchkit/" target="_blank" rel="noopener">PyPI</a>
+            <a href="https://maldibatchkit.readthedocs.io/" target="_blank" rel="noopener">Docs</a>
+          </div>
+        </article>
+
+        <article class="pkg-card pkg-deep reveal">
+          <div class="pkg-top">
+            <div class="pkg-logo"><img src="assets/web/maldideepkit_logo.png" alt="MaldiDeepKit logo" width="192" height="110" loading="lazy"></div>
+            <span class="pkg-version" data-package="maldideepkit">v0.3.0</span>
+          </div>
+          <h3>MaldiDeepKit</h3>
+          <p class="pkg-role">Deep-learning classifiers for binned spectra</p>
+          <ul class="pkg-features">
+            <li><code>MaldiMLPClassifier</code>, <code>MaldiCNNClassifier</code>, <code>MaldiResNetClassifier</code> and <code>MaldiTransformerClassifier</code></li>
+            <li>Defaults tuned for 6000-bin spectra, <code>from_spectrum()</code> for other layouts</li>
+            <li>Dual-branch (spectrum + side features) and self-training classifiers</li>
+            <li>MC Dropout, Laplace and split conformal uncertainty</li>
+            <li>Warmup + cosine schedules, focal loss, SWA, SAM and temperature scaling</li>
+            <li>Leak-safe warping, fitted on the training split only</li>
+          </ul>
+          <div class="code-chip">
+            <code>pip install maldideepkit</code>
+            <button class="copy-btn" type="button" data-copy="pip install maldideepkit" aria-label="Copy install command for MaldiDeepKit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+          <div class="pkg-links">
+            <a href="https://github.com/EttoreRocchi/MaldiDeepKit" target="_blank" rel="noopener">GitHub</a>
+            <a href="https://pypi.org/project/maldideepkit/" target="_blank" rel="noopener">PyPI</a>
+            <a href="https://maldideepkit.readthedocs.io/" target="_blank" rel="noopener">Docs</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="suite reveal">
+        <div class="suite-copy">
+          <h3>The <code>maldisuite</code> meta-package</h3>
+          <p>One command installs the three packages at versions tested together, with the mzML/mzXML, batch-correction and plotting extras.</p>
+          <div class="code-chip code-chip-lg">
+            <span class="install-prompt" aria-hidden="true">$</span>
+            <code>pip install maldisuite</code>
+            <button class="copy-btn" type="button" data-copy="pip install maldisuite" aria-label="Copy install command for the full suite">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="compat">
+          <table class="compat-table">
+            <caption>Versions pinned by maldisuite 0.3.0</caption>
+            <thead>
+              <tr><th scope="col">Package</th><th scope="col">Pinned range</th><th scope="col">Latest on PyPI</th></tr>
+            </thead>
+            <tbody>
+              <tr class="pkg-amr">
+                <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiAMRKit</th>
+                <td><code>[batch,formats] &gt;=0.22.1,&lt;0.23</code></td>
+                <td class="compat-latest" data-package="maldiamrkit" data-min="0.22.1" data-max="0.23">0.22.1</td>
+              </tr>
+              <tr class="pkg-batch">
+                <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiBatchKit</th>
+                <td><code>[viz] &gt;=0.2.0,&lt;0.3</code></td>
+                <td class="compat-latest" data-package="maldibatchkit" data-min="0.2.0" data-max="0.3">0.2.0</td>
+              </tr>
+              <tr class="pkg-deep">
+                <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiDeepKit</th>
+                <td><code>&gt;=0.3.0,&lt;0.4</code></td>
+                <td class="compat-latest" data-package="maldideepkit" data-min="0.3.0" data-max="0.4">0.3.0</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="compat-note" id="compat-note">Latest versions are read from PyPI when the page loads.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="quickstart" class="section section-light">
-  <div class="container">
-    <h2 class="section-title">Quick Start</h2>
-    <p class="section-lead centered">
-      An end-to-end example combining preprocessing, batch correction, deep learning,
-      and patient-grouped evaluation.
-    </p>
-    <pre class="code-block"><code><span class="c-kw">from</span> maldiamrkit <span class="c-kw">import</span> MaldiSet
+  <section class="section section-alt" id="quickstart" aria-labelledby="quickstart-title">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Quick start</p>
+        <h2 id="quickstart-title">From a folder of spectra to a cross-validated score.</h2>
+      </header>
+
+      <div class="quickstart">
+        <ol class="steps">
+          <li class="step reveal">
+            <h3><span class="step-num">1</span>Install</h3>
+            <div class="code-chip">
+              <code>pip install maldisuite</code>
+              <button class="copy-btn" type="button" data-copy="pip install maldisuite" aria-label="Copy install command">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              </button>
+            </div>
+            <p class="step-note">Python 3.10 or newer. The deep models run on CPU; a CUDA GPU makes training much faster.</p>
+          </li>
+          <li class="step reveal">
+            <h3><span class="step-num">2</span>Load your cohort</h3>
+            <p class="step-note">Point <code>MaldiSet</code> at a folder of spectra and a metadata CSV with an <code>ID</code> column for each spectrum, the resistance label, species, batch and patient. Labels are encoded as R&nbsp;=&nbsp;1, S&nbsp;=&nbsp;0.</p>
+          </li>
+          <li class="step reveal">
+            <h3><span class="step-num">3</span>Build and evaluate the pipeline</h3>
+            <p class="step-note">Warping, ComBat and the classifier are refitted inside every training fold, and <code>CaseGroupedKFold</code> keeps all spectra of a patient in the same fold.</p>
+          </li>
+        </ol>
+
+        <figure class="code-window reveal">
+          <figcaption class="code-window-bar">
+            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="code-window-title">quickstart.py</span>
+            <button class="copy-btn copy-btn-text" type="button" data-copy-target="quickstart-code" aria-label="Copy the quick start script">Copy</button>
+          </figcaption>
+<pre class="code-body"><code id="quickstart-code"><span class="c-kw">from</span> maldiamrkit <span class="c-kw">import</span> MaldiSet
 <span class="c-kw">from</span> maldiamrkit.evaluation <span class="c-kw">import</span> CaseGroupedKFold, vme_scorer
-<span class="c-kw">from</span> maldibatchkit <span class="c-kw">import</span> BatchAwareWarping, ComBat
+<span class="c-kw">from</span> maldiamrkit.susceptibility <span class="c-kw">import</span> LabelEncoder
+<span class="c-kw">from</span> maldibatchkit <span class="c-kw">import</span> BatchAwareWarping, SpeciesAwareComBat
 <span class="c-kw">from</span> maldideepkit <span class="c-kw">import</span> MaldiMLPClassifier
-<span class="c-kw">from</span> sklearn.pipeline <span class="c-kw">import</span> Pipeline
 <span class="c-kw">from</span> sklearn.model_selection <span class="c-kw">import</span> cross_val_score
+<span class="c-kw">from</span> sklearn.pipeline <span class="c-kw">import</span> Pipeline
 
-data  = MaldiSet.from_directory(<span class="c-str">"driams/"</span>, <span class="c-str">"meta.csv"</span>, bin_width=<span class="c-num">3</span>)
-batch = data.meta[<span class="c-str">"batch"</span>]
+<span class="c-com"># metadata.csv: ID, Drug (R/S), Species, batch, patient_id</span>
+data = MaldiSet.from_directory(<span class="c-str">"spectra/"</span>, <span class="c-str">"metadata.csv"</span>, bin_width=<span class="c-num">3</span>)
+meta = data.meta.loc[data.X.index]
+y = LabelEncoder().fit_transform(data.get_y_single(<span class="c-str">"Drug"</span>))  <span class="c-com"># R=1, S=0</span>
 
 pipe = Pipeline([
-    (<span class="c-str">"warp"</span>,   BatchAwareWarping(batch=batch)),
-    (<span class="c-str">"combat"</span>, ComBat(batch=batch, method=<span class="c-str">"fortin"</span>)),
-    (<span class="c-str">"clf"</span>,    MaldiMLPClassifier(input_dim=data.X.shape[<span class="c-num">1</span>], random_state=<span class="c-num">0</span>)),
+    (<span class="c-str">"warp"</span>,   BatchAwareWarping(batch=meta[<span class="c-str">"batch"</span>])),
+    (<span class="c-str">"combat"</span>, SpeciesAwareComBat(batch=meta[<span class="c-str">"batch"</span>],
+                                  species=meta[<span class="c-str">"Species"</span>])),
+    (<span class="c-str">"clf"</span>,    MaldiMLPClassifier(input_dim=data.X.shape[<span class="c-num">1</span>],
+                                  random_state=<span class="c-num">0</span>)),
 ])
 
 scores = cross_val_score(
-    pipe, data.X, data.get_y_single(<span class="c-str">"Drug"</span>),
+    pipe, data.X, y,
     scoring=vme_scorer,
-    cv=CaseGroupedKFold(n_splits=<span class="c-num">5</span>),
-    groups=data.meta[<span class="c-str">"patient_id"</span>],
-)</code></pre>
-  </div>
-</section>
+    cv=CaseGroupedKFold(n_splits=<span class="c-num">5</span>, random_state=<span class="c-num">0</span>),
+    groups=meta[<span class="c-str">"patient_id"</span>],
+)
+print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
+          <p class="code-window-foot">Tested with maldiamrkit 0.22.1, maldibatchkit 0.2.0 and maldideepkit 0.3.0.</p>
+        </figure>
+      </div>
 
-<section id="citation" class="section section-alt">
-  <div class="container">
-    <h2 class="section-title centered">Citation</h2>
-    <p class="section-lead centered">Available soon.</p>
-  </div>
-</section>
-
-<section id="get-started" class="section section-light">
-  <div class="container">
-    <h2 class="section-title">Get Started</h2>
-    <div class="cta-grid">
-      <a href="https://pypi.org/project/maldisuite/" target="_blank" rel="noopener" class="cta-card">
-        <h3>Install via pip</h3>
-        <p>Install the entire suite with a single command.</p>
-        <pre class="cta-cmd"><code>pip install maldisuite</code></pre>
-      </a>
-      <a href="#packages" class="cta-card">
-        <h3>Browse Packages</h3>
-        <p>Explore the three packages individually - each with its own documentation, examples, and release cycle.</p>
-        <span class="cta-link">See all packages →</span>
-      </a>
+      <div class="doc-links reveal">
+        <a href="https://maldiamrkit.readthedocs.io/en/latest/quickstart.html" target="_blank" rel="noopener">MaldiAMRKit quickstart &rarr;</a>
+        <a href="https://maldibatchkit.readthedocs.io/en/latest/choosing.html" target="_blank" rel="noopener">Choosing a batch corrector &rarr;</a>
+        <a href="https://maldideepkit.readthedocs.io/en/latest/quickstart.html" target="_blank" rel="noopener">MaldiDeepKit quickstart &rarr;</a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="section" id="results" aria-labelledby="results-title">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Results</p>
+        <h2 id="results-title">Benchmarked on the DRIAMS multi-site cohort.</h2>
+        <p class="section-lede">Aggregated results from the analysis behind the MaldiSuite Application Note (under review), on the four DRIAMS sites. Classification scores are means over 3 repeats &times; 5 folds.</p>
+      </header>
+
+      <div class="results reveal">
+        <div class="tabs" role="tablist" aria-label="Benchmark">
+          <button class="tab" role="tab" id="tab-clf" aria-controls="panel-clf" aria-selected="true">Classification</button>
+          <button class="tab" role="tab" id="tab-batch" aria-controls="panel-batch" aria-selected="false" tabindex="-1">Batch correction</button>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-clf" aria-labelledby="tab-clf">
+          <div class="chart-controls">
+            <div class="segmented" id="task-picker" role="radiogroup" aria-label="Species and drug"></div>
+            <div class="ramp-legend" aria-hidden="true">
+              <span>0.5</span><span class="ramp-bar"></span><span>1.0</span><span class="ramp-title">mean AUROC</span>
+            </div>
+          </div>
+          <div class="heatmap-wrap" id="heatmap"></div>
+          <p class="chart-note"><span aria-hidden="true">&#9733;</span> best classifier at each site. n/a: drug not tested at that site. Hover or focus a cell for balanced accuracy, MCC, VME and ME.</p>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="panel-batch" aria-labelledby="tab-batch" hidden>
+          <div class="chart-controls">
+            <div class="segmented" id="experiment-picker" role="radiogroup" aria-label="Experiment"></div>
+          </div>
+          <div class="bars-wrap" id="batch-bars"></div>
+          <dl class="metric-notes">
+            <div><dt>kBET acceptance</dt><dd>Share of spectra whose neighbours mix batches as the whole cohort does. Higher is better.</dd></div>
+            <div><dt>LISI, batch (normalised)</dt><dd>Effective number of batches in each neighbourhood, rescaled to 0&ndash;1. Higher is better.</dd></div>
+            <div><dt>Species preservation</dt><dd>How well species stay apart after correction, 1 meaning fully preserved. Shown when species is a protected covariate.</dd></div>
+          </dl>
+        </div>
+
+        <noscript>
+          <p class="chart-note">On DRIAMS-A, the MLP + CNN ensemble reaches a mean AUROC of 0.92 for <em>S. aureus</em> / oxacillin, 0.89 for <em>E. coli</em> / ceftriaxone and 0.85 for <em>K. pneumoniae</em> / ceftriaxone. The interactive charts need JavaScript.</p>
+        </noscript>
+        <p class="results-source">Data: <a href="https://github.com/EttoreRocchi/MaldiSuite-paper/tree/main/results" target="_blank" rel="noopener">results/ of the MaldiSuite-paper repository</a>. Spectra from DRIAMS (<a href="https://doi.org/10.1038/s41591-021-01619-9" target="_blank" rel="noopener">Weis et al., Nature Medicine 2022</a>).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="research" aria-labelledby="research-title">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Research</p>
+        <h2 id="research-title">The scientific work behind the suite.</h2>
+        <p class="section-lede">MaldiSuite is described in an Application Note currently under review. Related studies from the same group are listed below.</p>
+      </header>
+
+      <div class="publications" id="publications">
+        <noscript>
+          <p><strong>MaldiSuite: a Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research.</strong> Rocchi E, Sala C, Castellani G. Under review at <em>Bioinformatics</em>.</p>
+          <p><a href="https://doi.org/10.1186/s12866-025-04657-2">Rocchi, E., Nicitra, E., Calvo, M. et al. Combining mass spectrometry and machine learning models for predicting Klebsiella pneumoniae antimicrobial resistance: a multicenter experience from clinical isolates in Italy. BMC Microbiol. 26, 180 (2026).</a></p>
+        </noscript>
+      </div>
+      <p class="research-cta reveal">Using MaldiSuite in your research? <a href="https://github.com/EttoreRocchi/MaldiSuite/issues" target="_blank" rel="noopener">Let us know on GitHub</a> and we will list it here.</p>
+    </div>
+  </section>
+
+  <section class="section" id="roadmap" aria-labelledby="roadmap-title">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Roadmap</p>
+        <h2 id="roadmap-title">Where the ecosystem is heading.</h2>
+        <p class="section-lede">Recent releases and upcoming work for each package. Planned items may change in scope or order; the changelogs record what has shipped.</p>
+      </header>
+
+      <div class="roadmap reveal">
+        <ul class="roadmap-legend" aria-label="Legend">
+          <li><span class="status-mark released" aria-hidden="true"></span>Released</li>
+          <li><span class="status-mark development" aria-hidden="true"></span>In development</li>
+          <li><span class="status-mark planned" aria-hidden="true"></span>Planned</li>
+        </ul>
+        <div class="lanes" id="roadmap-lanes">
+          <noscript><p>The roadmap is loaded from data/roadmap.json and needs JavaScript. See the changelog of each package on GitHub.</p></noscript>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <img src="assets/web/maldi_suite_logo.png" alt="" class="brand-logo-footer" width="32" height="32" />
-      <span>MaldiSuite</span>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/web/maldi_suite_logo_dark.png" alt="MaldiSuite" width="154" height="40" loading="lazy">
+        <p>A Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Packages</h2>
+        <a href="https://github.com/EttoreRocchi/MaldiAMRKit" target="_blank" rel="noopener">MaldiAMRKit</a>
+        <a href="https://github.com/EttoreRocchi/MaldiBatchKit" target="_blank" rel="noopener">MaldiBatchKit</a>
+        <a href="https://github.com/EttoreRocchi/MaldiDeepKit" target="_blank" rel="noopener">MaldiDeepKit</a>
+      </div>
+      <div class="footer-col">
+        <h2>Project</h2>
+        <a href="https://github.com/EttoreRocchi/MaldiSuite" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://pypi.org/project/maldisuite/" target="_blank" rel="noopener">PyPI</a>
+        <a href="https://github.com/EttoreRocchi/MaldiSuite/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
+        <a href="https://github.com/EttoreRocchi/MaldiSuite/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
+      </div>
+      <div class="footer-col">
+        <h2>Documentation</h2>
+        <a href="https://maldiamrkit.readthedocs.io/" target="_blank" rel="noopener">MaldiAMRKit docs</a>
+        <a href="https://maldibatchkit.readthedocs.io/" target="_blank" rel="noopener">MaldiBatchKit docs</a>
+        <a href="https://maldideepkit.readthedocs.io/" target="_blank" rel="noopener">MaldiDeepKit docs</a>
+      </div>
     </div>
-    <p class="footer-funding">
-      Supported by EU NextGenerationEU-MUR PNRR Extended Partnership initiative
-      on Emerging Infectious Diseases (Project no. PE00000007, INF-ACT).
-    </p>
-    <div class="footer-links">
-      <a href="https://github.com/EttoreRocchi/MaldiSuite/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>
-      <a href="https://github.com/EttoreRocchi/MaldiSuite" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://github.com/EttoreRocchi/MaldiSuite/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>
-    </div>
-    <p class="footer-copyright">© 2026 Ettore Rocchi. Open source under the MIT License.</p>
+    <p class="footer-funding">Supported by EU NextGenerationEU-MUR PNRR Extended Partnership initiative on Emerging Infectious Diseases (Project no. PE00000007, INF-ACT).</p>
+    <p class="footer-bottom">&copy; 2026 Ettore Rocchi. Open source under the MIT License.</p>
   </div>
 </footer>
 
-<span id="copy-status" class="sr-only" role="status" aria-live="polite"></span>
-
+<div class="chart-tooltip" id="chart-tooltip" role="tooltip" hidden></div>
 <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,986 @@
+{
+ "source": "https://github.com/EttoreRocchi/MaldiSuite-paper",
+ "classification": {
+  "sites": [
+   "DRIAMS-A",
+   "DRIAMS-B",
+   "DRIAMS-C",
+   "DRIAMS-D"
+  ],
+  "classifiers": [
+   {
+    "id": "mlp_attn",
+    "label": "MLP + attention"
+   },
+   {
+    "id": "cnn",
+    "label": "1-D CNN"
+   },
+   {
+    "id": "resnet",
+    "label": "ResNet"
+   },
+   {
+    "id": "transformer",
+    "label": "1-D ViT"
+   },
+   {
+    "id": "ensemble_mlp_cnn",
+    "label": "Ensemble (MLP + CNN)"
+   }
+  ],
+  "tasks": [
+   {
+    "species": "Staphylococcus aureus",
+    "drug": "oxacillin",
+    "cells": {
+     "DRIAMS-A": {
+      "cnn": {
+       "auroc": 0.91,
+       "aurocSd": 0.019,
+       "balancedAccuracy": 0.831,
+       "mcc": 0.594,
+       "vme": 0.186,
+       "me": 0.153,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.921,
+       "aurocSd": 0.014,
+       "balancedAccuracy": 0.846,
+       "mcc": 0.654,
+       "vme": 0.21,
+       "me": 0.098,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.902,
+       "aurocSd": 0.015,
+       "balancedAccuracy": 0.823,
+       "mcc": 0.599,
+       "vme": 0.234,
+       "me": 0.12,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.875,
+       "aurocSd": 0.02,
+       "balancedAccuracy": 0.789,
+       "mcc": 0.528,
+       "vme": 0.269,
+       "me": 0.152,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.846,
+       "aurocSd": 0.075,
+       "balancedAccuracy": 0.773,
+       "mcc": 0.492,
+       "vme": 0.277,
+       "me": 0.178,
+       "fits": 15
+      }
+     },
+     "DRIAMS-B": {
+      "cnn": {
+       "auroc": 0.722,
+       "aurocSd": 0.158,
+       "balancedAccuracy": 0.64,
+       "mcc": 0.245,
+       "vme": 0.447,
+       "me": 0.274,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.783,
+       "aurocSd": 0.078,
+       "balancedAccuracy": 0.7,
+       "mcc": 0.29,
+       "vme": 0.37,
+       "me": 0.23,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.748,
+       "aurocSd": 0.118,
+       "balancedAccuracy": 0.643,
+       "mcc": 0.327,
+       "vme": 0.57,
+       "me": 0.145,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.705,
+       "aurocSd": 0.141,
+       "balancedAccuracy": 0.641,
+       "mcc": 0.232,
+       "vme": 0.477,
+       "me": 0.242,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.498,
+       "aurocSd": 0.097,
+       "balancedAccuracy": 0.499,
+       "mcc": 0.015,
+       "vme": 0.377,
+       "me": 0.625,
+       "fits": 15
+      }
+     },
+     "DRIAMS-C": {
+      "cnn": {
+       "auroc": 0.647,
+       "aurocSd": 0.098,
+       "balancedAccuracy": 0.594,
+       "mcc": 0.105,
+       "vme": 0.438,
+       "me": 0.374,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.661,
+       "aurocSd": 0.089,
+       "balancedAccuracy": 0.604,
+       "mcc": 0.113,
+       "vme": 0.406,
+       "me": 0.385,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.614,
+       "aurocSd": 0.115,
+       "balancedAccuracy": 0.574,
+       "mcc": 0.085,
+       "vme": 0.547,
+       "me": 0.305,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.559,
+       "aurocSd": 0.122,
+       "balancedAccuracy": 0.516,
+       "mcc": 0.027,
+       "vme": 0.545,
+       "me": 0.423,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.574,
+       "aurocSd": 0.085,
+       "balancedAccuracy": 0.558,
+       "mcc": 0.064,
+       "vme": 0.432,
+       "me": 0.452,
+       "fits": 15
+      }
+     }
+    }
+   },
+   {
+    "species": "Escherichia coli",
+    "drug": "ceftriaxone",
+    "cells": {
+     "DRIAMS-A": {
+      "cnn": {
+       "auroc": 0.883,
+       "aurocSd": 0.017,
+       "balancedAccuracy": 0.808,
+       "mcc": 0.589,
+       "vme": 0.264,
+       "me": 0.12,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.894,
+       "aurocSd": 0.016,
+       "balancedAccuracy": 0.823,
+       "mcc": 0.623,
+       "vme": 0.252,
+       "me": 0.103,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.869,
+       "aurocSd": 0.019,
+       "balancedAccuracy": 0.795,
+       "mcc": 0.548,
+       "vme": 0.256,
+       "me": 0.154,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.817,
+       "aurocSd": 0.024,
+       "balancedAccuracy": 0.756,
+       "mcc": 0.522,
+       "vme": 0.388,
+       "me": 0.101,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.717,
+       "aurocSd": 0.099,
+       "balancedAccuracy": 0.654,
+       "mcc": 0.282,
+       "vme": 0.369,
+       "me": 0.324,
+       "fits": 15
+      }
+     },
+     "DRIAMS-B": {
+      "cnn": {
+       "auroc": 0.681,
+       "aurocSd": 0.123,
+       "balancedAccuracy": 0.622,
+       "mcc": 0.222,
+       "vme": 0.385,
+       "me": 0.371,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.765,
+       "aurocSd": 0.109,
+       "balancedAccuracy": 0.704,
+       "mcc": 0.37,
+       "vme": 0.296,
+       "me": 0.296,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.786,
+       "aurocSd": 0.107,
+       "balancedAccuracy": 0.72,
+       "mcc": 0.399,
+       "vme": 0.289,
+       "me": 0.271,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.619,
+       "aurocSd": 0.189,
+       "balancedAccuracy": 0.606,
+       "mcc": 0.191,
+       "vme": 0.363,
+       "me": 0.424,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.615,
+       "aurocSd": 0.099,
+       "balancedAccuracy": 0.552,
+       "mcc": 0.092,
+       "vme": 0.252,
+       "me": 0.645,
+       "fits": 15
+      }
+     },
+     "DRIAMS-C": {
+      "cnn": {
+       "auroc": 0.675,
+       "aurocSd": 0.038,
+       "balancedAccuracy": 0.607,
+       "mcc": 0.181,
+       "vme": 0.45,
+       "me": 0.336,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.703,
+       "aurocSd": 0.046,
+       "balancedAccuracy": 0.638,
+       "mcc": 0.225,
+       "vme": 0.441,
+       "me": 0.284,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.696,
+       "aurocSd": 0.066,
+       "balancedAccuracy": 0.635,
+       "mcc": 0.226,
+       "vme": 0.457,
+       "me": 0.274,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.619,
+       "aurocSd": 0.051,
+       "balancedAccuracy": 0.586,
+       "mcc": 0.146,
+       "vme": 0.487,
+       "me": 0.341,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.485,
+       "aurocSd": 0.044,
+       "balancedAccuracy": 0.505,
+       "mcc": 0.012,
+       "vme": 0.229,
+       "me": 0.762,
+       "fits": 15
+      }
+     },
+     "DRIAMS-D": {
+      "cnn": {
+       "auroc": 0.703,
+       "aurocSd": 0.072,
+       "balancedAccuracy": 0.647,
+       "mcc": 0.224,
+       "vme": 0.43,
+       "me": 0.277,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.713,
+       "aurocSd": 0.063,
+       "balancedAccuracy": 0.67,
+       "mcc": 0.238,
+       "vme": 0.417,
+       "me": 0.244,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.684,
+       "aurocSd": 0.065,
+       "balancedAccuracy": 0.643,
+       "mcc": 0.236,
+       "vme": 0.532,
+       "me": 0.183,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.652,
+       "aurocSd": 0.052,
+       "balancedAccuracy": 0.608,
+       "mcc": 0.165,
+       "vme": 0.53,
+       "me": 0.255,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.568,
+       "aurocSd": 0.057,
+       "balancedAccuracy": 0.527,
+       "mcc": 0.036,
+       "vme": 0.246,
+       "me": 0.699,
+       "fits": 15
+      }
+     }
+    }
+   },
+   {
+    "species": "Klebsiella pneumoniae",
+    "drug": "ceftriaxone",
+    "cells": {
+     "DRIAMS-A": {
+      "cnn": {
+       "auroc": 0.838,
+       "aurocSd": 0.031,
+       "balancedAccuracy": 0.756,
+       "mcc": 0.459,
+       "vme": 0.353,
+       "me": 0.134,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.854,
+       "aurocSd": 0.029,
+       "balancedAccuracy": 0.785,
+       "mcc": 0.512,
+       "vme": 0.302,
+       "me": 0.127,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.831,
+       "aurocSd": 0.035,
+       "balancedAccuracy": 0.764,
+       "mcc": 0.471,
+       "vme": 0.329,
+       "me": 0.143,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.774,
+       "aurocSd": 0.027,
+       "balancedAccuracy": 0.71,
+       "mcc": 0.402,
+       "vme": 0.451,
+       "me": 0.13,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.709,
+       "aurocSd": 0.09,
+       "balancedAccuracy": 0.653,
+       "mcc": 0.269,
+       "vme": 0.412,
+       "me": 0.281,
+       "fits": 15
+      }
+     },
+     "DRIAMS-B": {
+      "cnn": {
+       "auroc": 0.576,
+       "aurocSd": 0.168,
+       "balancedAccuracy": 0.533,
+       "mcc": 0.032,
+       "vme": 0.556,
+       "me": 0.378,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.588,
+       "aurocSd": 0.189,
+       "balancedAccuracy": 0.55,
+       "mcc": 0.065,
+       "vme": 0.606,
+       "me": 0.294,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.572,
+       "aurocSd": 0.201,
+       "balancedAccuracy": 0.54,
+       "mcc": 0.065,
+       "vme": 0.661,
+       "me": 0.259,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.519,
+       "aurocSd": 0.183,
+       "balancedAccuracy": 0.533,
+       "mcc": 0.044,
+       "vme": 0.228,
+       "me": 0.707,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.516,
+       "aurocSd": 0.133,
+       "balancedAccuracy": 0.504,
+       "mcc": 0.01,
+       "vme": 0.522,
+       "me": 0.47,
+       "fits": 15
+      }
+     },
+     "DRIAMS-C": {
+      "cnn": {
+       "auroc": 0.681,
+       "aurocSd": 0.116,
+       "balancedAccuracy": 0.621,
+       "mcc": 0.194,
+       "vme": 0.442,
+       "me": 0.316,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.756,
+       "aurocSd": 0.079,
+       "balancedAccuracy": 0.686,
+       "mcc": 0.303,
+       "vme": 0.394,
+       "me": 0.233,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.755,
+       "aurocSd": 0.073,
+       "balancedAccuracy": 0.699,
+       "mcc": 0.338,
+       "vme": 0.382,
+       "me": 0.221,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.531,
+       "aurocSd": 0.122,
+       "balancedAccuracy": 0.533,
+       "mcc": 0.05,
+       "vme": 0.364,
+       "me": 0.57,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.482,
+       "aurocSd": 0.096,
+       "balancedAccuracy": 0.472,
+       "mcc": -0.049,
+       "vme": 0.37,
+       "me": 0.685,
+       "fits": 15
+      }
+     },
+     "DRIAMS-D": {
+      "cnn": {
+       "auroc": 0.662,
+       "aurocSd": 0.05,
+       "balancedAccuracy": 0.585,
+       "mcc": 0.098,
+       "vme": 0.453,
+       "me": 0.376,
+       "fits": 15
+      },
+      "ensemble_mlp_cnn": {
+       "auroc": 0.658,
+       "aurocSd": 0.043,
+       "balancedAccuracy": 0.606,
+       "mcc": 0.107,
+       "vme": 0.388,
+       "me": 0.4,
+       "fits": 15
+      },
+      "mlp_attn": {
+       "auroc": 0.622,
+       "aurocSd": 0.051,
+       "balancedAccuracy": 0.583,
+       "mcc": 0.129,
+       "vme": 0.616,
+       "me": 0.217,
+       "fits": 15
+      },
+      "resnet": {
+       "auroc": 0.606,
+       "aurocSd": 0.093,
+       "balancedAccuracy": 0.577,
+       "mcc": 0.098,
+       "vme": 0.476,
+       "me": 0.369,
+       "fits": 15
+      },
+      "transformer": {
+       "auroc": 0.56,
+       "aurocSd": 0.053,
+       "balancedAccuracy": 0.535,
+       "mcc": 0.038,
+       "vme": 0.437,
+       "me": 0.493,
+       "fits": 15
+      }
+     }
+    }
+   }
+  ]
+ },
+ "batchCorrection": {
+  "experiments": [
+   {
+    "id": "exp3_multi_species",
+    "title": "E. coli + K. pneumoniae",
+    "detail": "ceftriaxone, species protected",
+    "methods": [
+     {
+      "id": "__pre__",
+      "label": "(uncorrected)",
+      "uncorrected": true,
+      "kbet_acceptance": 0.085,
+      "lisi_batch_normalized": 0.472,
+      "species_preservation": 1.0
+     },
+     {
+      "id": "combat_johnson",
+      "label": "ComBat (Johnson)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.085,
+      "lisi_batch_normalized": 0.485,
+      "species_preservation": 1.0
+     },
+     {
+      "id": "combat_fortin",
+      "label": "ComBat (Fortin)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.087,
+      "lisi_batch_normalized": 0.489,
+      "species_preservation": 1.0
+     },
+     {
+      "id": "combat_chen",
+      "label": "ComBat / CovBat (Chen)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.192,
+      "lisi_batch_normalized": 0.793,
+      "species_preservation": 0.473
+     },
+     {
+      "id": "limma",
+      "label": "Limma",
+      "uncorrected": false,
+      "kbet_acceptance": 0.074,
+      "lisi_batch_normalized": 0.475,
+      "species_preservation": 1.0
+     },
+     {
+      "id": "harmony",
+      "label": "Harmony",
+      "uncorrected": false,
+      "kbet_acceptance": 0.359,
+      "lisi_batch_normalized": 0.72,
+      "species_preservation": 1.0
+     },
+     {
+      "id": "median_centering",
+      "label": "Median centering",
+      "uncorrected": false,
+      "kbet_acceptance": 0.021,
+      "lisi_batch_normalized": 0.454,
+      "species_preservation": 1.0
+     },
+     {
+      "id": "zscore_per_batch",
+      "label": "Z-score per batch",
+      "uncorrected": false,
+      "kbet_acceptance": 0.15,
+      "lisi_batch_normalized": 0.526,
+      "species_preservation": 0.956
+     },
+     {
+      "id": "reference_scaling",
+      "label": "Reference scaling",
+      "uncorrected": false,
+      "kbet_acceptance": 0.056,
+      "lisi_batch_normalized": 0.474,
+      "species_preservation": 1.0
+     },
+     {
+      "id": "batch_aware_warping",
+      "label": "Batch-aware warping",
+      "uncorrected": false,
+      "kbet_acceptance": 0.092,
+      "lisi_batch_normalized": 0.474,
+      "species_preservation": 1.0
+     },
+     {
+      "id": "quality_weighted_combat",
+      "label": "Quality-weighted ComBat",
+      "uncorrected": false,
+      "kbet_acceptance": 0.015,
+      "lisi_batch_normalized": 0.447,
+      "species_preservation": 1.0
+     },
+     {
+      "id": "species_aware_combat",
+      "label": "Species-aware ComBat",
+      "uncorrected": false,
+      "kbet_acceptance": 0.087,
+      "lisi_batch_normalized": 0.489,
+      "species_preservation": 1.0
+     }
+    ]
+   },
+   {
+    "id": "exp1_saureus",
+    "title": "S. aureus",
+    "detail": "oxacillin",
+    "methods": [
+     {
+      "id": "__pre__",
+      "label": "(uncorrected)",
+      "uncorrected": true,
+      "kbet_acceptance": 0.119,
+      "lisi_batch_normalized": 0.643,
+      "species_preservation": null
+     },
+     {
+      "id": "combat_johnson",
+      "label": "ComBat (Johnson)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.333,
+      "lisi_batch_normalized": 0.682,
+      "species_preservation": null
+     },
+     {
+      "id": "combat_fortin",
+      "label": "ComBat (Fortin)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.333,
+      "lisi_batch_normalized": 0.682,
+      "species_preservation": null
+     },
+     {
+      "id": "combat_chen",
+      "label": "ComBat / CovBat (Chen)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.333,
+      "lisi_batch_normalized": 0.682,
+      "species_preservation": null
+     },
+     {
+      "id": "limma",
+      "label": "Limma",
+      "uncorrected": false,
+      "kbet_acceptance": 0.151,
+      "lisi_batch_normalized": 0.641,
+      "species_preservation": null
+     },
+     {
+      "id": "harmony",
+      "label": "Harmony",
+      "uncorrected": false,
+      "kbet_acceptance": 0.551,
+      "lisi_batch_normalized": 0.768,
+      "species_preservation": null
+     },
+     {
+      "id": "median_centering",
+      "label": "Median centering",
+      "uncorrected": false,
+      "kbet_acceptance": 0.178,
+      "lisi_batch_normalized": 0.644,
+      "species_preservation": null
+     },
+     {
+      "id": "zscore_per_batch",
+      "label": "Z-score per batch",
+      "uncorrected": false,
+      "kbet_acceptance": 0.117,
+      "lisi_batch_normalized": 0.671,
+      "species_preservation": null
+     },
+     {
+      "id": "reference_scaling",
+      "label": "Reference scaling",
+      "uncorrected": false,
+      "kbet_acceptance": 0.254,
+      "lisi_batch_normalized": 0.662,
+      "species_preservation": null
+     },
+     {
+      "id": "batch_aware_warping",
+      "label": "Batch-aware warping",
+      "uncorrected": false,
+      "kbet_acceptance": 0.116,
+      "lisi_batch_normalized": 0.642,
+      "species_preservation": null
+     },
+     {
+      "id": "quality_weighted_combat",
+      "label": "Quality-weighted ComBat",
+      "uncorrected": false,
+      "kbet_acceptance": 0.041,
+      "lisi_batch_normalized": 0.671,
+      "species_preservation": null
+     },
+     {
+      "id": "species_aware_combat",
+      "label": "Species-aware ComBat",
+      "uncorrected": false,
+      "kbet_acceptance": 0.333,
+      "lisi_batch_normalized": 0.682,
+      "species_preservation": null
+     }
+    ]
+   },
+   {
+    "id": "exp1_ecoli",
+    "title": "E. coli",
+    "detail": "ceftriaxone",
+    "methods": [
+     {
+      "id": "__pre__",
+      "label": "(uncorrected)",
+      "uncorrected": true,
+      "kbet_acceptance": 0.068,
+      "lisi_batch_normalized": 0.485,
+      "species_preservation": null
+     },
+     {
+      "id": "combat_johnson",
+      "label": "ComBat (Johnson)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.172,
+      "lisi_batch_normalized": 0.536,
+      "species_preservation": null
+     },
+     {
+      "id": "combat_fortin",
+      "label": "ComBat (Fortin)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.172,
+      "lisi_batch_normalized": 0.536,
+      "species_preservation": null
+     },
+     {
+      "id": "combat_chen",
+      "label": "ComBat / CovBat (Chen)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.172,
+      "lisi_batch_normalized": 0.536,
+      "species_preservation": null
+     },
+     {
+      "id": "limma",
+      "label": "Limma",
+      "uncorrected": false,
+      "kbet_acceptance": 0.052,
+      "lisi_batch_normalized": 0.49,
+      "species_preservation": null
+     },
+     {
+      "id": "harmony",
+      "label": "Harmony",
+      "uncorrected": false,
+      "kbet_acceptance": 0.474,
+      "lisi_batch_normalized": 0.743,
+      "species_preservation": null
+     },
+     {
+      "id": "median_centering",
+      "label": "Median centering",
+      "uncorrected": false,
+      "kbet_acceptance": 0.119,
+      "lisi_batch_normalized": 0.514,
+      "species_preservation": null
+     },
+     {
+      "id": "zscore_per_batch",
+      "label": "Z-score per batch",
+      "uncorrected": false,
+      "kbet_acceptance": 0.221,
+      "lisi_batch_normalized": 0.583,
+      "species_preservation": null
+     },
+     {
+      "id": "reference_scaling",
+      "label": "Reference scaling",
+      "uncorrected": false,
+      "kbet_acceptance": 0.062,
+      "lisi_batch_normalized": 0.505,
+      "species_preservation": null
+     },
+     {
+      "id": "batch_aware_warping",
+      "label": "Batch-aware warping",
+      "uncorrected": false,
+      "kbet_acceptance": 0.069,
+      "lisi_batch_normalized": 0.485,
+      "species_preservation": null
+     },
+     {
+      "id": "quality_weighted_combat",
+      "label": "Quality-weighted ComBat",
+      "uncorrected": false,
+      "kbet_acceptance": 0.027,
+      "lisi_batch_normalized": 0.469,
+      "species_preservation": null
+     },
+     {
+      "id": "species_aware_combat",
+      "label": "Species-aware ComBat",
+      "uncorrected": false,
+      "kbet_acceptance": 0.172,
+      "lisi_batch_normalized": 0.536,
+      "species_preservation": null
+     }
+    ]
+   },
+   {
+    "id": "exp1_kpneumoniae",
+    "title": "K. pneumoniae",
+    "detail": "ceftriaxone",
+    "methods": [
+     {
+      "id": "__pre__",
+      "label": "(uncorrected)",
+      "uncorrected": true,
+      "kbet_acceptance": 0.066,
+      "lisi_batch_normalized": 0.443,
+      "species_preservation": null
+     },
+     {
+      "id": "combat_johnson",
+      "label": "ComBat (Johnson)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.097,
+      "lisi_batch_normalized": 0.475,
+      "species_preservation": null
+     },
+     {
+      "id": "combat_fortin",
+      "label": "ComBat (Fortin)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.097,
+      "lisi_batch_normalized": 0.475,
+      "species_preservation": null
+     },
+     {
+      "id": "combat_chen",
+      "label": "ComBat / CovBat (Chen)",
+      "uncorrected": false,
+      "kbet_acceptance": 0.097,
+      "lisi_batch_normalized": 0.475,
+      "species_preservation": null
+     },
+     {
+      "id": "limma",
+      "label": "Limma",
+      "uncorrected": false,
+      "kbet_acceptance": 0.081,
+      "lisi_batch_normalized": 0.452,
+      "species_preservation": null
+     },
+     {
+      "id": "harmony",
+      "label": "Harmony",
+      "uncorrected": false,
+      "kbet_acceptance": 0.325,
+      "lisi_batch_normalized": 0.72,
+      "species_preservation": null
+     },
+     {
+      "id": "median_centering",
+      "label": "Median centering",
+      "uncorrected": false,
+      "kbet_acceptance": 0.06,
+      "lisi_batch_normalized": 0.436,
+      "species_preservation": null
+     },
+     {
+      "id": "zscore_per_batch",
+      "label": "Z-score per batch",
+      "uncorrected": false,
+      "kbet_acceptance": 0.244,
+      "lisi_batch_normalized": 0.551,
+      "species_preservation": null
+     },
+     {
+      "id": "reference_scaling",
+      "label": "Reference scaling",
+      "uncorrected": false,
+      "kbet_acceptance": 0.073,
+      "lisi_batch_normalized": 0.443,
+      "species_preservation": null
+     },
+     {
+      "id": "batch_aware_warping",
+      "label": "Batch-aware warping",
+      "uncorrected": false,
+      "kbet_acceptance": 0.068,
+      "lisi_batch_normalized": 0.444,
+      "species_preservation": null
+     },
+     {
+      "id": "quality_weighted_combat",
+      "label": "Quality-weighted ComBat",
+      "uncorrected": false,
+      "kbet_acceptance": 0.014,
+      "lisi_batch_normalized": 0.438,
+      "species_preservation": null
+     },
+     {
+      "id": "species_aware_combat",
+      "label": "Species-aware ComBat",
+      "uncorrected": false,
+      "kbet_acceptance": 0.097,
+      "lisi_batch_normalized": 0.475,
+      "species_preservation": null
+     }
+    ]
+   }
+  ]
+ }
+}
