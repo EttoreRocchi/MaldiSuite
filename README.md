@@ -3,17 +3,21 @@
 [![Website](https://img.shields.io/badge/website-online-0b6f82)](https://ettorerocchi.github.io/MaldiSuite/)
 [![PyPI meta-package](https://img.shields.io/pypi/v/maldisuite.svg?color=4f9a2c)](https://pypi.org/project/maldisuite/)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/EttoreRocchi/MaldiSuite/blob/main/LICENSE)
 
 <p align="center">
-  <img src="assets/maldi_suite_logo.png" alt="MaldiSuite" width="320"/>
+  <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/maldi_suite_logo.png" alt="MaldiSuite" width="320"/>
 </p>
 
 <p align="center">
   <strong>A Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research</strong>
 </p>
 
-**MaldiSuite** combines preprocessing, batch effect correction, and deep learning classifiers in a single sklearn-compatible workflow for clinical microbiology and computational biology research.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/suite_packages.svg" alt="Animated overview of the three packages, side by side: MaldiAMRKit (preprocessing, alignment, MIC interpretation), MaldiBatchKit (correction, diagnostics, tuning) and MaldiDeepKit (four backbones, uncertainty, dual-branch models); use one, or all three with pip install maldisuite" width="720"/>
+</p>
+
+**MaldiSuite** brings together preprocessing, batch effect correction, and deep learning classifiers for clinical microbiology and computational biology research: use each package on its own, or combine them through the shared sklearn-compatible API.
 
 > **Landing page:** [MaldiSuite](<https://ettorerocchi.github.io/MaldiSuite/>)
 
@@ -33,13 +37,13 @@ and release cycle.
 
 ## The three packages
 
-MaldiAMRKit owns the data model, preprocessing, evaluation, and biomarker / drift modules; MaldiBatchKit re-exports every corrector (ComBat variants, Limma, Harmony, MALDI-specific harmonisers) at the top level; MaldiDeepKit ships scikit-learn-compatible deep classifiers (`MaldiMLPClassifier`, `MaldiCNNClassifier`, `MaldiResNetClassifier`, `MaldiTransformerClassifier`).
+MaldiAMRKit owns the data model, preprocessing, evaluation, differential analysis and drift modules; MaldiBatchKit re-exports every corrector (ComBat variants, Limma, Harmony, MALDI-specific harmonisers) at the top level; MaldiDeepKit ships scikit-learn-compatible deep classifiers (`MaldiMLPClassifier`, `MaldiCNNClassifier`, `MaldiResNetClassifier`, `MaldiTransformerClassifier`).
 
 | Logo | Package | Purpose | Repository |
 |:---:|---|---|---|
-| <img src="assets/maldiamrkit_logo.png" alt="MaldiAMRKit" width="80"> | **MaldiAMRKit** | Preprocessing, evaluation, biomarkers, drift monitoring | [MaldiAMRKit](https://github.com/EttoreRocchi/MaldiAMRKit) |
-| <img src="assets/maldibatchkit_logo.png" alt="MaldiBatchKit" width="80"> | **MaldiBatchKit** | Batch effect correction for mass spectra | [MaldiBatchKit](https://github.com/EttoreRocchi/MaldiBatchKit) |
-| <img src="assets/maldideepkit_logo.png" alt="MaldiDeepKit" width="80"> | **MaldiDeepKit** | Deep learning classifiers for MALDI-TOF spectra | [MaldiDeepKit](https://github.com/EttoreRocchi/MaldiDeepKit) |
+| <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit" width="80"> | **MaldiAMRKit** | Preprocessing, evaluation, differential analysis, drift monitoring | [MaldiAMRKit](https://github.com/EttoreRocchi/MaldiAMRKit) |
+| <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldibatchkit_logo.png" alt="MaldiBatchKit" width="80"> | **MaldiBatchKit** | Batch effect correction for mass spectra | [MaldiBatchKit](https://github.com/EttoreRocchi/MaldiBatchKit) |
+| <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldideepkit_logo.png" alt="MaldiDeepKit" width="80"> | **MaldiDeepKit** | Deep learning classifiers for MALDI-TOF spectra | [MaldiDeepKit](https://github.com/EttoreRocchi/MaldiDeepKit) |
 
 ## Installation
 
@@ -60,7 +64,7 @@ This installs `maldiamrkit`, `maldibatchkit`, and `maldideepkit` at compatible v
 Alternatively, install individual packages separately:
 
 ```bash
-pip install maldiamrkit     # preprocessing, biomarkers, drift
+pip install maldiamrkit     # preprocessing, evaluation, drift
 pip install maldibatchkit   # batch effect correction
 pip install maldideepkit    # deep learning classifiers
 ```
@@ -98,7 +102,7 @@ scores = cross_val_score(
 print(f"VME: {-scores.mean():.3f}")
 ```
 
-Every step is refitted inside each training fold, and `CaseGroupedKFold` keeps all spectra of a patient in the same fold. Tested with maldiamrkit 0.22.1, maldibatchkit 0.2.0 and maldideepkit 0.3.0.
+Every step is refitted inside each training fold, and `CaseGroupedKFold` keeps all spectra of a patient in the same fold. Tested with maldiamrkit 0.22.1, maldibatchkit 0.2.1 and maldideepkit 0.3.0.
 
 ## Citation
 
@@ -106,9 +110,9 @@ MaldiSuite is described in an Application Note currently under review at *Bioinf
 
 ## License
 
-MIT License - see [`LICENSE`](LICENSE) for the full text.
+MIT License - see [`LICENSE`](https://github.com/EttoreRocchi/MaldiSuite/blob/main/LICENSE) for the full text.
 
-## Acknowledgments
+## Acknowledgements
 
 MaldiSuite builds on the work of the mass spectrometry and clinical microbiology communities. In particular, we acknowledge:
 

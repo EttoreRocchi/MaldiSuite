@@ -43,7 +43,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="css/style.css?v=0.3.0">
+<link rel="stylesheet" href="css/style.css?v=0.3.0-2">
 
 <script type="application/ld+json">
 {
@@ -72,12 +72,12 @@
 <header class="header" id="header">
   <div class="container nav">
     <a href="#top" class="nav-logo" aria-label="MaldiSuite home">
-      <img src="assets/web/maldi_suite_logo.png" alt="" class="logo-img logo-light" width="138" height="36">
-      <img src="assets/web/maldi_suite_logo_dark.png" alt="" class="logo-img logo-dark" width="138" height="36">
+      <img src="assets/web/maldi_suite_logo.png" alt="" class="logo-img logo-light" width="142" height="44">
+      <img src="assets/web/maldi_suite_logo_dark.png" alt="" class="logo-img logo-dark" width="142" height="44">
     </a>
     <nav class="nav-menu" id="nav-menu" aria-label="Main">
-      <a href="#workflow" class="nav-link">Workflow</a>
       <a href="#packages" class="nav-link">Packages</a>
+      <a href="#workflow" class="nav-link">Combine</a>
       <a href="#quickstart" class="nav-link">Quick start</a>
       <a href="#results" class="nav-link">Results</a>
       <a href="#research" class="nav-link">Research</a>
@@ -177,18 +177,18 @@
     <div class="container">
       <header class="section-head reveal">
         <p class="eyebrow">Why MaldiSuite</p>
-        <h2 id="why-title">A whole AMR study, written as one scikit-learn pipeline.</h2>
+        <h2 id="why-title">One data model and one API, whichever package you use.</h2>
       </header>
       <div class="principles">
         <article class="principle reveal">
           <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="6" width="24" height="20" rx="3"/><path d="M4 12h24M11 12v14"/></svg>
           <h3>Shared data model</h3>
-          <p><code>MaldiSpectrum</code> and <code>MaldiSet</code> carry species, batch, MIC and acquisition metadata through every step, with no manual bookkeeping of sample identities.</p>
+          <p><code>MaldiSet</code> keeps the spectra and their metadata (species, batch, MIC, acquisition date) under the same sample IDs, and correctors match batch labels and covariates to the spectra by ID, not by position.</p>
         </article>
         <article class="principle reveal">
           <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="11" height="22" rx="2"/><rect x="19" y="5" width="9" height="22" rx="2"/><path d="M15 16h4"/><path d="M17 13v6" stroke-linecap="round"/></svg>
           <h3>Leak-safe by construction</h3>
-          <p>Every transformer is fitted on the training folds and applied unchanged to held-out data, and grouped cross-validation keeps the spectra of one isolate in the same fold.</p>
+          <p>Every transformer is fitted on the training folds and applied unchanged to held-out data, and grouped cross-validation keeps all spectra of a patient, or of an isolate, in the same fold.</p>
         </article>
         <article class="principle reveal">
           <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="7" cy="16" r="3"/><circle cx="16" cy="16" r="3"/><circle cx="25" cy="16" r="3"/><path d="M10 16h3M19 16h3"/></svg>
@@ -198,71 +198,13 @@
         <article class="principle reveal">
           <svg class="principle-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M26 16a10 10 0 1 1-3-7.1"/><path d="M26 6v5h-5"/></svg>
           <h3>Reproducible</h3>
-          <p>Fixed seeds, versions pinned by the meta-package and a Bruker-native data path make reruns deterministic from raw spectra.</p>
+          <p>Fixed seeds, versions pinned by the meta-package and a Bruker-native data path make reruns from raw spectra repeatable in the same environment.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="section section-alt" id="workflow" aria-labelledby="workflow-title">
-    <div class="container">
-      <header class="section-head reveal">
-        <p class="eyebrow">Workflow</p>
-        <h2 id="workflow-title">Raw spectra in, resistance predictions out.</h2>
-        <p class="section-lede">Each package covers one stage of the workflow and hands the next one the same <code>MaldiSet</code>, so the three stages run as steps of a single <code>Pipeline</code>.</p>
-      </header>
-
-      <ol class="flow reveal" aria-label="MaldiSuite workflow">
-        <li class="flow-io">
-          <h3>Raw spectra</h3>
-          <p>Bruker fid/1r, txt, mzML/mzXML</p>
-          <p class="flow-sub">+ metadata: species, drug, MIC, site, date</p>
-        </li>
-        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span></li>
-        <li class="flow-node pkg-amr">
-          <p class="flow-role">Preprocessing</p>
-          <h3>MaldiAMRKit</h3>
-          <ul>
-            <li>I/O and dataset layouts</li>
-            <li>Preprocessing pipeline</li>
-            <li>Warping and peak detection</li>
-            <li>AMR metrics, grouped CV</li>
-          </ul>
-        </li>
-        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span><span class="flow-label"><span>MaldiSet</span> <span>6000 bins</span></span></li>
-        <li class="flow-node pkg-batch">
-          <p class="flow-role">Harmonisation</p>
-          <h3>MaldiBatchKit</h3>
-          <ul>
-            <li>11 correctors</li>
-            <li>MALDI-specific corrections</li>
-            <li>kBET, LISI, silhouette</li>
-            <li>Fit on train, apply to held-out</li>
-          </ul>
-        </li>
-        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span><span class="flow-label"><span>harmonised</span> <span>MaldiSet</span></span></li>
-        <li class="flow-node pkg-deep">
-          <p class="flow-role">Classification</p>
-          <h3>MaldiDeepKit</h3>
-          <ul>
-            <li>MLP, 1-D CNN, ResNet, 1-D ViT</li>
-            <li>Any bin layout</li>
-            <li>Uncertainty estimates</li>
-            <li>Leak-safe warping and scaling</li>
-          </ul>
-        </li>
-        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span></li>
-        <li class="flow-io">
-          <h3>Predictions</h3>
-          <p>R / S per isolate</p>
-          <p class="flow-sub">scored with VME, ME and AUROC</p>
-        </li>
-      </ol>
-      <p class="flow-note reveal">Batch labels are needed only for the harmonisation step: single-site studies use MaldiAMRKit and MaldiDeepKit directly.</p>
-    </div>
-  </section>
-
-  <section class="section" id="packages" aria-labelledby="packages-title">
+  <section class="section section-alt" id="packages" aria-labelledby="packages-title">
     <div class="container">
       <header class="section-head reveal">
         <p class="eyebrow">Packages</p>
@@ -273,7 +215,7 @@
       <div class="packages">
         <article class="pkg-card pkg-amr reveal">
           <div class="pkg-top">
-            <div class="pkg-logo"><img src="assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit logo" width="192" height="143" loading="lazy"></div>
+            <div class="pkg-logo"><img src="assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit logo" class="logo-light" width="304" height="179" loading="lazy"><img src="assets/web/maldiamrkit_logo_dark.png" alt="MaldiAMRKit logo" class="logo-dark" width="304" height="179" loading="lazy"></div>
             <span class="pkg-version" data-package="maldiamrkit">v0.22.1</span>
           </div>
           <h3>MaldiAMRKit</h3>
@@ -301,8 +243,8 @@
 
         <article class="pkg-card pkg-batch reveal">
           <div class="pkg-top">
-            <div class="pkg-logo"><img src="assets/web/maldibatchkit_logo.png" alt="MaldiBatchKit logo" width="192" height="149" loading="lazy"></div>
-            <span class="pkg-version" data-package="maldibatchkit">v0.2.0</span>
+            <div class="pkg-logo"><img src="assets/web/maldibatchkit_logo.png" alt="MaldiBatchKit logo" class="logo-light" width="304" height="179" loading="lazy"><img src="assets/web/maldibatchkit_logo_dark.png" alt="MaldiBatchKit logo" class="logo-dark" width="304" height="179" loading="lazy"></div>
+            <span class="pkg-version" data-package="maldibatchkit">v0.2.1</span>
           </div>
           <h3>MaldiBatchKit</h3>
           <p class="pkg-role">Batch-effect correction for multi-site spectra</p>
@@ -329,7 +271,7 @@
 
         <article class="pkg-card pkg-deep reveal">
           <div class="pkg-top">
-            <div class="pkg-logo"><img src="assets/web/maldideepkit_logo.png" alt="MaldiDeepKit logo" width="192" height="110" loading="lazy"></div>
+            <div class="pkg-logo"><img src="assets/web/maldideepkit_logo.png" alt="MaldiDeepKit logo" class="logo-light" width="304" height="179" loading="lazy"><img src="assets/web/maldideepkit_logo_dark.png" alt="MaldiDeepKit logo" class="logo-dark" width="304" height="179" loading="lazy"></div>
             <span class="pkg-version" data-package="maldideepkit">v0.3.0</span>
           </div>
           <h3>MaldiDeepKit</h3>
@@ -383,7 +325,7 @@
               <tr class="pkg-batch">
                 <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiBatchKit</th>
                 <td><code>[viz] &gt;=0.2.0,&lt;0.3</code></td>
-                <td class="compat-latest" data-package="maldibatchkit" data-min="0.2.0" data-max="0.3">0.2.0</td>
+                <td class="compat-latest" data-package="maldibatchkit" data-min="0.2.0" data-max="0.3">0.2.1</td>
               </tr>
               <tr class="pkg-deep">
                 <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiDeepKit</th>
@@ -395,6 +337,61 @@
           <p class="compat-note" id="compat-note">Latest versions are read from PyPI when the page loads.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="workflow" aria-labelledby="workflow-title">
+    <div class="container">
+      <header class="section-head reveal">
+        <p class="eyebrow">Combine</p>
+        <h2 id="workflow-title">Use one package, or combine them.</h2>
+        <p class="section-lede">Each package can be used on its own. Because they share the <code>MaldiSet</code> data model and the scikit-learn API, they also fit in a single <code>Pipeline</code> when a study needs more than one. This is one way to combine all three.</p>
+      </header>
+
+      <ol class="flow reveal" aria-label="One way to combine the three packages">
+        <li class="flow-io">
+          <h3>Raw spectra</h3>
+          <p>Bruker fid/1r, txt, mzML/mzXML</p>
+          <p class="flow-sub">+ metadata: species, drug, MIC, site, date</p>
+        </li>
+        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span></li>
+        <li class="flow-node pkg-amr">
+          <h3>MaldiAMRKit</h3>
+          <ul>
+            <li>I/O and dataset layouts</li>
+            <li>Preprocessing pipeline</li>
+            <li>Warping and peak detection</li>
+            <li>AMR metrics, grouped CV</li>
+          </ul>
+        </li>
+        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span><span class="flow-label"><span>MaldiSet</span></span></li>
+        <li class="flow-node pkg-batch">
+          <h3>MaldiBatchKit</h3>
+          <ul>
+            <li>11 correctors</li>
+            <li>MALDI-specific corrections</li>
+            <li>kBET, LISI, silhouette</li>
+            <li>Fit on train, apply to held-out</li>
+          </ul>
+        </li>
+        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span><span class="flow-label"><span>MaldiSet</span></span></li>
+        <li class="flow-node pkg-deep">
+          <h3>MaldiDeepKit</h3>
+          <ul>
+            <li>MLP, 1-D CNN, ResNet, 1-D ViT</li>
+            <li>Any bin layout</li>
+            <li>Uncertainty estimates</li>
+            <li>Leak-safe warping and scaling</li>
+          </ul>
+        </li>
+        <li class="flow-link" aria-hidden="true"><span class="flow-dot"></span></li>
+        <li class="flow-io">
+          <h3>Predictions</h3>
+          <p>R / S per isolate</p>
+          <p class="flow-sub">scored with VME, ME and AUROC</p>
+        </li>
+      </ol>
+      <p class="flow-note reveal">Any package can be left out or used on its own. MaldiBatchKit, for example, is useful only when spectra come from several sites or instruments.</p>
     </div>
   </section>
 
@@ -461,7 +458,7 @@ scores = cross_val_score(
     groups=meta[<span class="c-str">"patient_id"</span>],
 )
 print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
-          <p class="code-window-foot">Tested with maldiamrkit 0.22.1, maldibatchkit 0.2.0 and maldideepkit 0.3.0.</p>
+          <p class="code-window-foot">Tested with maldiamrkit 0.22.1, maldibatchkit 0.2.1 and maldideepkit 0.3.0.</p>
         </figure>
       </div>
 
@@ -505,7 +502,7 @@ print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
           <div class="bars-wrap" id="batch-bars"></div>
           <dl class="metric-notes">
             <div><dt>kBET acceptance</dt><dd>Share of spectra whose neighbours mix batches as the whole cohort does. Higher is better.</dd></div>
-            <div><dt>LISI, batch (normalised)</dt><dd>Effective number of batches in each neighbourhood, rescaled to 0&ndash;1. Higher is better.</dd></div>
+            <div><dt>LISI, batch (normalised)</dt><dd>Effective number of batches in each neighbourhood, rescaled to the range 0 to 1. Higher is better.</dd></div>
             <div><dt>Species preservation</dt><dd>How well species stay apart after correction, 1 meaning fully preserved. Shown when species is a protected covariate.</dd></div>
           </dl>
         </div>
@@ -562,7 +559,7 @@ print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="assets/web/maldi_suite_logo_dark.png" alt="MaldiSuite" width="154" height="40" loading="lazy">
+        <img src="assets/web/maldi_suite_logo_dark.png" alt="MaldiSuite" width="155" height="48" loading="lazy">
         <p>A Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research.</p>
       </div>
       <div class="footer-col">
@@ -591,6 +588,6 @@ print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
 </footer>
 
 <div class="chart-tooltip" id="chart-tooltip" role="tooltip" hidden></div>
-<script src="js/main.js?v=0.3.0"></script>
+<script src="js/main.js?v=0.3.0-2"></script>
 </body>
 </html>

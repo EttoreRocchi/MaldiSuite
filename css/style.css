@@ -283,7 +283,7 @@ code {
 }
 
 .logo-img {
-  height: 36px;
+  height: 44px;
   width: auto;
 }
 
@@ -1216,10 +1216,6 @@ code {
   justify-content: center;
   width: 152px;
   height: 108px;
-  padding: 0.35rem;
-  background-color: #ffffff;
-  border: 1px solid var(--line-soft);
-  border-radius: var(--radius-md);
 }
 
 .pkg-logo img {
@@ -2203,7 +2199,7 @@ code {
 }
 
 .footer-brand img {
-  height: 40px;
+  height: 48px;
   width: auto;
   margin-bottom: 0.9rem;
 }
