@@ -53,13 +53,13 @@ Install the full suite with a single command:
 pip install maldisuite
 ```
 
-This installs `maldiamrkit`, `maldibatchkit`, and `maldideepkit` at compatible versions. `maldisuite` 0.3.0 pins:
+This installs `maldiamrkit`, `maldibatchkit`, and `maldideepkit` at compatible versions. `maldisuite` 0.4.0 pins:
 
 | Package | Pinned range |
 |---|---|
-| MaldiAMRKit | `maldiamrkit[batch,formats]>=0.22.1,<0.23` |
+| MaldiAMRKit | `maldiamrkit[batch,formats]>=0.22.2,<0.23` |
 | MaldiBatchKit | `maldibatchkit[viz]>=0.2.0,<0.3` |
-| MaldiDeepKit | `maldideepkit>=0.3.0,<0.4` |
+| MaldiDeepKit | `maldideepkit>=0.4.0,<0.5` |
 
 Alternatively, install individual packages separately:
 
@@ -102,7 +102,7 @@ scores = cross_val_score(
 print(f"VME: {-scores.mean():.3f}")
 ```
 
-Every step is refitted inside each training fold, and `CaseGroupedKFold` keeps all spectra of a patient in the same fold. Tested with maldiamrkit 0.22.1, maldibatchkit 0.2.1 and maldideepkit 0.3.0.
+Every step is refitted inside each training fold, and `CaseGroupedKFold` keeps all spectra of a patient in the same fold. Tested with maldiamrkit 0.22.2, maldibatchkit 0.2.2 and maldideepkit 0.4.0.
 
 ## Citation
 

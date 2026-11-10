@@ -43,7 +43,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="css/style.css?v=0.3.0-2">
+<link rel="stylesheet" href="css/style.css?v=0.4.0">
 
 <script type="application/ld+json">
 {
@@ -106,7 +106,7 @@
         <a class="release-pill" href="https://pypi.org/project/maldisuite/" target="_blank" rel="noopener">
           <span class="pill-dot" aria-hidden="true"></span>
           <span>Latest release</span>
-          <strong id="latest-version">v0.3.0</strong>
+          <strong id="latest-version">v0.4.0</strong>
           <span class="pill-arrow" aria-hidden="true">&rarr;</span>
         </a>
         <h1 class="hero-title">One Python ecosystem for <em>MALDI-TOF</em> antimicrobial resistance research.</h1>
@@ -216,7 +216,7 @@
         <article class="pkg-card pkg-amr reveal">
           <div class="pkg-top">
             <div class="pkg-logo"><img src="assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit logo" class="logo-light" width="304" height="179" loading="lazy"><img src="assets/web/maldiamrkit_logo_dark.png" alt="MaldiAMRKit logo" class="logo-dark" width="304" height="179" loading="lazy"></div>
-            <span class="pkg-version" data-package="maldiamrkit">v0.22.1</span>
+            <span class="pkg-version" data-package="maldiamrkit">v0.22.2</span>
           </div>
           <h3>MaldiAMRKit</h3>
           <p class="pkg-role">Data model, preprocessing and AMR-aware evaluation</p>
@@ -244,7 +244,7 @@
         <article class="pkg-card pkg-batch reveal">
           <div class="pkg-top">
             <div class="pkg-logo"><img src="assets/web/maldibatchkit_logo.png" alt="MaldiBatchKit logo" class="logo-light" width="304" height="179" loading="lazy"><img src="assets/web/maldibatchkit_logo_dark.png" alt="MaldiBatchKit logo" class="logo-dark" width="304" height="179" loading="lazy"></div>
-            <span class="pkg-version" data-package="maldibatchkit">v0.2.1</span>
+            <span class="pkg-version" data-package="maldibatchkit">v0.2.2</span>
           </div>
           <h3>MaldiBatchKit</h3>
           <p class="pkg-role">Batch-effect correction for multi-site spectra</p>
@@ -272,7 +272,7 @@
         <article class="pkg-card pkg-deep reveal">
           <div class="pkg-top">
             <div class="pkg-logo"><img src="assets/web/maldideepkit_logo.png" alt="MaldiDeepKit logo" class="logo-light" width="304" height="179" loading="lazy"><img src="assets/web/maldideepkit_logo_dark.png" alt="MaldiDeepKit logo" class="logo-dark" width="304" height="179" loading="lazy"></div>
-            <span class="pkg-version" data-package="maldideepkit">v0.3.0</span>
+            <span class="pkg-version" data-package="maldideepkit">v0.4.0</span>
           </div>
           <h3>MaldiDeepKit</h3>
           <p class="pkg-role">Deep-learning classifiers for binned spectra</p>
@@ -280,8 +280,8 @@
             <li><code>MaldiMLPClassifier</code>, <code>MaldiCNNClassifier</code>, <code>MaldiResNetClassifier</code> and <code>MaldiTransformerClassifier</code></li>
             <li>Defaults tuned for 6000-bin spectra, <code>from_spectrum()</code> for other layouts</li>
             <li>Dual-branch (spectrum + side features) and self-training classifiers</li>
+            <li>Self-supervised pre-training on unlabelled spectra with <code>MaldiSpectrumEncoder</code></li>
             <li>MC Dropout, Laplace and split conformal uncertainty</li>
-            <li>Warmup + cosine schedules, focal loss, SWA, SAM and temperature scaling</li>
             <li>Leak-safe warping, fitted on the training split only</li>
           </ul>
           <div class="code-chip">
@@ -312,25 +312,25 @@
         </div>
         <div class="compat">
           <table class="compat-table">
-            <caption>Versions pinned by maldisuite 0.3.0</caption>
+            <caption>Versions pinned by maldisuite 0.4.0</caption>
             <thead>
               <tr><th scope="col">Package</th><th scope="col">Pinned range</th><th scope="col">Latest on PyPI</th></tr>
             </thead>
             <tbody>
               <tr class="pkg-amr">
                 <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiAMRKit</th>
-                <td><code>[batch,formats] &gt;=0.22.1,&lt;0.23</code></td>
-                <td class="compat-latest" data-package="maldiamrkit" data-min="0.22.1" data-max="0.23">0.22.1</td>
+                <td><code>[batch,formats] &gt;=0.22.2,&lt;0.23</code></td>
+                <td class="compat-latest" data-package="maldiamrkit" data-min="0.22.2" data-max="0.23">0.22.2</td>
               </tr>
               <tr class="pkg-batch">
                 <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiBatchKit</th>
                 <td><code>[viz] &gt;=0.2.0,&lt;0.3</code></td>
-                <td class="compat-latest" data-package="maldibatchkit" data-min="0.2.0" data-max="0.3">0.2.1</td>
+                <td class="compat-latest" data-package="maldibatchkit" data-min="0.2.0" data-max="0.3">0.2.2</td>
               </tr>
               <tr class="pkg-deep">
                 <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiDeepKit</th>
-                <td><code>&gt;=0.3.0,&lt;0.4</code></td>
-                <td class="compat-latest" data-package="maldideepkit" data-min="0.3.0" data-max="0.4">0.3.0</td>
+                <td><code>&gt;=0.4.0,&lt;0.5</code></td>
+                <td class="compat-latest" data-package="maldideepkit" data-min="0.4.0" data-max="0.5">0.4.0</td>
               </tr>
             </tbody>
           </table>
@@ -381,6 +381,7 @@
             <li>MLP, 1-D CNN, ResNet, 1-D ViT</li>
             <li>Any bin layout</li>
             <li>Uncertainty estimates</li>
+            <li>Self-supervised pre-training</li>
             <li>Leak-safe warping and scaling</li>
           </ul>
         </li>
@@ -458,7 +459,7 @@ scores = cross_val_score(
     groups=meta[<span class="c-str">"patient_id"</span>],
 )
 print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
-          <p class="code-window-foot">Tested with maldiamrkit 0.22.1, maldibatchkit 0.2.1 and maldideepkit 0.3.0.</p>
+          <p class="code-window-foot">Tested with maldiamrkit 0.22.2, maldibatchkit 0.2.2 and maldideepkit 0.4.0.</p>
         </figure>
       </div>
 
@@ -588,6 +589,6 @@ print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
 </footer>
 
 <div class="chart-tooltip" id="chart-tooltip" role="tooltip" hidden></div>
-<script src="js/main.js?v=0.3.0-2"></script>
+<script src="js/main.js?v=0.4.0"></script>
 </body>
 </html>

@@ -28,7 +28,7 @@
         { "version": "0.1", "theme": "MLP, 1-D CNN, ResNet and 1-D ViT classifiers", "status": "released" },
         { "version": "0.2", "theme": "Uncertainty quantification", "status": "released" },
         { "version": "0.3", "theme": "Dual-branch and self-training classifiers", "status": "released" },
-        { "version": "0.4", "theme": "Self-supervised pre-training", "status": "development" }
+        { "version": "0.4", "theme": "Self-supervised pre-training", "status": "released" }
       ]
     },
     {
@@ -37,6 +37,7 @@
       "changelog": "https://github.com/EttoreRocchi/MaldiSuite/blob/main/CHANGELOG.md",
       "releases": [
         { "version": "maldisuite 0.3", "theme": "Pins on MaldiAMRKit 0.22 and a new website", "status": "released" },
+        { "version": "maldisuite 0.4", "theme": "Pins on MaldiDeepKit 0.4 and a shared docs theme", "status": "released" },
         { "version": "Next", "theme": "Generative modelling for data augmentation", "status": "planned" },
         { "version": "Next", "theme": "Cross-site model adaptation", "status": "planned" }
       ]
