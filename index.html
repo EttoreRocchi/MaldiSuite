@@ -43,7 +43,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="css/style.css?v=0.4.0">
+<link rel="stylesheet" href="css/style.css?v=0.4.0-1">
 
 <script type="application/ld+json">
 {
@@ -538,19 +538,22 @@ print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
     <div class="container">
       <header class="section-head reveal">
         <p class="eyebrow">Roadmap</p>
-        <h2 id="roadmap-title">Where the ecosystem is heading.</h2>
-        <p class="section-lede">Recent releases and upcoming work for each package. Planned items may change in scope or order; the changelogs record what has shipped.</p>
+        <h2 id="roadmap-title">Where each package is heading.</h2>
+        <p class="section-lede">The latest release of each package, what is in development and what is planned after it. Order and scope may change.</p>
       </header>
 
       <div class="roadmap reveal">
+        <div class="roadmap-head" aria-hidden="true">
+          <span></span><span>Latest release</span><span class="now">Now</span><span>Next</span><span>Later</span>
+        </div>
+        <div class="lanes" id="roadmap-lanes">
+          <noscript><p>The roadmap is loaded from data/roadmap.json and needs JavaScript. See the changelog of each package on GitHub.</p></noscript>
+        </div>
         <ul class="roadmap-legend" aria-label="Legend">
           <li><span class="status-mark released" aria-hidden="true"></span>Released</li>
           <li><span class="status-mark development" aria-hidden="true"></span>In development</li>
           <li><span class="status-mark planned" aria-hidden="true"></span>Planned</li>
         </ul>
-        <div class="lanes" id="roadmap-lanes">
-          <noscript><p>The roadmap is loaded from data/roadmap.json and needs JavaScript. See the changelog of each package on GitHub.</p></noscript>
-        </div>
       </div>
     </div>
   </section>
@@ -589,6 +592,6 @@ print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
 </footer>
 
 <div class="chart-tooltip" id="chart-tooltip" role="tooltip" hidden></div>
-<script src="js/main.js?v=0.4.0"></script>
+<script src="js/main.js?v=0.4.0-1"></script>
 </body>
 </html>

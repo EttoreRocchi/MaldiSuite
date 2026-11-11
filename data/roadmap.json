@@ -5,10 +5,11 @@
       "name": "MaldiAMRKit",
       "changelog": "https://github.com/EttoreRocchi/MaldiAMRKit/blob/main/CHANGELOG.md",
       "releases": [
-        { "version": "0.19", "theme": "Custom metrics and transformers", "status": "released" },
-        { "version": "0.20", "theme": "mzML / mzXML input and export", "status": "released" },
-        { "version": "0.21", "theme": "Vectorised spectral distances", "status": "released" },
-        { "version": "0.22", "theme": "Reworked warping, leakage-safe splits", "status": "released" }
+        { "version": "0.22", "theme": "Reworked warping, leakage-safe splits", "stage": "latest" },
+        { "version": "0.23", "theme": "Grouped alignment", "stage": "now" },
+        { "version": "0.24", "theme": "Performance", "stage": "next" },
+        { "version": "0.25", "theme": "Advanced preprocessing", "stage": "later" },
+        { "version": "0.26", "theme": "Dataset quality control", "stage": "later" }
       ]
     },
     {
@@ -16,8 +17,10 @@
       "name": "MaldiBatchKit",
       "changelog": "https://github.com/EttoreRocchi/MaldiBatchKit/blob/main/CHANGELOG.md",
       "releases": [
-        { "version": "0.1", "theme": "Eleven correctors and batch diagnostics", "status": "released" },
-        { "version": "0.2", "theme": "AutoCorrector and correction benchmark", "status": "released" }
+        { "version": "0.2", "theme": "AutoCorrector and correction benchmark", "stage": "latest" },
+        { "version": "0.3", "theme": "Contracts and hardening", "stage": "now" },
+        { "version": "0.4", "theme": "Drift within a batch", "stage": "next" },
+        { "version": "0.5", "theme": "New-site adaptation", "stage": "later" }
       ]
     },
     {
@@ -25,10 +28,9 @@
       "name": "MaldiDeepKit",
       "changelog": "https://github.com/EttoreRocchi/MaldiDeepKit/blob/main/CHANGELOG.md",
       "releases": [
-        { "version": "0.1", "theme": "MLP, 1-D CNN, ResNet and 1-D ViT classifiers", "status": "released" },
-        { "version": "0.2", "theme": "Uncertainty quantification", "status": "released" },
-        { "version": "0.3", "theme": "Dual-branch and self-training classifiers", "status": "released" },
-        { "version": "0.4", "theme": "Self-supervised pre-training", "status": "released" }
+        { "version": "0.4", "theme": "Self-supervised pre-training", "stage": "latest" },
+        { "version": "0.5", "theme": "Peak-set transformer", "stage": "next" },
+        { "version": "0.6", "theme": "Regression", "stage": "later" }
       ]
     },
     {
@@ -36,10 +38,8 @@
       "name": "Ecosystem",
       "changelog": "https://github.com/EttoreRocchi/MaldiSuite/blob/main/CHANGELOG.md",
       "releases": [
-        { "version": "maldisuite 0.3", "theme": "Pins on MaldiAMRKit 0.22 and a new website", "status": "released" },
-        { "version": "maldisuite 0.4", "theme": "Pins on MaldiDeepKit 0.4 and a shared docs theme", "status": "released" },
-        { "version": "Next", "theme": "Generative modelling for data augmentation", "status": "planned" },
-        { "version": "Next", "theme": "Cross-site model adaptation", "status": "planned" }
+        { "version": "maldisuite 0.4", "theme": "Pins on MaldiDeepKit 0.4 and a shared docs theme", "stage": "latest" },
+        { "version": "Likely a new package", "theme": "Generative data augmentation", "stage": "later" }
       ]
     }
   ]

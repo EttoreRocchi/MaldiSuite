@@ -822,6 +822,14 @@ const STATUS_LABELS = {
     planned: 'Planned'
 };
 
+const ROADMAP_STAGES = [
+    { key: 'latest', label: 'Latest release', status: 'released' },
+    { key: 'now', label: 'Now', status: 'development' },
+    { key: 'next', label: 'Next', status: 'planned' },
+    { key: 'later', label: 'Later', status: 'planned' }
+];
+const STAGE_KEYS = ROADMAP_STAGES.map(function(stage) { return stage.key; });
+
 async function loadRoadmap() {
     const container = document.getElementById('roadmap-lanes');
     if (!container) return;
@@ -848,19 +856,29 @@ async function loadRoadmap() {
         }
         row.appendChild(name);
 
-        const track = el('ol', 'lane-track');
-        (lane.releases || []).forEach(function(release) {
-            const status = STATUS_LABELS[release.status] ? release.status : 'planned';
-            const item = el('li', 'milestone ' + status);
-            const mark = el('span', 'status-mark ' + status);
-            mark.setAttribute('aria-hidden', 'true');
-            item.appendChild(mark);
-            item.appendChild(el('span', 'milestone-version', release.version));
-            item.appendChild(el('span', 'milestone-theme', release.theme));
-            item.appendChild(el('span', 'visually-hidden', ' (' + STATUS_LABELS[status] + ')'));
-            track.appendChild(item);
+        const releases = lane.releases || [];
+        ROADMAP_STAGES.forEach(function(stage) {
+            const items = releases.filter(function(release) {
+                return (STAGE_KEYS.indexOf(release.stage) >= 0 ? release.stage : 'later') === stage.key;
+            });
+            const cell = el('div', 'lane-stage ' + stage.key + (items.length ? '' : ' empty'));
+            if (items.length) {
+                cell.appendChild(el('p', 'lane-stage-label', stage.label));
+                const track = el('ol', 'lane-track');
+                items.forEach(function(release) {
+                    const item = el('li', 'milestone ' + stage.status);
+                    const mark = el('span', 'status-mark ' + stage.status);
+                    mark.setAttribute('aria-hidden', 'true');
+                    item.appendChild(mark);
+                    item.appendChild(el('span', 'milestone-theme', release.theme));
+                    item.appendChild(el('span', 'milestone-version', release.version));
+                    item.appendChild(el('span', 'visually-hidden', ' (' + STATUS_LABELS[stage.status] + ')'));
+                    track.appendChild(item);
+                });
+                cell.appendChild(track);
+            }
+            row.appendChild(cell);
         });
-        row.appendChild(track);
         return row;
     }));
 }
