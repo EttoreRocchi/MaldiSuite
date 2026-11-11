@@ -3,7 +3,7 @@
 Usage:
     python tools/build_hero_spectrum.py [PATH_TO_SPECTRUM]
 
-The path defaults to ../MaldiAMRKit/data/1s.txt next to this repository.
+The path defaults to tools/hero_spectrum.txt, a copy of MaldiAMRKit's data/1s.txt.
 Requires maldiamrkit. The raw trace (2,000-20,000 m/z) points up, the same
 spectrum after the default preprocessing and 3 Da binning points down; both
 are downsampled and written into the two <path> elements of the hero SVG.
@@ -17,7 +17,7 @@ import numpy as np
 from maldiamrkit import MaldiSpectrum
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT.parent / "MaldiAMRKit" / "data" / "1s.txt"
+SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "tools" / "hero_spectrum.txt"
 HTML = ROOT / "index.html"
 
 WIDTH, AXIS, RAW_HEIGHT, BIN_HEIGHT = 1000, 200, 184, 176
