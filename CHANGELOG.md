@@ -6,8 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- README: documentation links and "Getting help" section.
+- Weekly CI smoke test of the quick starts.
+
 ### Changed
-- Landing page: the roadmap shows one timeline per package, with the latest release, the work in development and the planned releases.
+- Roadmap: one timeline per package.
+- Quick start: one tab per package plus a combined one.
 
 ## [0.4.0] - 2026-11-10
 

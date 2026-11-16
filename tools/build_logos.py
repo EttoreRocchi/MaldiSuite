@@ -61,6 +61,7 @@ STICKS = (62, 128, 84, 208, 104, 276, 132, 186, 76, 112)
 # PNG file: (SVG master, width in px, or None for the size of the master)
 EXPORTS = {
     "assets/maldi_suite_logo.png": ("maldisuite", None),
+    "assets/maldi_suite_logo_dark.png": ("maldisuite_dark", None),
     "assets/web/maldi_suite_logo.png": ("maldisuite", 300),
     "assets/web/maldi_suite_logo_dark.png": ("maldisuite_dark", 300),
     "assets/web/favicon-32.png": ("favicon", 32),

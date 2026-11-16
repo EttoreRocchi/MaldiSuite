@@ -6,7 +6,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/EttoreRocchi/MaldiSuite/blob/main/LICENSE)
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/maldi_suite_logo.png" alt="MaldiSuite" width="320"/>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/maldi_suite_logo_dark.png">
+    <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/maldi_suite_logo.png" alt="MaldiSuite" width="320"/>
+  </picture>
 </p>
 
 <p align="center">
@@ -32,18 +35,19 @@ This repository serves two purposes:
    packages of the suite with pinned compatible versions.
 
 This repository **does not** contain the source code of the three packages.
-Each package lives in its own repository, with its own issues, documentation,
-and release cycle.
+Each package lives in its own repository, with its own issues, documentation, and release cycle.
 
 ## The three packages
 
-MaldiAMRKit owns the data model, preprocessing, evaluation, differential analysis and drift modules; MaldiBatchKit re-exports every corrector (ComBat variants, Limma, Harmony, MALDI-specific harmonisers) at the top level; MaldiDeepKit ships scikit-learn-compatible deep classifiers (`MaldiMLPClassifier`, `MaldiCNNClassifier`, `MaldiResNetClassifier`, `MaldiTransformerClassifier`).
+<div align="center">
 
-| Logo | Package | Purpose | Repository |
-|:---:|---|---|---|
-| <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit" width="80"> | **MaldiAMRKit** | Preprocessing, evaluation, differential analysis, drift monitoring | [MaldiAMRKit](https://github.com/EttoreRocchi/MaldiAMRKit) |
-| <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldibatchkit_logo.png" alt="MaldiBatchKit" width="80"> | **MaldiBatchKit** | Batch effect correction for mass spectra | [MaldiBatchKit](https://github.com/EttoreRocchi/MaldiBatchKit) |
-| <img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldideepkit_logo.png" alt="MaldiDeepKit" width="80"> | **MaldiDeepKit** | Deep learning classifiers for MALDI-TOF spectra | [MaldiDeepKit](https://github.com/EttoreRocchi/MaldiDeepKit) |
+| Logo | Package | Purpose | Documentation | Repository |
+|:---:|:---:|:---:|:---:|:---:|
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldiamrkit_logo_dark.png"><img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit" width="80"></picture> | **MaldiAMRKit** | Data model, preprocessing and AMR-aware evaluation for MALDI-TOF spectra | [Docs](https://maldiamrkit.readthedocs.io/) | [GitHub](https://github.com/EttoreRocchi/MaldiAMRKit) |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldibatchkit_logo_dark.png"><img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldibatchkit_logo.png" alt="MaldiBatchKit" width="80"></picture> | **MaldiBatchKit** | Batch-effect correction for multi-site MALDI-TOF spectra | [Docs](https://maldibatchkit.readthedocs.io/) | [GitHub](https://github.com/EttoreRocchi/MaldiBatchKit) |
+| <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldideepkit_logo_dark.png"><img src="https://raw.githubusercontent.com/EttoreRocchi/MaldiSuite/main/assets/web/maldideepkit_logo.png" alt="MaldiDeepKit" width="80"></picture> | **MaldiDeepKit** | Deep-learning classifiers for binned MALDI-TOF spectra | [Docs](https://maldideepkit.readthedocs.io/) | [GitHub](https://github.com/EttoreRocchi/MaldiDeepKit) |
+
+</div>
 
 ## Installation
 
@@ -102,11 +106,17 @@ scores = cross_val_score(
 print(f"VME: {-scores.mean():.3f}")
 ```
 
-Every step is refitted inside each training fold, and `CaseGroupedKFold` keeps all spectra of a patient in the same fold. Tested with maldiamrkit 0.22.2, maldibatchkit 0.2.2 and maldideepkit 0.4.0.
+Every step is refitted inside each training fold, and `CaseGroupedKFold` keeps all spectra of a patient in the same fold. Tested with maldiamrkit 0.22.3, maldibatchkit 0.2.2 and maldideepkit 0.4.0.
+
+## Getting help
+
+Questions, bug reports and feature requests go to the issue tracker of the package concerned: [MaldiAMRKit](https://github.com/EttoreRocchi/MaldiAMRKit/issues), [MaldiBatchKit](https://github.com/EttoreRocchi/MaldiBatchKit/issues) or [MaldiDeepKit](https://github.com/EttoreRocchi/MaldiDeepKit/issues). Issues with the `maldisuite` installation or the website go to the [MaldiSuite tracker](https://github.com/EttoreRocchi/MaldiSuite/issues).
 
 ## Citation
 
 MaldiSuite is described in an Application Note currently under review at *Bioinformatics*. The full citation will be added here once the article is published.
+
+Publications using MaldiSuite are listed on the [MaldiSuite website](https://ettorerocchi.github.io/MaldiSuite/#research).
 
 ## License
 
@@ -117,4 +127,4 @@ MIT License - see [`LICENSE`](https://github.com/EttoreRocchi/MaldiSuite/blob/ma
 MaldiSuite builds on the work of the mass spectrometry and clinical microbiology communities. In particular, we acknowledge:
 
 - MALDIquant (Gibb & Strimmer, 2012, *Bioinformatics*)
-- The Borgwardt Lab and the DRIAMS benchmark (Weis et al., 2022, *Nature Medicine*), which established Python-based MALDI-TOF AMR prediction as a research area
+- The Borgwardt Lab for DRIAMS (Weis et al., 2022, *Nature Medicine*), the public multi-site dataset on which the MaldiSuite benchmarks are run

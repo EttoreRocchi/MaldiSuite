@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page not found · MaldiSuite</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b6f82">
+<link rel="icon" type="image/png" sizes="32x32" href="/MaldiSuite/assets/web/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/MaldiSuite/assets/web/apple-touch-icon.png">
+
+<script>
+  try {
+    var savedTheme = localStorage.getItem('maldisuite-theme');
+    if (savedTheme === 'light' || savedTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+  } catch (e) {}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=Instrument+Serif&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/MaldiSuite/css/style.css?v=0.4.0-3">
+<style>
+  .notfound {
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+  }
+
+  .notfound > .container {
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a href="/MaldiSuite/" class="nav-logo" aria-label="MaldiSuite home">
+      <img src="/MaldiSuite/assets/web/maldi_suite_logo.png" alt="" class="logo-img logo-light" width="142" height="44">
+      <img src="/MaldiSuite/assets/web/maldi_suite_logo_dark.png" alt="" class="logo-img logo-dark" width="142" height="44">
+    </a>
+  </div>
+</header>
+
+<main id="main" class="section notfound">
+  <div class="container">
+    <p class="eyebrow">Error 404</p>
+    <h1 class="hero-title">Page not found.</h1>
+    <p class="hero-lede">This page does not exist on the MaldiSuite site. The documentation of each package is on Read the Docs, linked from the package cards.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="/MaldiSuite/">Go to the home page</a>
+      <a class="btn btn-ghost" href="/MaldiSuite/#packages">See the packages</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

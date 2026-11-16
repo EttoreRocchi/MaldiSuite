@@ -18,7 +18,7 @@
       "changelog": "https://github.com/EttoreRocchi/MaldiBatchKit/blob/main/CHANGELOG.md",
       "releases": [
         { "version": "0.2", "theme": "AutoCorrector and correction benchmark", "stage": "latest" },
-        { "version": "0.3", "theme": "Contracts and hardening", "stage": "now" },
+        { "version": "0.3", "theme": "Hardening and batch-effect quantification", "stage": "now" },
         { "version": "0.4", "theme": "Drift within a batch", "stage": "next" },
         { "version": "0.5", "theme": "New-site adaptation", "stage": "later" }
       ]
@@ -39,7 +39,8 @@
       "changelog": "https://github.com/EttoreRocchi/MaldiSuite/blob/main/CHANGELOG.md",
       "releases": [
         { "version": "maldisuite 0.4", "theme": "Pins on MaldiDeepKit 0.4 and a shared docs theme", "stage": "latest" },
-        { "version": "Likely a new package", "theme": "Generative data augmentation", "stage": "later" }
+        { "version": "MaldiSynthKit 0.1", "theme": "Evaluation and generation of synthetic spectra", "stage": "later" },
+        { "version": "maldisuite 0.5", "theme": "MaldiSynthKit as an optional extra", "stage": "later" }
       ]
     }
   ]

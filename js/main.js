@@ -222,7 +222,11 @@ function initSpectrumCursor() {
 }
 
 function initTabs() {
-    const tabs = Array.from(document.querySelectorAll('.tabs .tab'));
+    document.querySelectorAll('.tabs').forEach(initTabList);
+}
+
+function initTabList(list) {
+    const tabs = Array.from(list.querySelectorAll('.tab'));
 
     const select = function(tab, focus) {
         tabs.forEach(function(t) {
@@ -671,10 +675,23 @@ async function loadPublications() {
         return (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || String(b.year || '').localeCompare(String(a.year || ''));
     });
 
-    container.replaceChildren.apply(container, publications.map(createPublicationCard));
+    const usingContainer = document.getElementById('publications-using');
+    if (!usingContainer) {
+        container.replaceChildren.apply(container, publications.map(function(paper) {
+            return createPublicationCard(paper, 'h3');
+        }));
+        return;
+    }
+
+    container.replaceChildren.apply(container, publications.filter(function(paper) {
+        return paper.featured;
+    }).map(function(paper) { return createPublicationCard(paper, 'h3'); }));
+    usingContainer.replaceChildren.apply(usingContainer, publications.filter(function(paper) {
+        return !paper.featured;
+    }).map(function(paper) { return createPublicationCard(paper, 'h4'); }));
 }
 
-function createPublicationCard(paper) {
+function createPublicationCard(paper, headingTag) {
     const card = el('article', 'paper' + (paper.featured ? ' paper-featured' : ''));
     const authors = paper.authors || [];
 
@@ -684,7 +701,7 @@ function createPublicationCard(paper) {
     meta.appendChild(el('span', null, [paper.journal, paper.year].filter(Boolean).join(' · ')));
     card.appendChild(meta);
 
-    card.appendChild(el('h3', 'paper-title', paper.title));
+    card.appendChild(el(headingTag, 'paper-title', paper.title));
     card.appendChild(el('p', 'paper-authors', paper.doi ? shortAuthors(authors) : fullAuthors(authors)));
 
     if (paper.doi) {

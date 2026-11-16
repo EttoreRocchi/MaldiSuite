@@ -1563,6 +1563,10 @@ code {
   border-bottom: 1px solid var(--line-soft);
 }
 
+.qs-tabs .tabs {
+  flex-wrap: wrap;
+}
+
 .tab {
   position: relative;
   padding: 0.65rem 1rem;
@@ -1898,6 +1902,11 @@ code {
 .publications {
   display: grid;
   gap: 1.25rem;
+}
+
+.publications-title {
+  display: flex;
+  margin-top: 2.75rem;
 }
 
 .paper {

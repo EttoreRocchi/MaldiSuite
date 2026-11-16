@@ -43,7 +43,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"></noscript>
-<link rel="stylesheet" href="css/style.css?v=0.4.0-1">
+<link rel="stylesheet" href="css/style.css?v=0.4.0-3">
 
 <script type="application/ld+json">
 {
@@ -103,7 +103,7 @@
     <div class="hero-bg" aria-hidden="true"></div>
     <div class="container hero-inner">
       <div class="hero-copy">
-        <a class="release-pill" href="https://pypi.org/project/maldisuite/" target="_blank" rel="noopener">
+        <a class="release-pill" href="https://github.com/EttoreRocchi/MaldiSuite/blob/main/CHANGELOG.md" target="_blank" rel="noopener">
           <span class="pill-dot" aria-hidden="true"></span>
           <span>Latest release</span>
           <strong id="latest-version">v0.4.0</strong>
@@ -216,10 +216,10 @@
         <article class="pkg-card pkg-amr reveal">
           <div class="pkg-top">
             <div class="pkg-logo"><img src="assets/web/maldiamrkit_logo.png" alt="MaldiAMRKit logo" class="logo-light" width="304" height="179" loading="lazy"><img src="assets/web/maldiamrkit_logo_dark.png" alt="MaldiAMRKit logo" class="logo-dark" width="304" height="179" loading="lazy"></div>
-            <span class="pkg-version" data-package="maldiamrkit">v0.22.2</span>
+            <span class="pkg-version" data-package="maldiamrkit">v0.22.3</span>
           </div>
           <h3>MaldiAMRKit</h3>
-          <p class="pkg-role">Data model, preprocessing and AMR-aware evaluation</p>
+          <p class="pkg-role">Data model, preprocessing and AMR-aware evaluation for <span style="white-space: nowrap">MALDI-TOF</span> spectra</p>
           <ul class="pkg-features">
             <li>Bruker fid/1r, txt and mzML/mzXML I/O, with DRIAMS and MARISMa layouts</li>
             <li>Composable <code>PreprocessingPipeline</code>, serialisable to JSON/YAML</li>
@@ -247,7 +247,7 @@
             <span class="pkg-version" data-package="maldibatchkit">v0.2.2</span>
           </div>
           <h3>MaldiBatchKit</h3>
-          <p class="pkg-role">Batch-effect correction for multi-site spectra</p>
+          <p class="pkg-role">Batch-effect correction for multi-site <span style="white-space: nowrap">MALDI-TOF</span> spectra</p>
           <ul class="pkg-features">
             <li>ComBat (Johnson, Fortin, CovBat), Limma and Harmony</li>
             <li>MALDI-specific <code>BatchAwareWarping</code>, <code>QualityWeightedComBat</code> and <code>SpeciesAwareComBat</code></li>
@@ -275,7 +275,7 @@
             <span class="pkg-version" data-package="maldideepkit">v0.4.0</span>
           </div>
           <h3>MaldiDeepKit</h3>
-          <p class="pkg-role">Deep-learning classifiers for binned spectra</p>
+          <p class="pkg-role">Deep-learning classifiers for binned <span style="white-space: nowrap">MALDI-TOF</span> spectra</p>
           <ul class="pkg-features">
             <li><code>MaldiMLPClassifier</code>, <code>MaldiCNNClassifier</code>, <code>MaldiResNetClassifier</code> and <code>MaldiTransformerClassifier</code></li>
             <li>Defaults tuned for 6000-bin spectra, <code>from_spectrum()</code> for other layouts</li>
@@ -320,7 +320,7 @@
               <tr class="pkg-amr">
                 <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiAMRKit</th>
                 <td><code>[batch,formats] &gt;=0.22.2,&lt;0.23</code></td>
-                <td class="compat-latest" data-package="maldiamrkit" data-min="0.22.2" data-max="0.23">0.22.2</td>
+                <td class="compat-latest" data-package="maldiamrkit" data-min="0.22.2" data-max="0.23">0.22.3</td>
               </tr>
               <tr class="pkg-batch">
                 <th scope="row"><span class="swatch" aria-hidden="true"></span>MaldiBatchKit</th>
@@ -400,38 +400,205 @@
     <div class="container">
       <header class="section-head reveal">
         <p class="eyebrow">Quick start</p>
-        <h2 id="quickstart-title">From a folder of spectra to a cross-validated score.</h2>
+        <h2 id="quickstart-title">A first result in a few lines.</h2>
       </header>
 
-      <div class="quickstart">
-        <ol class="steps">
-          <li class="step reveal">
-            <h3><span class="step-num">1</span>Install</h3>
-            <div class="code-chip">
-              <code>pip install maldisuite</code>
-              <button class="copy-btn" type="button" data-copy="pip install maldisuite" aria-label="Copy install command">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              </button>
-            </div>
-            <p class="step-note">Python 3.10 or newer. The deep models run on CPU; a CUDA GPU makes training much faster.</p>
-          </li>
-          <li class="step reveal">
-            <h3><span class="step-num">2</span>Load your cohort</h3>
-            <p class="step-note">Point <code>MaldiSet</code> at a folder of spectra and a metadata CSV with an <code>ID</code> column for each spectrum, the resistance label, species, batch and patient. Labels are encoded as R&nbsp;=&nbsp;1, S&nbsp;=&nbsp;0.</p>
-          </li>
-          <li class="step reveal">
-            <h3><span class="step-num">3</span>Build and evaluate the pipeline</h3>
-            <p class="step-note">Warping, ComBat and the classifier are refitted inside every training fold, and <code>CaseGroupedKFold</code> keeps all spectra of a patient in the same fold.</p>
-          </li>
-        </ol>
+      <div class="qs-tabs reveal">
+        <div class="tabs" role="tablist" aria-label="Quick start">
+          <button class="tab" role="tab" id="qs-tab-amr" aria-controls="qs-panel-amr" aria-selected="true">MaldiAMRKit</button>
+          <button class="tab" role="tab" id="qs-tab-batch" aria-controls="qs-panel-batch" aria-selected="false" tabindex="-1">MaldiBatchKit</button>
+          <button class="tab" role="tab" id="qs-tab-deep" aria-controls="qs-panel-deep" aria-selected="false" tabindex="-1">MaldiDeepKit</button>
+          <button class="tab" role="tab" id="qs-tab-all" aria-controls="qs-panel-all" aria-selected="false" tabindex="-1">All three</button>
+        </div>
 
-        <figure class="code-window reveal">
-          <figcaption class="code-window-bar">
-            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="code-window-title">quickstart.py</span>
-            <button class="copy-btn copy-btn-text" type="button" data-copy-target="quickstart-code" aria-label="Copy the quick start script">Copy</button>
-          </figcaption>
-<pre class="code-body"><code id="quickstart-code"><span class="c-kw">from</span> maldiamrkit <span class="c-kw">import</span> MaldiSet
+        <div class="tab-panel" role="tabpanel" id="qs-panel-amr" aria-labelledby="qs-tab-amr">
+          <div class="quickstart">
+            <ol class="steps">
+              <li class="step">
+                <h3><span class="step-num">1</span>Install</h3>
+                <div class="code-chip">
+                  <code>pip install maldiamrkit</code>
+                  <button class="copy-btn" type="button" data-copy="pip install maldiamrkit" aria-label="Copy install command for MaldiAMRKit">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </div>
+                <p class="step-note">Python 3.10 or newer. scikit-learn is installed with it.</p>
+              </li>
+              <li class="step">
+                <h3><span class="step-num">2</span>Load your cohort</h3>
+                <p class="step-note">Point <code>MaldiSet</code> at a folder of spectra, one <code>.txt</code> file per spectrum named after its ID, and a metadata CSV with an <code>ID</code> column, the resistance label and the patient. Labels are encoded as R&nbsp;=&nbsp;1, S&nbsp;=&nbsp;0. See the <a href="https://github.com/EttoreRocchi/MaldiAMRKit/tree/main/data" target="_blank" rel="noopener">MaldiAMRKit example data</a> for both formats.</p>
+              </li>
+              <li class="step">
+                <h3><span class="step-num">3</span>Evaluate with AMR metrics</h3>
+                <p class="step-note">Warping and the classifier are refitted inside every training fold, <code>vme_scorer</code> reports the very major error rate, and <code>CaseGroupedKFold</code> keeps all spectra of a patient in the same fold.</p>
+              </li>
+            </ol>
+
+            <figure class="code-window">
+              <figcaption class="code-window-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="code-window-title">amr_quickstart.py</span>
+                <button class="copy-btn copy-btn-text" type="button" data-copy-target="quickstart-code-amr" aria-label="Copy the MaldiAMRKit quick start script">Copy</button>
+              </figcaption>
+<pre class="code-body"><code id="quickstart-code-amr"><span class="c-kw">from</span> maldiamrkit <span class="c-kw">import</span> MaldiSet
+<span class="c-kw">from</span> maldiamrkit.alignment <span class="c-kw">import</span> Warping
+<span class="c-kw">from</span> maldiamrkit.evaluation <span class="c-kw">import</span> CaseGroupedKFold, vme_scorer
+<span class="c-kw">from</span> maldiamrkit.susceptibility <span class="c-kw">import</span> LabelEncoder
+<span class="c-kw">from</span> sklearn.linear_model <span class="c-kw">import</span> LogisticRegression
+<span class="c-kw">from</span> sklearn.model_selection <span class="c-kw">import</span> cross_val_score
+<span class="c-kw">from</span> sklearn.pipeline <span class="c-kw">import</span> Pipeline
+<span class="c-kw">from</span> sklearn.preprocessing <span class="c-kw">import</span> StandardScaler
+
+<span class="c-com"># metadata.csv: ID, Drug (R/S), patient_id</span>
+data = MaldiSet.from_directory(<span class="c-str">"spectra/"</span>, <span class="c-str">"metadata.csv"</span>, bin_width=<span class="c-num">3</span>)
+meta = data.meta.loc[data.X.index]
+y = LabelEncoder().fit_transform(data.get_y_single(<span class="c-str">"Drug"</span>))  <span class="c-com"># R=1, S=0</span>
+
+pipe = Pipeline([
+    (<span class="c-str">"warp"</span>,  Warping(method=<span class="c-str">"shift"</span>)),
+    (<span class="c-str">"scale"</span>, StandardScaler()),
+    (<span class="c-str">"clf"</span>,   LogisticRegression(max_iter=<span class="c-num">1000</span>)),
+])
+
+scores = cross_val_score(
+    pipe, data.X, y,
+    scoring=vme_scorer,
+    cv=CaseGroupedKFold(n_splits=<span class="c-num">5</span>, random_state=<span class="c-num">0</span>),
+    groups=meta[<span class="c-str">"patient_id"</span>],
+)
+print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
+              <p class="code-window-foot">Tested with maldiamrkit 0.22.3.</p>
+            </figure>
+          </div>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="qs-panel-batch" aria-labelledby="qs-tab-batch" hidden>
+          <div class="quickstart">
+            <ol class="steps">
+              <li class="step">
+                <h3><span class="step-num">1</span>Install</h3>
+                <div class="code-chip">
+                  <code>pip install maldibatchkit</code>
+                  <button class="copy-btn" type="button" data-copy="pip install maldibatchkit" aria-label="Copy install command for MaldiBatchKit">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </div>
+                <p class="step-note">Python 3.10 or newer. Works on any spectra-by-bins table, with or without MaldiAMRKit.</p>
+              </li>
+              <li class="step">
+                <h3><span class="step-num">2</span>Load the spectra and the batches</h3>
+                <p class="step-note">A table with one row per spectrum and one column per bin, and the batch and species of each spectrum, matched by ID.</p>
+              </li>
+              <li class="step">
+                <h3><span class="step-num">3</span>Correct and check</h3>
+                <p class="step-note"><code>SpeciesAwareComBat</code> removes site effects while keeping species differences, and <code>diagnostic_report</code> compares kBET, LISI and silhouette before and after. Inside a <code>Pipeline</code> it is fitted on the training folds only.</p>
+              </li>
+            </ol>
+
+            <figure class="code-window">
+              <figcaption class="code-window-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="code-window-title">batch_quickstart.py</span>
+                <button class="copy-btn copy-btn-text" type="button" data-copy-target="quickstart-code-batch" aria-label="Copy the MaldiBatchKit quick start script">Copy</button>
+              </figcaption>
+<pre class="code-body"><code id="quickstart-code-batch"><span class="c-kw">import</span> pandas <span class="c-kw">as</span> pd
+<span class="c-kw">from</span> maldibatchkit <span class="c-kw">import</span> SpeciesAwareComBat
+<span class="c-kw">from</span> maldibatchkit.diagnostics <span class="c-kw">import</span> diagnostic_report
+
+<span class="c-com"># X.csv: one row per spectrum, one column per bin; metadata.csv: ID, batch, Species</span>
+X = pd.read_csv(<span class="c-str">"X.csv"</span>, index_col=<span class="c-str">"ID"</span>)
+meta = pd.read_csv(<span class="c-str">"metadata.csv"</span>, index_col=<span class="c-str">"ID"</span>).loc[X.index]
+
+combat = SpeciesAwareComBat(batch=meta[<span class="c-str">"batch"</span>], species=meta[<span class="c-str">"Species"</span>])
+X_corrected = combat.fit_transform(X)
+
+print(diagnostic_report(X, X_corrected, meta[<span class="c-str">"batch"</span>]))</code></pre>
+              <p class="code-window-foot">Tested with maldibatchkit 0.2.2.</p>
+            </figure>
+          </div>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="qs-panel-deep" aria-labelledby="qs-tab-deep" hidden>
+          <div class="quickstart">
+            <ol class="steps">
+              <li class="step">
+                <h3><span class="step-num">1</span>Install</h3>
+                <div class="code-chip">
+                  <code>pip install maldideepkit</code>
+                  <button class="copy-btn" type="button" data-copy="pip install maldideepkit" aria-label="Copy install command for MaldiDeepKit">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </div>
+                <p class="step-note">Python 3.10 or newer. The models run on CPU; a CUDA GPU makes training much faster.</p>
+              </li>
+              <li class="step">
+                <h3><span class="step-num">2</span>Load binned spectra</h3>
+                <p class="step-note">Any matrix of binned spectra, with 0/1 labels and the patient of each spectrum. The defaults are tuned for 6000-bin spectra.</p>
+              </li>
+              <li class="step">
+                <h3><span class="step-num">3</span>Cross-validate</h3>
+                <p class="step-note">Each classifier is a scikit-learn estimator, so <code>cross_val_score</code> and grouped splits work as with any other model.</p>
+              </li>
+            </ol>
+
+            <figure class="code-window">
+              <figcaption class="code-window-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="code-window-title">deep_quickstart.py</span>
+                <button class="copy-btn copy-btn-text" type="button" data-copy-target="quickstart-code-deep" aria-label="Copy the MaldiDeepKit quick start script">Copy</button>
+              </figcaption>
+<pre class="code-body"><code id="quickstart-code-deep"><span class="c-kw">import</span> numpy <span class="c-kw">as</span> np
+<span class="c-kw">from</span> maldideepkit <span class="c-kw">import</span> MaldiCNNClassifier
+<span class="c-kw">from</span> sklearn.model_selection <span class="c-kw">import</span> StratifiedGroupKFold, cross_val_score
+
+<span class="c-com"># X.npy: binned spectra (n_spectra, n_bins); y.npy: 0/1 labels; groups.npy: patient IDs</span>
+X = np.load(<span class="c-str">"X.npy"</span>).astype(<span class="c-str">"float32"</span>)
+y = np.load(<span class="c-str">"y.npy"</span>)
+groups = np.load(<span class="c-str">"groups.npy"</span>, allow_pickle=<span class="c-kw">True</span>)
+
+clf = MaldiCNNClassifier(input_dim=X.shape[<span class="c-num">1</span>], random_state=<span class="c-num">0</span>)
+scores = cross_val_score(
+    clf, X, y,
+    scoring=<span class="c-str">"roc_auc"</span>,
+    cv=StratifiedGroupKFold(n_splits=<span class="c-num">5</span>),
+    groups=groups,
+)
+print(<span class="c-str">f"AUROC: {scores.mean():.3f}"</span>)</code></pre>
+              <p class="code-window-foot">Tested with maldideepkit 0.4.0.</p>
+            </figure>
+          </div>
+        </div>
+
+        <div class="tab-panel" role="tabpanel" id="qs-panel-all" aria-labelledby="qs-tab-all" hidden>
+          <div class="quickstart">
+            <ol class="steps">
+              <li class="step">
+                <h3><span class="step-num">1</span>Install</h3>
+                <div class="code-chip">
+                  <code>pip install maldisuite</code>
+                  <button class="copy-btn" type="button" data-copy="pip install maldisuite" aria-label="Copy install command">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </div>
+                <p class="step-note">Python 3.10 or newer. The deep models run on CPU; a CUDA GPU makes training much faster.</p>
+              </li>
+              <li class="step">
+                <h3><span class="step-num">2</span>Load your cohort</h3>
+                <p class="step-note">Point <code>MaldiSet</code> at a folder of spectra, one <code>.txt</code> file per spectrum named after its ID, and a metadata CSV with an <code>ID</code> column, the resistance label, species, batch and patient. Labels are encoded as R&nbsp;=&nbsp;1, S&nbsp;=&nbsp;0. See the <a href="https://github.com/EttoreRocchi/MaldiAMRKit/tree/main/data" target="_blank" rel="noopener">MaldiAMRKit example data</a> for both formats.</p>
+              </li>
+              <li class="step">
+                <h3><span class="step-num">3</span>Build and evaluate the pipeline</h3>
+                <p class="step-note">Warping, ComBat and the classifier are refitted inside every training fold, and <code>CaseGroupedKFold</code> keeps all spectra of a patient in the same fold.</p>
+              </li>
+                </ol>
+
+            <figure class="code-window">
+              <figcaption class="code-window-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="code-window-title">quickstart.py</span>
+                <button class="copy-btn copy-btn-text" type="button" data-copy-target="quickstart-code-all" aria-label="Copy the quick start script">Copy</button>
+              </figcaption>
+<pre class="code-body"><code id="quickstart-code-all"><span class="c-kw">from</span> maldiamrkit <span class="c-kw">import</span> MaldiSet
 <span class="c-kw">from</span> maldiamrkit.evaluation <span class="c-kw">import</span> CaseGroupedKFold, vme_scorer
 <span class="c-kw">from</span> maldiamrkit.susceptibility <span class="c-kw">import</span> LabelEncoder
 <span class="c-kw">from</span> maldibatchkit <span class="c-kw">import</span> BatchAwareWarping, SpeciesAwareComBat
@@ -459,14 +626,16 @@ scores = cross_val_score(
     groups=meta[<span class="c-str">"patient_id"</span>],
 )
 print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
-          <p class="code-window-foot">Tested with maldiamrkit 0.22.2, maldibatchkit 0.2.2 and maldideepkit 0.4.0.</p>
-        </figure>
+              <p class="code-window-foot">Tested with maldiamrkit 0.22.3, maldibatchkit 0.2.2 and maldideepkit 0.4.0.</p>
+            </figure>
+          </div>
+        </div>
       </div>
 
       <div class="doc-links reveal">
-        <a href="https://maldiamrkit.readthedocs.io/en/latest/quickstart.html" target="_blank" rel="noopener">MaldiAMRKit quickstart &rarr;</a>
-        <a href="https://maldibatchkit.readthedocs.io/en/latest/choosing.html" target="_blank" rel="noopener">Choosing a batch corrector &rarr;</a>
-        <a href="https://maldideepkit.readthedocs.io/en/latest/quickstart.html" target="_blank" rel="noopener">MaldiDeepKit quickstart &rarr;</a>
+        <a href="https://maldiamrkit.readthedocs.io/en/stable/quickstart.html" target="_blank" rel="noopener">MaldiAMRKit quickstart &rarr;</a>
+        <a href="https://maldibatchkit.readthedocs.io/en/stable/choosing.html" target="_blank" rel="noopener">Choosing a batch corrector &rarr;</a>
+        <a href="https://maldideepkit.readthedocs.io/en/stable/quickstart.html" target="_blank" rel="noopener">MaldiDeepKit quickstart &rarr;</a>
       </div>
     </div>
   </section>
@@ -521,12 +690,17 @@ print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
       <header class="section-head reveal">
         <p class="eyebrow">Research</p>
         <h2 id="research-title">The scientific work behind the suite.</h2>
-        <p class="section-lede">MaldiSuite is described in an Application Note currently under review. Related studies from the same group are listed below.</p>
+        <p class="section-lede">MaldiSuite is described in an Application Note currently under review.</p>
       </header>
 
       <div class="publications" id="publications">
         <noscript>
           <p><strong>MaldiSuite: a Python ecosystem for MALDI-TOF spectral processing and analysis in antimicrobial resistance research.</strong> Rocchi E, Sala C, Castellani G. Under review at <em>Bioinformatics</em>.</p>
+        </noscript>
+      </div>
+      <h3 class="eyebrow publications-title reveal" id="publications-using-title">Publications using MaldiSuite</h3>
+      <div class="publications" id="publications-using" aria-labelledby="publications-using-title">
+        <noscript>
           <p><a href="https://doi.org/10.1186/s12866-025-04657-2">Rocchi, E., Nicitra, E., Calvo, M. et al. Combining mass spectrometry and machine learning models for predicting Klebsiella pneumoniae antimicrobial resistance: a multicenter experience from clinical isolates in Italy. BMC Microbiol. 26, 180 (2026).</a></p>
         </noscript>
       </div>
@@ -592,6 +766,6 @@ print(<span class="c-str">f"VME: {-scores.mean():.3f}"</span>)</code></pre>
 </footer>
 
 <div class="chart-tooltip" id="chart-tooltip" role="tooltip" hidden></div>
-<script src="js/main.js?v=0.4.0-1"></script>
+<script src="js/main.js?v=0.4.0-3"></script>
 </body>
 </html>
