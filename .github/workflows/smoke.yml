@@ -25,10 +25,10 @@ jobs:
         source: [repository, pypi]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -52,7 +52,7 @@ jobs:
     name: Links in README and site
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: MaldiSuite
 
@@ -63,5 +63,6 @@ jobs:
             --no-progress
             --accept 200..=299,403,429
             --root-dir ${{ github.workspace }}
+            --remap '^https://github\.com/EttoreRocchi/MaldiSuite/blob/main/(.*)$ file://${{ github.workspace }}/MaldiSuite/$1'
             --exclude '^https://fonts\.(googleapis|gstatic)\.com/?$'
             MaldiSuite/README.md MaldiSuite/index.html MaldiSuite/404.html
